@@ -1,0 +1,8 @@
+require "usr.options"
+require "usr.keymap"
+require "usr.plugins"
+require "usr.cmp"
+require "usr.colorscheme"
+require "usr.airline"
+require "usr.lsp"
+require "usr.telescope"
