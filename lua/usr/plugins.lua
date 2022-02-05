@@ -69,11 +69,12 @@ return packer.startup(function(use)
 	use "L3MON4D3/LuaSnip" --snippet engine
 	use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
-	-- AIRLINE
-	use "vim-airline/vim-airline"
-	use "vim-airline/vim-airline-themes"
+	-- LUALINE & BUFFLINE
+	use 'nvim-lualine/lualine.nvim'
+	use "akinsho/bufferline.nvim"
 
 	-- DEVICONS and NVIM-TREE
+	use "ryanoasis/vim-devicons"
 	use 'kyazdani42/nvim-web-devicons'
 	use 'kyazdani42/nvim-tree.lua'
 
