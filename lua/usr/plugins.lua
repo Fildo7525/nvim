@@ -82,6 +82,9 @@ return packer.startup(function(use)
 	use 'nvim-telescope/telescope.nvim'
 	use "BurntSushi/ripgrep"
 
+	-- TERMINAL POPUP WINDOW
+	use "akinsho/toggleterm.nvim"
+
 	-- treesitter
 	use {
 		"nvim-treesitter/nvim-treesitter",
@@ -95,6 +98,7 @@ return packer.startup(function(use)
 
 	-- GIT
 	use "lewis6991/gitsigns.nvim"
+	-- use 'kdheepak/lazygit.nvim'
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

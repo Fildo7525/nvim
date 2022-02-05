@@ -60,7 +60,7 @@ keymap("n", "<C-DOWN>", "<C-w>j", opts)
 keymap("n", "<C-LEFT>", "<C-w>h", opts)
 keymap("n", "<C-RIGHT>", "<C-w>l", opts)
 
-keymap("n", "<leader>e", ":Lex 15<CR>", opts)
+-- keymap("n", "<leader>e", ":Lex 15<CR>", opts)
 
 -- NAVIGATE BUFFERS --
 keymap("n", "<A-LEFT>", ":bprevious<CR>", opts)
