@@ -43,6 +43,18 @@ return packer.startup(function(use)
 	-- packer itself
 	use "wbthomason/packer.nvim" -- Have packer manage itself
 
+	-- SPEEDUP
+	use 'lewis6991/impatient.nvim'
+
+	-- ALPHA
+	use 'goolord/alpha-nvim'
+
+	-- PROJECTS
+	use 'ahmedkhalf/project.nvim'
+
+	-- SHOW INDENTATION
+	use "lukas-reineke/indent-blankline.nvim"
+
 	-- dependencies
 	use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
 	use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
@@ -98,7 +110,7 @@ return packer.startup(function(use)
 
 	-- GIT
 	use "lewis6991/gitsigns.nvim"
-	-- use 'kdheepak/lazygit.nvim'
+	use 'kdheepak/lazygit.nvim'
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins

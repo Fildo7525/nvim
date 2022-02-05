@@ -30,6 +30,7 @@ keymap("n", "gf", ":e <cfile><CR>", opts)
 -- GIT signs
 keymap("n", "gp", ":Gitsigns preview_hunk<CR>", opts)
 keymap("n", "gbl", ":Gitsigns blame_line<CR>", opts)
+keymap("n", "<leader>lg", "<CMD>lua _LAZYGIT_TOGGLE()<CR>", opts)
 
 -- TELESCOPE --
 keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
@@ -67,8 +68,8 @@ keymap("n", "<A-LEFT>", ":bprevious<CR>", opts)
 keymap("n", "<A-RIGHT>", ":bnext<CR>", opts)
 
 -- MOVE TEXT UP & DOWN
-keymap("n", "<A-DOWN>", "<ESC>:m .+1<CR>==gi", opts)
-keymap("n", "<A-DOWN>", "<ESC>:m .-2<CR>==gi", opts)
+keymap("n", "<A-S-DOWN>", "<ESC>:m .+1<CR>==gi", opts)
+keymap("n", "<A-S-DOWN>", "<ESC>:m .-2<CR>==gi", opts)
 
 -- Insert --
 
@@ -97,8 +98,8 @@ keymap("v", "p", '"_dP', opts)
 -- Move text up and down
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
-keymap("x", "<A-DOWN>", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "<A-UP>", ":move '<-2<CR>gv-gv", opts)
+keymap("x", "<A-S-DOWN>", ":move '>+1<CR>gv-gv", opts)
+keymap("x", "<A-S-UP>", ":move '<-2<CR>gv-gv", opts)
 
 -- Terminal --
 

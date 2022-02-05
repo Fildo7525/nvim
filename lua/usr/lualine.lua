@@ -49,6 +49,26 @@ local location = {
 	padding = 0,
 }
 
+local filename = {
+	"filename",
+	file_status = true,
+	path = 1,
+	symbols = {
+		readonly = " ",
+		unnamed = " ﳠ",
+		modified = "螺",
+	}
+}
+
+local fileformat = {
+	"fileformat",
+	symbols = {
+		unix = '', -- e712
+		dos = '',  -- e70f
+		mac = '',  -- e711
+	}
+}
+
 -- cool function for progress
 local progress = function()
 	local current_line = vim.fn.line(".")
@@ -74,10 +94,10 @@ lualine.setup({
 	},
 	sections = {
 		lualine_a = { mode },
-		lualine_b = { 'filename', branch, diff, diagnostics },
+		lualine_b = { filename, branch, diff, diagnostics },
 		lualine_c = {},
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_x = { spaces, "encoding", filetype },
+		lualine_x = { spaces, "encoding", fileformat, filetype },
 		lualine_y = { location, progress },
 		lualine_z = {},
 	},
