@@ -21,11 +21,15 @@ vim.g.maplocalleader = " "
 keymap("n", "<leader>es", ":e ~/.config/nvim/init.lua<CR>", opts)
 
 -- buildProject CUSTOMS --
-keymap("n", "<F5>", ":terminal compile.sh<CR>", opts)
-keymap("n", "<F8>", ":terminal build.sh<CR>", opts)
+keymap("n", "<F5>", ":term ./compile.sh<CR>", term_opts)
+keymap("n", "<F8>", ":term ./build.sh<CR>", term_opts)
 
 -- open new file
 keymap("n", "gf", ":e <cfile><CR>", opts)
+
+-- GIT signs
+keymap("n", "gp", ":Gitsigns preview_hunk<CR>", opts)
+keymap("n", "gbl", ":Gitsigns blame_line<CR>", opts)
 
 -- TELESCOPE --
 keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
@@ -103,3 +107,6 @@ keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
 keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
+
+-- Nvimtree
+keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)

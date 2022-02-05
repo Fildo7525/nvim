@@ -59,6 +59,7 @@ return packer.startup(function(use)
 	use "saadparwaiz1/cmp_luasnip" -- snippet completions
 	use "hrsh7th/cmp-nvim-lsp"
 	use "hrsh7th/cmp-nvim-lua"	-- lua nvim scripting
+	use "windwp/nvim-autopairs"
 
 	--	LSP
 	use "neovim/nvim-lspconfig" -- enable LSP
@@ -72,8 +73,9 @@ return packer.startup(function(use)
 	use "vim-airline/vim-airline"
 	use "vim-airline/vim-airline-themes"
 
-	-- DEVICONS
-	use "ryanoasis/vim-devicons"
+	-- DEVICONS and NVIM-TREE
+	use 'kyazdani42/nvim-web-devicons'
+	use 'kyazdani42/nvim-tree.lua'
 
 	-- TELESCOPE
 	use 'nvim-telescope/telescope.nvim'
@@ -85,6 +87,13 @@ return packer.startup(function(use)
 		run = ":TSUpdate"
 	}
 	use "p00f/nvim-ts-rainbow"
+
+	-- COMMENTING
+	use "numToStr/Comment.nvim"
+	use "JoosepAlviste/nvim-ts-context-commentstring"
+
+	-- GIT
+	use "lewis6991/gitsigns.nvim"
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
