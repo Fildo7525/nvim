@@ -1,19 +1,19 @@
-require "usr.options"
-require "usr.keymaps"
-require "usr.plugins"
-require "usr.cmp"
-require "usr.colorscheme"
-require "usr.lualine"
-require "usr.buffline"
-require "usr.lsp"
-require "usr.telescope"
-require "usr.treesitter"
-require "usr.autopairs"
-require "usr.comment"
-require "usr.gitsigns"
-require "usr.nvim-tree"
-require "usr.toggleterm"
-require "usr.impatient"
-require "usr.indentation"
-require "usr.alpha"
+require("usr.options")
+require("usr.keymaps")
+require("usr.plugins")
+require("usr.cmp")
+require("usr.colorscheme")
+require("usr.lualine")
+require("usr.buffline")
+require("usr.lsp")
+require("usr.telescope")
+require("usr.treesitter")
+require("usr.autopairs")
+require("usr.comment")
+require("usr.gitsigns")
+require("usr.nvim-tree")
+require("usr.toggleterm")
+-- require("usr.impatient")
+require("usr.indentation")
+require("usr.alpha")
 -- require "usr.project"

@@ -44,13 +44,13 @@ return packer.startup(function(use)
 	use "wbthomason/packer.nvim" -- Have packer manage itself
 
 	-- SPEEDUP
-	use 'lewis6991/impatient.nvim'
+	-- use 'lewis6991/impatient.nvim'
 
 	-- ALPHA
 	use 'goolord/alpha-nvim'
 
 	-- PROJECTS
-	use 'ahmedkhalf/project.nvim'
+	-- use 'ahmedkhalf/project.nvim'
 
 	-- SHOW INDENTATION
 	use "lukas-reineke/indent-blankline.nvim"
@@ -76,6 +76,7 @@ return packer.startup(function(use)
 	--	LSP
 	use "neovim/nvim-lspconfig" -- enable LSP
 	use "williamboman/nvim-lsp-installer"
+	use 'mfussenegger/nvim-jdtls'
 
 	-- snippets
 	use "L3MON4D3/LuaSnip" --snippet engine
@@ -84,6 +85,7 @@ return packer.startup(function(use)
 	-- LUALINE & BUFFLINE
 	use 'nvim-lualine/lualine.nvim'
 	use "akinsho/bufferline.nvim"
+	use 'famiu/bufdelete.nvim'
 
 	-- DEVICONS and NVIM-TREE
 	use "ryanoasis/vim-devicons"

@@ -18,9 +18,10 @@ vim.g.maplocalleader = " "
 
 --	NORMAL	--
 -- init.lua edditink
-keymap("n", "<leader>es", ":e ~/.config/nvim/init.lua<CR>", opts)
+keymap("n", "<leader>sc", ":e ~/.config/nvim/init.lua<CR>", opts)
 
 -- buildProject CUSTOMS --
+keymap("n", "<F2>", ":term cmake -S . -B ./cmake-debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1<CR>", opts)
 keymap("n", "<F5>", ":term ./compile.sh<CR>", term_opts)
 keymap("n", "<F8>", ":term ./build.sh<CR>", term_opts)
 
@@ -31,6 +32,7 @@ keymap("n", "gf", ":e <cfile><CR>", opts)
 keymap("n", "gp", ":Gitsigns preview_hunk<CR>", opts)
 keymap("n", "gbl", ":Gitsigns blame_line<CR>", opts)
 keymap("n", "<leader>lg", "<CMD>lua _LAZYGIT_TOGGLE()<CR>", opts)
+keymap("n", "<leader>ht", "<CMD>lua _HTOP_TOGGlE()<CR>", opts)
 
 -- TELESCOPE --
 keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
@@ -46,8 +48,8 @@ keymap("n", "<leader>gs", "<cmd>Telescope git_status<CR>", opts)
 -- SAVING --
 keymap("n", "<leader>w", ":w<CR>", opts)
 keymap("n", "<leader>qq", ":wq<CR>", opts)
-keymap("n", "<leader>bw", ":bw<CR>", opts) -- buffer writing
-keymap("n", "<leader>bd", ":bd!<CR>", opts) -- buffer delete force
+keymap("n", "<leader>bw", ":w <bar> :Bdelete! %d <CR>", opts) -- buffer writing
+keymap("n", "<leader>bd", ":Bdelete! %d<CR>", opts) -- buffer delete force
 
 -- Resize with arrows
 keymap("n", "<C-K>", ":resize -2<CR>", opts)
@@ -68,16 +70,16 @@ keymap("n", "<A-LEFT>", ":bprevious<CR>", opts)
 keymap("n", "<A-RIGHT>", ":bnext<CR>", opts)
 
 -- MOVE TEXT UP & DOWN
-keymap("n", "<A-S-DOWN>", "<ESC>:m .+1<CR>==gi", opts)
+keymap("n", "<A-S-UP>", "<ESC>:m .+1<CR>==gi", opts)
 keymap("n", "<A-S-DOWN>", "<ESC>:m .-2<CR>==gi", opts)
 
 -- Insert --
 
 -- BRACES, PARANTHESES
-keymap("i", "[", "[]<LEFT>", opts)
-keymap("i", "{", "{}<LEFT>", opts)
-keymap("i", "'", "''<LEFT>", opts)
-keymap("i", "\"", "\"\"<LEFT>", opts)
+-- keymap("i", "[", "[]<LEFT>", opts)
+-- keymap("i", "{", "{}<LEFT>", opts)
+-- keymap("i", "'", "''<LEFT>", opts)
+-- keymap("i", "\"", "\"\"<LEFT>", opts)
 
 -- Press jk fast to enter
 keymap("i", "jj", "<ESC>:w<CR>", opts)

@@ -32,8 +32,8 @@ local kind_icons = {
   Enum = "",
   Keyword = "",
   Snippet = "",
-  Color = "",
-  File = "",
+  --[[ Color = "",
+  File = "", ]]
   Reference = "",
   Folder = "",
   EnumMember = "",
@@ -125,7 +125,7 @@ cmp.setup {
     border = { "╭", "─", "╮", "│", "╯", "─", "╰", "│" },
   },
   experimental = {
-    ghost_text = false,
+    ghost_text = true,
     native_menu = false,
   },
 }

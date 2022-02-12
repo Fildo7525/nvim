@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/home/fildo7525/.local/share/nvim/site/pack/packer/start/alpha-nvim",
     url = "https://github.com/goolord/alpha-nvim"
   },
+  ["bufdelete.nvim"] = {
+    loaded = true,
+    path = "/home/fildo7525/.local/share/nvim/site/pack/packer/start/bufdelete.nvim",
+    url = "https://github.com/famiu/bufdelete.nvim"
+  },
   ["bufferline.nvim"] = {
     loaded = true,
     path = "/home/fildo7525/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
@@ -129,11 +134,6 @@ _G.packer_plugins = {
     path = "/home/fildo7525/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
-  ["impatient.nvim"] = {
-    loaded = true,
-    path = "/home/fildo7525/.local/share/nvim/site/pack/packer/start/impatient.nvim",
-    url = "https://github.com/lewis6991/impatient.nvim"
-  },
   ["indent-blankline.nvim"] = {
     loaded = true,
     path = "/home/fildo7525/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
@@ -158,6 +158,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/fildo7525/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
+  },
+  ["nvim-jdtls"] = {
+    loaded = true,
+    path = "/home/fildo7525/.local/share/nvim/site/pack/packer/start/nvim-jdtls",
+    url = "https://github.com/mfussenegger/nvim-jdtls"
   },
   ["nvim-lsp-installer"] = {
     loaded = true,
@@ -209,11 +214,6 @@ _G.packer_plugins = {
     path = "/home/fildo7525/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
   },
-  ["project.nvim"] = {
-    loaded = true,
-    path = "/home/fildo7525/.local/share/nvim/site/pack/packer/start/project.nvim",
-    url = "https://github.com/ahmedkhalf/project.nvim"
-  },
   ripgrep = {
     loaded = true,
     path = "/home/fildo7525/.local/share/nvim/site/pack/packer/start/ripgrep",
@@ -252,5 +252,6 @@ if should_profile then save_profiles() end
 end)
 
 if not no_errors then
+  error_msg = error_msg:gsub('"', '\\"')
   vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: '..error_msg..'" | echom "Please check your config for correctness" | echohl None')
 end
