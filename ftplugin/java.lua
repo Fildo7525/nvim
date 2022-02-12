@@ -8,7 +8,7 @@ local workspace_path = vim.fn.expand('~/.cache/jdtls-workspace/')
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = workspace_path .. project_name
 
-local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle" }
+local root_markers = { ".git", "mvnw", "gradlew", "pom.xml", "build.gradle", "build.sh", "compile.sh" }
 local root_directory = require("jdtls.setup").find_root(root_markers)
 if root_directory == "" then
 	vim.notify("JDTLS plugin failure at line 14.")

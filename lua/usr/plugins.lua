@@ -44,7 +44,7 @@ return packer.startup(function(use)
 	use "wbthomason/packer.nvim" -- Have packer manage itself
 
 	-- SPEEDUP
-	-- use 'lewis6991/impatient.nvim'
+	use 'lewis6991/impatient.nvim'
 
 	-- ALPHA
 	use 'goolord/alpha-nvim'
