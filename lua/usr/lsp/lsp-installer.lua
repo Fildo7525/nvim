@@ -35,6 +35,16 @@ lsp_installer.on_server_ready(function(server)
 		return
 	end
 
+	if server.name == "clangd" then
+		local clang_opts = require("usr.lsp.settings.clangd")
+		opts = vim.tbl_deep_extend("force", clang_opts, opts)
+	end
+
+	if server.name == "cmake" then
+		local cmake_opts = require("usr.lsp.settings.cmake")
+		opts = vim.tbl_deep_extend("force", cmake_opts, opts)
+	end
+
 	-- This setup() function is exactly the same as lspconfig's setup function.
 	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 	server:setup(opts)

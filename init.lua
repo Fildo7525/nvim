@@ -16,4 +16,5 @@ require("usr.toggleterm")
 require("usr.impatient")
 require("usr.indentation")
 require("usr.alpha")
+require("usr.dap")
 -- require "usr.project"
