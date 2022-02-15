@@ -1,5 +1,6 @@
 local status_ok, jdtls = pcall(require, "jdtls")
 if not status_ok then
+	vim.notify("jdtls error")
 	return
 end
 

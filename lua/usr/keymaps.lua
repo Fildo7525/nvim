@@ -21,7 +21,7 @@ vim.g.maplocalleader = " "
 keymap("n", "<leader>sc", ":e ~/.config/nvim/init.lua<CR>", opts)
 
 -- buildProject CUSTOMS --
-keymap("n", "<F2>", ":term cmake -S . -B ./cmake-debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1<CR>", opts)
+keymap("n", "<F2>", ":term cmake -S . -B ./cmake-debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 <bar> mv ./cmake-debug/compile_commands.json .<CR>", opts)
 keymap("n", "<F5>", ":term ./compile.sh<CR>", term_opts)
 keymap("n", "<F8>", ":term ./build.sh<CR>", term_opts)
 

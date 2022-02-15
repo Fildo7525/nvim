@@ -1,11 +1,16 @@
 local status, comment = pcall(require, "Comment")
 if not status then
+	vim.notify("comment error")
 	return
 end
 
 comment.setup {
 	pre_hook = function(ctx)
-		local U = require "Comment.utils"
+		local U_ok, U = pcall(require, "Comment.utils")
+		if not U_ok then
+			vim.notify("U_ok comment.lua error")
+			return
+		end
 
 		local location = nil
 		if ctx.ctype == U.ctype.block then

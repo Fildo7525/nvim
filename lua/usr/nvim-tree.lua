@@ -23,11 +23,13 @@ vim.g.nvim_tree_icons = {
 
 local status_ok, nvim_tree = pcall(require, "nvim-tree")
 if not status_ok then
+	vim.notify("nvim_tree error")
 	return
 end
 
 local config_status_ok, nvim_tree_config = pcall(require, "nvim-tree.config")
 if not config_status_ok then
+	vim.notify("nvim_tree.config error")
 	return
 end
 

@@ -26,6 +26,7 @@ vim.cmd [[
 -- Use a protected call so we don't error out on first use
 local status_ok, packer = pcall(require, "packer")
 if not status_ok then
+	vim.notify("packer error")
 	return
 end
 
@@ -112,10 +113,15 @@ return packer.startup(function(use)
 
 	-- GIT
 	use "lewis6991/gitsigns.nvim"
-	use 'kdheepak/lazygit.nvim'
+	use "kdheepak/lazygit.nvim"
 
 	-- DEBUGGING
 	use 'mfussenegger/nvim-dap'
+	use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+	-- use {
+	-- 	"Pocco81/DAPInstall.nvim",
+	-- 	installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
+	-- }
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
