@@ -1,0 +1,1 @@
+The FAQs for the C/C++ extension has moved to https://code.visualstudio.com/docs/cpp/faq-cpp.
