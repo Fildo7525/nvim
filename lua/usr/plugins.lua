@@ -118,10 +118,7 @@ return packer.startup(function(use)
 	-- DEBUGGING
 	use 'mfussenegger/nvim-dap'
 	use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-	-- use {
-	-- 	"Pocco81/DAPInstall.nvim",
-	-- 	installation_path = vim.fn.stdpath("data") .. "/dapinstall/",
-	-- }
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
