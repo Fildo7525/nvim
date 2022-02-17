@@ -32,7 +32,8 @@ keymap("n", "gf", ":e <cfile><CR>", opts)
 keymap("n", "gp", ":Gitsigns preview_hunk<CR>", opts)
 keymap("n", "gbl", ":Gitsigns blame_line<CR>", opts)
 keymap("n", "<leader>lg", "<CMD>lua _LAZYGIT_TOGGLE()<CR>", opts)
-keymap("n", "<leader>ht", "<CMD>lua _HTOP_TOGGlE()<CR>", opts)
+keymap("n", "<leader>ht", "<CMD>lua _HTOP_TOGGLE()<CR>", opts)
+keymap("n", "<leader>nt", "<CMD>lua _NCDU_TOGGLE()<CR>", opts)
 
 -- TELESCOPE --
 keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
