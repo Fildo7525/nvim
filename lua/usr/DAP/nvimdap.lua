@@ -71,9 +71,9 @@ keymap('n', '<leader>cb', ':lua require\'dap\'.set_breakpoint(vim.fn.input(\'Bre
 keymap('n', '<leader>lp', ':lua require\'dap\'.set_breakpoint(nil, nil, vim.fn.input(\'Log point message: \'))<CR>', opts)
 keymap('n', '<leader>dr', ':lua require\'dap\'.repl.open()<CR>', opts)
 keymap('n', '<leader>dl', ':lua require\'dap\'.run_last()<CR>', opts)
-keymap('n', '<leader>di', ':lua require\'dap.ui.widgets\'.hower(function () return vim.fn.expand("<cexpr>"))<CR>', opts)
-keymap('n', '<leader>di', ':lua require\'dap.ui.widgets\'.visual_hower()<CR>', opts)
-local showScopes = function ()
+keymap('n', '<leader>di', ':lua require\'dap.ui.widgets\'.hover(function () return vim.fn.expand("<cexpr>"))<CR>', opts)
+keymap('n', '<leader>di', ':lua require\'dap.ui.widgets\'.visual_hover()<CR>', opts)
+showScopes = function ()
 	local widgets = require("dap.ui.widgets")
 	widgets.centered_float(widgets.scopes)
 end
