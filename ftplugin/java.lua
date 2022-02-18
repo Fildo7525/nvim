@@ -4,7 +4,7 @@ if not status_ok then
 	return
 end
 
-local jdtls_home = '/home/fildo7525/.config/nvim/java/jdt-language-server-1.8.0-202201261434/'
+local jdtls_home = '/LspJava/java/jdt-language-server-1.8.0-202201261434/'
 local workspace_path = vim.fn.expand('~/.cache/jdtls-workspace/')
 local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
 local workspace_dir = workspace_path .. project_name
