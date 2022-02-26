@@ -1,1 +1,0 @@
-The documentation for logging has moved to https://code.visualstudio.com/docs/cpp/enable-logging-cpp.

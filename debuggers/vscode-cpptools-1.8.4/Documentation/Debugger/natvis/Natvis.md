@@ -1,1 +1,0 @@
-The documentation for Natvis has moved to https://code.visualstudio.com/docs/cpp/natvis.
