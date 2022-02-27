@@ -1,9 +1,10 @@
 # nvimLua
 
 <h2>Compatibility</h2>
-nvim > 0.6
-https://github.com/neovim/neovim/releases
-or
+nvim > 0.6 <br />
+https://github.com/neovim/neovim/releases <br />
+or <br />
+
     sudo snap install nvim
 
 <h2>Startup</h2>
