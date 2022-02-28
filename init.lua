@@ -17,4 +17,5 @@ require("usr.impatient")
 require("usr.indentation")
 require("usr.alpha")
 require("usr.DAP")
+require("usr.minimap")
 -- require "usr.project"

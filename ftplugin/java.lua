@@ -88,6 +88,13 @@ local config = {
 		},
 	},
 
+	initializationOptions = {
+		bundles = {
+            "~/.config/nvim/debuggers/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-0.35.0.jar",
+		},
+	},
+
+	command = "vscode.java.startDebugSession",
 	-- Language server `initializationOptions`
 	-- You need to extend the `bundles` with paths to jar files
 	-- if you want to use additional eclipse.jdt.ls plugins.

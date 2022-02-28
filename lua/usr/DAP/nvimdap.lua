@@ -1,4 +1,5 @@
 require("usr.DAP.dapcpp")
+require("usr.DAP.dapjava")
 
 -- require('dap')
 vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''})
