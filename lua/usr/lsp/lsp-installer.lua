@@ -33,7 +33,8 @@ lsp_installer.on_server_ready(function(server)
 	end
 
 	if server.name == "jdtls" then
-		return
+		local jdtls_opts = require("usr.lsp.settings.jdtls")
+		return jdtls_opts
 	end
 
 	if server.name == "clangd" then
@@ -49,6 +50,10 @@ lsp_installer.on_server_ready(function(server)
 	if server.name == "lemminx" then
 		local xml_opts = require("usr.lsp.settings.lemminx")
 		opts = vim.tbl_deep_extend("force", xml_opts, opts)
+	end
+
+	if server.name == "vimls" then
+		opts = opts
 	end
 	-- This setup() function is exactly the same as lspconfig's setup function.
 	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md

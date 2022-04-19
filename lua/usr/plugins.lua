@@ -2,6 +2,7 @@ local fn = vim.fn
 
 -- Automatically install packer
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
+-- vim.notify(install_path)
 if fn.empty(fn.glob(install_path)) > 0 then
 PACKER_BOOTSTRAP = fn.system {
 		"git",
@@ -85,7 +86,7 @@ return packer.startup(function(use)
 
 	-- LUALINE & BUFFLINE
 	use 'nvim-lualine/lualine.nvim'
-	use "akinsho/bufferline.nvim"
+	use 'akinsho/bufferline.nvim'
 	use 'famiu/bufdelete.nvim'
 
 	-- DEVICONS and NVIM-TREE
@@ -102,8 +103,8 @@ return packer.startup(function(use)
 
 	-- treesitter
 	use {
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate"
+		'nvim-treesitter/nvim-treesitter',
+		run = ':TSUpdate'
 	}
 	use "p00f/nvim-ts-rainbow"
 

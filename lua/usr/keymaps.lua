@@ -21,12 +21,15 @@ vim.g.maplocalleader = " "
 keymap("n", "<leader>sc", ":e ~/.config/nvim/init.lua<CR>", opts)
 
 -- buildProject CUSTOMS --
-keymap("n", "<F2>", ":term cmake -S . -B ./cmake-debug -DCMAKE_EXPORT_COMPILE_COMMANDS=1 <bar> mv ./cmake-debug/compile_commands.json .<CR>", opts)
+keymap("n", "<F2>", ":term cmake -S . -B ./build && mv ./build/compile_commands.json .<CR>", opts)
 keymap("n", "<F5>", ":term ./compile.sh<CR>", term_opts)
 keymap("n", "<F8>", ":term ./build.sh<CR>", term_opts)
 
 -- open new file
 keymap("n", "gf", ":e <cfile><CR>", opts)
+
+-- substitute spaces for tabs
+keymap("n", "<leader>ss", ":%s/    /<TAB>/g<CR>", opts)
 
 -- GIT signs
 keymap("n", "gp", ":Gitsigns preview_hunk<CR>", opts)
@@ -53,26 +56,29 @@ keymap("n", "<leader>bw", ":w <bar> :Bdelete! %d <CR>", opts) -- buffer writing
 keymap("n", "<leader>bd", ":Bdelete! %d<CR>", opts) -- buffer delete force
 
 -- Resize with arrows
-keymap("n", "<C-K>", ":resize -2<CR>", opts)
-keymap("n", "<C-J>", ":resize +2<CR>", opts)
-keymap("n", "<C-L>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-H>", ":vertical resize +2<CR>", opts)
+keymap("n", "<C-UP>", ":resize -2<CR>", opts)
+keymap("n", "<C-DOWN>", ":resize +2<CR>", opts)
+keymap("n", "<C-LEFT>", ":vertical resize -2<CR>", opts)
+keymap("n", "<C-RIGHT>", ":vertical resize +2<CR>", opts)
 
 --	NAVIGATE WINDOWS	--
-keymap("n", "<C-UP>", "<C-w>k", opts)
-keymap("n", "<C-DOWN>", "<C-w>j", opts)
-keymap("n", "<C-LEFT>", "<C-w>h", opts)
-keymap("n", "<C-RIGHT>", "<C-w>l", opts)
+keymap("n", "<C-k>", "<C-w>k", opts)
+keymap("n", "<C-j>", "<C-w>j", opts)
+keymap("n", "<C-h>", "<C-w>h", opts)
+keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- keymap("n", "<leader>e", ":Lex 15<CR>", opts)
 
 -- NAVIGATE BUFFERS --
-keymap("n", "<A-LEFT>", ":bprevious<CR>", opts)
-keymap("n", "<A-RIGHT>", ":bnext<CR>", opts)
+keymap("n", "<A-,>", ":bprevious<CR>", opts)
+keymap("n", "<A-.>", ":bnext<CR>", opts)
 
 -- MOVE TEXT UP & DOWN
-keymap("n", "<A-S-UP>", "<ESC>:m .+1<CR>==gi", opts)
-keymap("n", "<A-S-DOWN>", "<ESC>:m .-2<CR>==gi", opts)
+-- keymap("n", "<A-S-k>", "<ESC>:m .+1<CR>==gi", opts)
+-- keymap("n", "<A-S-j>", "<ESC>:m .-2<CR>==gi", opts)
+keymap("n", "<A-S-j>", ":move '<-2<CR>", opts)
+keymap("n", "<A-S-k>", ":move '>+1<CR>", opts)
+
 
 -- Insert --
 
@@ -92,8 +98,8 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Move text up and down
-keymap("v", "<A-DOWN>", ":m .+1<CR>==", opts)
-keymap("v", "<A-UP>", ":m .-2<CR>==", opts)
+-- keymap("v", "<A-DOWN>", ":m .+1<CR>==", opts)
+-- keymap("v", "<A-UP>", ":m .-2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
 -- Visual Block --

@@ -27,3 +27,4 @@ vim.cmd "set listchars=tab:-->,trail:~,space:·"
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]]
 vim.cmd [[set statusline+=%-{get(b:,'gitsigns_status','')}]]
+vim.cmd [[set clipboard+=unnamedplus]]
