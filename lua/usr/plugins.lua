@@ -74,6 +74,8 @@ return packer.startup(function(use)
 	use "hrsh7th/cmp-nvim-lsp"
 	use "hrsh7th/cmp-nvim-lua"	-- lua nvim scripting
 	use "windwp/nvim-autopairs"
+	-- show function signature
+	use "ray-x/lsp_signature.nvim"
 
 	--	LSP
 	use "neovim/nvim-lspconfig" -- enable LSP
