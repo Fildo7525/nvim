@@ -65,6 +65,10 @@ return packer.startup(function(use)
 	use "ghifarit53/tokyonight-vim" -- colour scheme
 	use "sheerun/vim-polyglot"
 
+	-- snippets
+	use "L3MON4D3/LuaSnip" --snippet engine
+	use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
+
 		-- cmp plugins
 	use "hrsh7th/nvim-cmp" -- The completion plugin
 	use "hrsh7th/cmp-buffer" -- buffer completions
@@ -81,10 +85,6 @@ return packer.startup(function(use)
 	use "neovim/nvim-lspconfig" -- enable LSP
 	use "williamboman/nvim-lsp-installer"
 	use 'mfussenegger/nvim-jdtls'
-
-	-- snippets
-	use "L3MON4D3/LuaSnip" --snippet engine
-	use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
 
 	-- LUALINE & BUFFLINE
 	use 'nvim-lualine/lualine.nvim'
