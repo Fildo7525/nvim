@@ -94,14 +94,20 @@ local function lsp_keymaps(bufnr)
 end
 
 M.on_attach = function(client, bufnr)
- 	if client.name == "tsserver" then
+ 	if client.name == "tsserver" then -- or client.name == "jdt.ls" then
  	 	client.resolved_capabilities.document_formatting = false
  	end
+
+	-- if client.name == "jdt.ls" then
+	-- 	require("jdtls").setup_dap { hotcoderpalce = "auto" }
+	-- 	require("jdtls.dap").setup_dap_main_class_configs();
+	-- end
  	lsp_keymaps(bufnr)
  	lsp_highlight_document(client)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true;
 
 local status_ok, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
 if not status_ok then
@@ -112,3 +118,4 @@ end
 M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
 return M
+
