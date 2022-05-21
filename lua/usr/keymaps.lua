@@ -23,7 +23,7 @@ keymap("n", "<leader>sc", ":e ~/.config/nvim/init.lua<CR>", opts)
 -- buildProject CUSTOMS --
 keymap("n", "<F2>", ":term cmake -S . -B ./build && mv ./build/compile_commands.json .<CR>", opts)
 keymap("n", "<F5>", ":term ./compile.sh<CR>", term_opts)
-keymap("n", "<F8>", ":term ./build.sh<CR>", term_opts)
+keymap("n", "<F8>", ":split <bar> term ./build.sh<CR>", term_opts)
 
 -- open new file
 keymap("n", "gf", ":e <cfile><CR>", opts)
@@ -62,8 +62,8 @@ keymap("n", "<C-LEFT>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-RIGHT>", ":vertical resize +2<CR>", opts)
 
 --	NAVIGATE WINDOWS	--
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
+keymap("n", "<M-C-k>", "<C-w>k", opts)
+keymap("n", "<M-C-j>", "<C-w>j", opts)
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
@@ -79,6 +79,11 @@ keymap("n", "<A-.>", ":bnext<CR>", opts)
 keymap("n", "<A-S-j>", ":move '<-2<CR>", opts)
 keymap("n", "<A-S-k>", ":move '>+1<CR>", opts)
 
+-- NEOGEN
+keymap("n", "<leader>nc", ":lua require('neogen').generate({ type = 'class'})<CR>", opts)
+keymap("n", "<leader>nf", ":lua require('neogen').generate({ type = 'func'})<CR>", opts)
+keymap("n", "<leader>nt", ":lua require('neogen').generate({ type = 'type'})<CR>", opts)
+keymap("n", "<leader>ni", ":lua require('neogen').generate({ type = 'file'})<CR>", opts)
 
 -- Insert --
 

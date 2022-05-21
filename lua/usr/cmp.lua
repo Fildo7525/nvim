@@ -80,6 +80,8 @@ cmp.setup {
 				luasnip.expand_or_jump()
 			elseif check_backspace() then
 				fallback()
+			elseif require('neogen').jumpable() then
+				require('neogen').jump_next()
 			else
 				fallback()
 			end
@@ -92,6 +94,8 @@ cmp.setup {
 				cmp.select_prev_item()
 			elseif luasnip.jumpable(-1) then
 				luasnip.jump(-1)
+			elseif require('neogen').jumpable(true) then
+				require('neogen').jump_prev()
 			else
 				fallback()
 			end

@@ -110,6 +110,17 @@ return packer.startup(function(use)
 	}
 	use "p00f/nvim-ts-rainbow"
 
+	-- doxygen
+	use {
+		"danymat/neogen",
+		config = function()
+			require('neogen').setup {}
+		end,
+		requires = "nvim-treesitter/nvim-treesitter",
+		-- Uncomment next line if you want to follow only stable versions
+		tag = "*"
+	}
+
 	-- COMMENTING
 	use "numToStr/Comment.nvim"
 	use "JoosepAlviste/nvim-ts-context-commentstring"
@@ -128,3 +139,4 @@ return packer.startup(function(use)
 		require("packer").sync()
 	end
 end)
+
