@@ -27,7 +27,7 @@ local config = {
 
 
 	fix_pos = false,  -- set to true, the floating window will not auto-close until finish all parameters
-	hint_enable = true, -- virtual hint enable
+	hint_enable = false, -- virtual hint enable
 	hint_prefix = "🐼 ",  -- Panda for parameter
 	hint_scheme = "String",
 	hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
@@ -35,7 +35,7 @@ local config = {
 				   -- to view the hiding contents
 	max_width = 80, -- max_width of signature floating_window, line will be wrapped if exceed max_width
 	handler_opts = {
-	border = "rounded"   -- double, rounded, single, shadow, none
+		border = "rounded"   -- double, rounded, single, shadow, none
 	},
 
 	always_trigger = false, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
