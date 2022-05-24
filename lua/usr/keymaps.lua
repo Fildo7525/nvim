@@ -95,6 +95,7 @@ keymap("n", "<leader>ni", ":lua require('neogen').generate({ type = 'file'})<CR>
 
 -- Press jk fast to enter
 keymap("i", "jj", "<ESC>:w<CR>", opts)
+keymap("i", "kk", "<ESC>", opts)
 
 -- Visual --
 
