@@ -18,6 +18,7 @@ local servers = {
 	"cmake",
 	"lemminx",
 	"vimls",
+	"yamlls",
 	"jdtls",
 }
 
@@ -100,6 +101,11 @@ for _, server in pairs(servers) do
 
 	if server == "vimls" then
 		opts = opts
+	end
+
+	if server == "yamlls" then
+		local yaml_opts = {} -- require("usr.lsp.serrings.yamlls")
+		opts = vim.tbl_deep_extend("force", yaml_opts, opts)
 	end
 	-- This setup() function is exactly the same as lspconfig's setup function.
 	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
