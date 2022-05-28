@@ -151,4 +151,8 @@ return {
 
 	-- GRAY OUT UNUSED CODE
 	"theHamsta/nvim-semantic-tokens",
+
+	-- ROS
+	"thibthib18/ros-nvim",
+	"bi0ha2ard/telescope-ros.nvim",
 }
