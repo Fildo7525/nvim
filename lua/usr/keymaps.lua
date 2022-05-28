@@ -31,9 +31,6 @@ keymap("n", "gf", ":e <cfile><CR>", opts)
 -- substitute spaces for tabs
 keymap("n", "<leader>ss", ":%s/    /<TAB>/g<CR>", opts)
 
--- GIT signs
-keymap("n", "gp", ":Gitsigns preview_hunk<CR>", opts)
-keymap("n", "gbl", ":Gitsigns blame_line<CR>", opts)
 keymap("n", "<leader>lg", "<CMD>lua _LAZYGIT_TOGGLE()<CR>", opts)
 keymap("n", "<leader>ht", "<CMD>lua _HTOP_TOGGLE()<CR>", opts)
 keymap("n", "<leader>nt", "<CMD>lua _NCDU_TOGGLE()<CR>", opts)
@@ -48,6 +45,23 @@ keymap("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)
 keymap("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", opts)
 keymap("n", "<leader>gb", "<cmd>Telescope git_branches<CR>", opts)
 keymap("n", "<leader>gs", "<cmd>Telescope git_status<CR>", opts)
+
+-- GIT signs
+keymap("n", "gp", ":Gitsigns preview_hunk<CR>", opts)
+keymap("n", "gbl", ":Gitsigns blame_line<CR>", opts)
+keymap("n", "gsh", ":Gitsigns stage_hunk<CR>", opts)
+keymap("n", "gsb", ":Gitsigns stage_buffer<CR>", opts)
+keymap("n", "grh", ":Gitsigns reset_hunk<CR>", opts)
+keymap("n", "gtd", ":Gitsigns toggle_deleted<CR>", opts)
+keymap("n", "gnh", ":Gitsigns next_hunk<CR>", opts)
+keymap("n", "gph", ":Gitsigns prev_hunk<CR>", opts)
+
+---@diagnostic disable-next-line: lowercase-global
+function getCommitIndex()
+	local commit = vim.fn.input("Enter commit: ", "HEAD~")
+	require("gitsigns").diffthis(commit)
+end
+keymap("n", "gdt", ":lua getCommitIndex()<CR>", opts)
 
 -- SAVING --
 keymap("n", "<leader>w", ":w<CR>", opts)
