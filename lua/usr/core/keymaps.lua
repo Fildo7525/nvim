@@ -214,3 +214,6 @@ local pdfFile = function()
 end
 vim.keymap.set("n", "<leader>lv", pdfFile)
 
+-- ROS
+-- :lua require'telescope'.extensions.ros.packages{cwd=os.getenv("ROS_WORKSPACE") or "."}
+keymap("n", "<leader>rp", ":lua require'telescope'.extensions.ros.packages{cwd=\".\"}<CR>", opts)

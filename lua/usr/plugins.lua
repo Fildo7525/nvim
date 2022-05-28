@@ -221,6 +221,10 @@ return packer.startup(function(use)
 		end,
 	})
 
+	-- ROS
+	use 'thibthib18/ros-nvim'
+	use 'bi0ha2ard/telescope-ros.nvim'
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
