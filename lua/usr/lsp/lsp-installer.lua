@@ -65,8 +65,10 @@ for _, server in pairs(servers) do
 	}
 
 	if server == "clangd" then
-		local clang_opts = require("usr.lsp.settings.clangd")
-		opts = vim.tbl_deep_extend("force", clang_opts, opts)
+		opts = require("usr.lsp.settings.clangdExt")
+		require("clangd_extensions").setup(opts)
+		-- require("usr.keymaps").SetupClangKeymaps()
+		return
 	end
 
 	if server == "jsonls" then
