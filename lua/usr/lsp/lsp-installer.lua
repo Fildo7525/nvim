@@ -4,14 +4,13 @@ if not status_ok then
 	return
 end
 
-local status_lsp, lapconfig = pcall(require, "lspconfig")
+local status_lsp, lspconfig = pcall(require, "lspconfig")
 if not status_lsp then
 	vim.notify("lspconfig not present")
 	return
 end
 
 local servers = {
-	"clangd",
 	"jsonls",
 	"sumneko_lua",
 	"pyright",
@@ -19,6 +18,7 @@ local servers = {
 	"lemminx",
 	"vimls",
 	"yamlls",
+	"clangd",
 	"jdtls",
 }
 
@@ -65,10 +65,11 @@ for _, server in pairs(servers) do
 	}
 
 	if server == "clangd" then
-		opts = require("usr.lsp.settings.clangdExt")
-		require("clangd_extensions").setup(opts)
+		local clang_opts = require("usr.lsp.settings.clangd")
+		opts = vim.tbl_deep_extend("force", clang_opts, opts)
+		-- opts = require("usr.lsp.settings.clangdExt")
+		-- require("clangd_extensions").setup(opts)
 		-- require("usr.keymaps").SetupClangKeymaps()
-		return
 	end
 
 	if server == "jsonls" then
@@ -111,6 +112,8 @@ for _, server in pairs(servers) do
 	end
 	-- This setup() function is exactly the same as lspconfig's setup function.
 	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-	lapconfig[server].setup(opts)
+	-- if server ~= "clangd" then
+		lspconfig[server].setup(opts)
+	-- end
 end
 

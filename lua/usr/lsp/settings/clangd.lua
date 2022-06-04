@@ -1,3 +1,7 @@
+local local_cap = vim.lsp.protocol.make_client_capabilities()
+local_cap.offsetEncoding = { "utf-16" }
+
+-- TODO: add clang-tidy to on_atach with clangd
 return {
 	cmd = { "clangd",
 			"--background-index",
@@ -8,7 +12,6 @@ return {
 			"-j=2",		-- number of workers
 			"--header-insertion=iwyu",
 			"--compile_args_from=filesystem", -- lsp-> does not come from compie_commands.json
-			"--fallback-style=~/.config/nvim/.clang-format",
 			"--completion-style=bundled",
 	},
 	filetypes = { "c", "cpp", "objc", "objcpp" },
@@ -16,6 +19,5 @@ return {
 	init_options = {
 		compilationDatabasePath="build",
 	},
-	on_attach = require("usr.lsp.handlers").on_attach,
-	capabilities = require("usr.lsp.handlers").capabilities,
+	capabilities = local_cap,
 }
