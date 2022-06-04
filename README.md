@@ -1,11 +1,8 @@
 # nvimLua
 
 <h2>Compatibility</h2>
-nvim > 0.6 <br />
+nvim version 0.8 <br />
 https://github.com/neovim/neovim/releases <br />
-or <br />
-
-    sudo snap install nvim
 
 <h2>Startup</h2>
 
@@ -13,25 +10,31 @@ or <br />
     mv nvimLua nvim
     mv nvim/ ~/.config/
 
-Opent the config for the first time and install all the plugins
+Open the config for the first time and install all the plugins
 
 <h3>NerdFonts</h3>
 
 Download Nerdfont from
 https://www.nerdfonts.com/font-downloads
-unzip it delete all unneccessery files (If you are on linux delete everything ending with ``` Mono.ttf ``` or containing ```Windows```).
+unzip it delete all unneccessery files (If you are on linux delete everything containing ```Windows```).
 Move the remaining files to ```/usr/share/fonts``` so everyone can use them or to ```~/.fonts``` for your own usage.
 
 <h3>Dependencies</h3>
 
-Install ```python3```, ```python2```, ```nodejs``` > 14 (https://computingforgeeks.com/install-node-js-14-on-ubuntu-debian-linux/),
+Install ```python3```, ```python2.7```, ```nodejs``` > 14 (https://computingforgeeks.com/install-node-js-14-on-ubuntu-debian-linux/),
 ```build-essential```, ```python3.8-venv```, ```pip```
 
 <h3>Lsp</h3>
 
 Supported languages in this config are located in ```lua/usr/lsp/lsp-installer.lua```
 
-<h3>DAP</h3>
+To use the LSP's type :LspInstall and install given servers
+
+<h4>C++</h4>
+To use lsp for c/cpp/objc download clangd, clangd-format, and clang-tidy using your package manager
+The formating standard is based on WebKit (tabsize - 4, strictly using tabs)
+
+<h3>DAP (currently not supported)</h3>
 
 For cpp debugger download vscode and inside download debugger for cpp.
 Find 
