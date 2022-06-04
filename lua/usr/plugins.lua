@@ -86,6 +86,7 @@ return packer.startup(function(use)
 	use "williamboman/nvim-lsp-installer"
 	use 'mfussenegger/nvim-jdtls'
 	use 'p00f/clangd_extensions.nvim'
+	use 'jose-elias-alvarez/null-ls.nvim'
 
 	-- LUALINE & BUFFLINE
 	use 'nvim-lualine/lualine.nvim'
