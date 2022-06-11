@@ -18,4 +18,8 @@ require("usr.toggleterm")
 require("usr.indentation")
 require("usr.alpha")
 require("usr.autocommands")
+require("usr.copilot")
+require("usr.illuminate")
+require("usr.todo-comments")
+require("usr.bookmark")
 

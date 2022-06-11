@@ -101,6 +101,17 @@ keymap("n", "<leader>nf", ":lua require('neogen').generate({ type = 'func'})<CR>
 keymap("n", "<leader>nt", ":lua require('neogen').generate({ type = 'type'})<CR>", opts)
 keymap("n", "<leader>ni", ":lua require('neogen').generate({ type = 'file'})<CR>", opts)
 
+-- BOOKMARKS
+keymap("n", "<leader>ba", ":BookmarkAnnotate<CR>", opts)
+keymap("n", "<leader>bc", ":BookmarkClear<CR>", opts)
+keymap("n", "<leader>be", ":BookmarkClearAll<CR>", opts)
+keymap("n", "<leader>bm", ":BookmarkMoveToLine<CR>", opts)
+keymap("n", "<leader>bs", ":BookmarkSave", opts)
+keymap("n", "<leader>bl", ":BookmarkLoad", opts)
+keymap("n", "<leader>bp", ":BookmarkPrev<CR>", opts)
+keymap("n", "<leader>bl", ":BookmarkNext<CR>", opts)
+keymap("n", "<leader>bb", ":BookmarkShowAll<CR>", opts)
+
 -- Press jk fast to enter
 keymap("i", "jj", "<ESC>:w<CR>", opts)
 keymap("i", "kk", "<ESC>", opts)

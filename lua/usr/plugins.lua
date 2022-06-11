@@ -87,6 +87,7 @@ return packer.startup(function(use)
 	use 'mfussenegger/nvim-jdtls'
 	use 'p00f/clangd_extensions.nvim'
 	use 'jose-elias-alvarez/null-ls.nvim'
+	use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
 
 	-- LUALINE & BUFFLINE
 	use 'nvim-lualine/lualine.nvim'
@@ -121,6 +122,18 @@ return packer.startup(function(use)
 		requires = "nvim-treesitter/nvim-treesitter",
 		-- Uncomment next line if you want to follow only stable versions
 		tag = "*"
+	}
+	use "folke/todo-comments.nvim" -- highlight comments like TODO:
+	use "MattesGroeger/vim-bookmarks"
+	use "github/copilot.vim"
+	use "RRethy/vim-illuminate"
+
+
+	-- markdown files preview
+	use {
+		"iamcco/markdown-preview.nvim",
+		run = "cd app && npm install",
+		ft = "markdown",
 	}
 
 	-- COMMENTING

@@ -58,6 +58,12 @@ local function lsp_highlight_document(client)
  	 	 	false
  	 	)
  	end
+	local status_ok, illuminate = pcall(require, "illuminate")
+	if not status_ok then
+		vim.notify("illuminate is not downloaded")
+		return
+	end
+	illuminate.on_attach(client)
 end
 
 -- To instead override globally
