@@ -85,7 +85,6 @@ return packer.startup(function(use)
 	use "neovim/nvim-lspconfig" -- enable LSP
 	use "williamboman/nvim-lsp-installer"
 	use 'mfussenegger/nvim-jdtls'
-	use 'p00f/clangd_extensions.nvim'
 	use 'jose-elias-alvarez/null-ls.nvim'
 	use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
 
@@ -144,9 +143,11 @@ return packer.startup(function(use)
 	use "lewis6991/gitsigns.nvim"
 	use "kdheepak/lazygit.nvim"
 
-	-- DEBUGGING
-	use 'mfussenegger/nvim-dap'
-	use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+	-- DAP
+	-- use "mfussenegger/nvim-dap"
+	-- use "theHamsta/nvim-dap-virtual-text"
+	-- use "rcarriga/nvim-dap-ui"
+	-- use "Pocco81/DAPInstall.nvim"
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
