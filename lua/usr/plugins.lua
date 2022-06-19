@@ -65,6 +65,10 @@ return packer.startup(function(use)
 	use "ghifarit53/tokyonight-vim" -- colour scheme
 	use "sheerun/vim-polyglot"
 
+	-- SCROLLING --
+	use "lewis6991/satellite.nvim"
+	use "karb94/neoscroll.nvim"
+
 	-- snippets
 	use "L3MON4D3/LuaSnip" --snippet engine
 	use "rafamadriz/friendly-snippets" -- a bunch of snippets to use
