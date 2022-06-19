@@ -126,6 +126,23 @@ keymap("i", "kk", "<ESC>", opts)
 
 -- Visual --
 
+-- REFACTORING --
+local visual_opts = {noremap = true, silent = true, expr = false}
+keymap("v", "<leader>rr", "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", visual_opts)
+
+-- -- Remaps for the refactoring operations currently offered by the plugin
+-- keymap("v", "<leader>re", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], visual_opts)
+-- keymap("v", "<leader>rf", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]], visual_opts)
+-- keymap("v", "<leader>rv", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]], visual_opts)
+-- keymap("v", "<leader>ri", [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], visual_opts)
+--
+-- -- Extract block doesn't need visual mode
+-- keymap("n", "<leader>rb", [[ <Cmd>lua require('refactoring').refactor('Extract Block')<CR>]], visual_opts)
+-- keymap("n", "<leader>rbf", [[ <Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>]], visual_opts)
+--
+-- -- Inline variable can also pick up the identifier currently under the cursor without visual mode
+-- keymap("n", "<leader>ri", [[ <Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], visual_opts)
+
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)

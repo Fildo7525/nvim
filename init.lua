@@ -23,4 +23,5 @@ require("usr.illuminate")
 require("usr.todo-comments")
 require("usr.bookmark")
 require("usr.trouble")
+require("usr.refactoring")
 
