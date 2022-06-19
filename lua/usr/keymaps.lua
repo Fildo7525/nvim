@@ -33,6 +33,7 @@ keymap("n", "<leader>4s", ":%s/    /<TAB>/g<CR>", opts)
 keymap("n", "<leader>2s", ":%s/  /<TAB>/g<CR>", opts)
 
 keymap("n", "<leader>lg", "<CMD>lua _LAZYGIT_TOGGLE()<CR>", opts)
+keymap("n", "<leader>py", "<CMD>lua _PYTHON_TOGGLE()<CR>", opts)
 keymap("n", "<leader>ht", "<CMD>lua _HTOP_TOGGLE()<CR>", opts)
 keymap("n", "<leader>nd", "<CMD>lua _NCDU_TOGGLE()<CR>", opts)
 
@@ -111,6 +112,13 @@ keymap("n", "<leader>bl", ":BookmarkLoad", opts)
 keymap("n", "<leader>bp", ":BookmarkPrev<CR>", opts)
 keymap("n", "<leader>bl", ":BookmarkNext<CR>", opts)
 keymap("n", "<leader>bb", ":BookmarkShowAll<CR>", opts)
+
+keymap("n", "<leader>tr", "<cmd>Trouble<cr>",opts)
+keymap("n", "<leader>twd", "<cmd>Trouble workspace_diagnostics<cr>",opts)
+keymap("n", "<leader>tdd", "<cmd>Trouble document_diagnostics<cr>",opts)
+keymap("n", "<leader>tl", "<cmd>Trouble loclist<cr>",opts)
+keymap("n", "<leader>tq", "<cmd>Trouble quickfix<cr>",opts)
+keymap("n", "gR", "<cmd>Trouble lsp_references<cr>",opts)
 
 -- Press jk fast to enter
 keymap("i", "jj", "<ESC>:w<CR>", opts)

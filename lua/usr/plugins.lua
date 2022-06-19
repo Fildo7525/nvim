@@ -87,6 +87,10 @@ return packer.startup(function(use)
 	use 'mfussenegger/nvim-jdtls'
 	use 'jose-elias-alvarez/null-ls.nvim'
 	use "antoinemadec/FixCursorHold.nvim" -- This is needed to fix lsp doc highlight
+	use {
+		"folke/trouble.nvim",
+		requires = "kyazdani42/nvim-web-devicons",
+	}
 
 	-- LUALINE & BUFFLINE
 	use 'nvim-lualine/lualine.nvim'
