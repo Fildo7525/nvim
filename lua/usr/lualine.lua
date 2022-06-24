@@ -87,7 +87,7 @@ end
 lualine.setup({
 	options = {
 		icons_enabled = true,
-		theme = "solarized_dark",
+		theme = "catppuccin",  --"catppuccin", -- "solarized_dark",
 		component_separators = { left = "", right = "" },
 		section_separators = { left = "", right = "" },
 		disabled_filetypes = { "dashboard", "NvimTree", "Outline" },

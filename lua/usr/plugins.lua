@@ -64,6 +64,10 @@ return packer.startup(function(use)
 	-- colour scheme
 	use "ghifarit53/tokyonight-vim" -- colour scheme
 	use "sheerun/vim-polyglot"
+	use({
+		"catppuccin/nvim",
+		as = "catppuccin"
+	})
 
 	-- SCROLLING --
 	use "lewis6991/satellite.nvim"
