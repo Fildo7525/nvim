@@ -14,15 +14,18 @@ local root_files = {
 -- TODO: add clang-tidy to on_atach with clangd
 return {
 	cmd = { "clangd",
-			"--background-index",
-			"--suggest-missing-includes",
-			"--all-scopes-completion",
-			"--clang-tidy",
-			"--cross-file-rename",
-			"-j=2",		-- number of workers
-			"--header-insertion=iwyu",
-			"--compile_args_from=filesystem", -- lsp-> does not come from compie_commands.json
-			"--completion-style=bundled",
+		"--background-index",
+		"--clang-tidy",
+		"--compile_args_from=filesystem", -- lsp-> does not come from compie_commands.json
+		"--completion-parse=always",
+		"--completion-style=bundled",
+		"--cross-file-rename",
+		"--debug-origin",
+		"--function-arg-placeholders",
+		"--header-insertion=iwyu",
+		"-j=4",		-- number of workers
+		-- "--resource-dir="
+		"--suggest-missing-includes",
 	},
 	filetypes = { "c", "cpp", "objc", "objcpp" },
 	root_dir = function(fname)
