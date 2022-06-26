@@ -1,7 +1,7 @@
 # nvimLua
 
 <h2>Compatibility</h2>
-nvim version 0.8 <br />
+nvim version >= 0.7 <br />
 https://github.com/neovim/neovim/releases <br />
 
 <h2>Startup</h2>
