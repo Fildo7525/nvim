@@ -23,8 +23,7 @@ local config = {
 	-- this setting will be helpful if you do not want the PUM and floating win overlap
 
  	floating_window_off_x = 1, -- adjust float windows x position.
- 	floating_window_off_y = 1, -- adjust float windows y position.
-
+ 	floating_window_off_y = 5, -- adjust float windows y position.
 
 	fix_pos = false,  -- set to true, the floating window will not auto-close until finish all parameters
 	hint_enable = false, -- virtual hint enable

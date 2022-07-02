@@ -23,7 +23,11 @@ keymap("n", "<leader>sc", ":e ~/.config/nvim/init.lua<CR>", opts)
 -- buildProject CUSTOMS --
 keymap("n", "<F2>", ":term cmake -S . -B ./build && mv ./build/compile_commands.json .<CR>", opts)
 keymap("n", "<F5>", ":term ./compile.sh<CR>", term_opts)
-keymap("n", "<F8>", ":split <bar> term ./build.sh<CR>", term_opts)
+keymap("n", "<F8>", ":<bar> term ./build.sh<CR>", term_opts)
+keymap("n", "<C-F8>", ":split <bar> term ./build.sh<CR>", term_opts)
+
+keymap("n", "<leader>vs", ":split<CR>", opts)
+keymap("n", "<leader>hs", ":vsplit<CR>", opts)
 
 -- open new file
 keymap("n", "gf", ":e <cfile><CR>", opts)
@@ -55,15 +59,15 @@ keymap("n", "gsh", ":Gitsigns stage_hunk<CR>", opts)
 keymap("n", "gsb", ":Gitsigns stage_buffer<CR>", opts)
 keymap("n", "grh", ":Gitsigns reset_hunk<CR>", opts)
 keymap("n", "gtd", ":Gitsigns toggle_deleted<CR>", opts)
-keymap("n", "gnh", ":Gitsigns next_hunk<CR>", opts)
-keymap("n", "gph", ":Gitsigns prev_hunk<CR>", opts)
+keymap("n", "<leader>gn", ":Gitsigns next_hunk<CR>", opts)
+keymap("n", "<leader>gp", ":Gitsigns prev_hunk<CR>", opts)
 
 ---@diagnostic disable-next-line: lowercase-global
 function getCommitIndex()
 	local commit = vim.fn.input("Enter commit: ", "HEAD~")
 	require("gitsigns").diffthis(commit)
 end
-keymap("n", "gdt", ":lua getCommitIndex()<CR>", opts)
+keymap("n", "<leader>gd", ":lua getCommitIndex()<CR>", opts)
 
 -- SAVING --
 keymap("n", "<leader>w", ":w<CR>", opts)

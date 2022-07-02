@@ -4,8 +4,8 @@ if not status_ok then
 end
 
 sat.setup {
-	current_only = true,
-	winblend = 40,
+	current_only = false,
+	winblend = 50,
 	zindex = 40,
 	excluded_filetypes = {},
 	width = 2,

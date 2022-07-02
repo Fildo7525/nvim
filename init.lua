@@ -24,6 +24,7 @@ require("usr.todo-comments")
 require("usr.bookmark")
 require("usr.trouble")
 require("usr.refactoring")
-require("usr.satellite")
+-- require("usr.satellite")
 require("usr.scroll")
+-- require("usr.scroller")
 

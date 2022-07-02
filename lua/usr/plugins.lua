@@ -72,6 +72,7 @@ return packer.startup(function(use)
 	-- SCROLLING --
 	use "lewis6991/satellite.nvim"
 	use "karb94/neoscroll.nvim"
+	-- use "petertriho/nvim-scrollbar"
 
 	-- snippets
 	use "L3MON4D3/LuaSnip" --snippet engine
