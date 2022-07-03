@@ -68,7 +68,7 @@ bufferline.setup {
 		enforce_regular_tabs = true,
 		always_show_bufferline = true,
 		color_icons = true,
-		-- sort_by = 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
+		sort_by = 'id' -- 'id' | 'extension' | 'relative_directory' | 'directory' | 'tabs' | function(buffer_a, buffer_b)
 		--	 -- add custom logic
 		--	 return buffer_a.modified > buffer_b.modified
 		-- end
