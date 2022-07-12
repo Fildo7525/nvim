@@ -22,7 +22,7 @@ Move the remaining files to ```/usr/share/fonts``` so everyone can use them or t
 <h3>Dependencies</h3>
 
 Install ```python3```, ```python2.7```, ```nodejs``` > 14 (https://computingforgeeks.com/install-node-js-14-on-ubuntu-debian-linux/),
-```build-essential```, ```python3.8-venv```, ```pip```
+```build-essential```, ```python3.10-venv```, ```pip```
 
 <h3>Lsp</h3>
 
