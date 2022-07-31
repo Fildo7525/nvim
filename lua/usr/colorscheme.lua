@@ -22,7 +22,7 @@
 -- 	vim.g[k] = v
 -- end
 
-colorscheme = "catppuccin"
+local colorscheme = "catppuccin"
 
 local status_ok_cat, scheme = pcall(require, "catppuccin")
 if not status_ok_cat then
@@ -31,40 +31,50 @@ if not status_ok_cat then
 end
 
 scheme.setup({
+	dim_inactive = {
+		enabled = false,
+		shade = "dark",
+		percentage = 0.15,
+	},
 	transparent_background = false,
 	term_colors = true,
+	compile = {
+		enabled = false,
+		path = vim.fn.stdpath "cache" .. "/catppuccin",
+	},
 	styles = {
-		comments = "italic",
-		conditionals = "italic",
-		loops = "NONE",
-		functions = "NONE",
-		keywords = "NONE",
-		strings = "NONE",
-		variables = "NONE",
-		numbers = "NONE",
-		booleans = "NONE",
-		properties = "NONE",
-		types = "NONE",
-		operators = "NONE",
+		comments = { "italic" },
+		conditionals = { "italic" },
+		loops = {},
+		functions = { "bold" },
+		keywords = {},
+		strings = {},
+		variables = {},
+		numbers = {},
+		booleans = {},
+		properties = {},
+		types = {},
+		operators = {},
 	},
 	integrations = {
 		treesitter = true,
 		native_lsp = {
 			enabled = true,
 			virtual_text = {
-				errors = "italic",
-				hints = "italic",
-				warnings = "italic",
-				information = "italic",
+				errors = { "italic" },
+				hints = { "italic" },
+				warnings = { "italic" },
+				information = { "italic" },
 			},
 			underlines = {
-				errors = "underline",
-				hints = "underline",
-				warnings = "underline",
-				information = "underline",
+				errors = { "underline" },
+				hints = { "underdot" },
+				warnings = { "underline" },
+				information = { "underline" },
 			},
 		},
-		lsp_trouble = false,
+		coc_nvim = false,
+		lsp_trouble = true,
 		cmp = true,
 		lsp_saga = false,
 		gitgutter = false,
@@ -79,6 +89,10 @@ scheme.setup({
 			enabled = false,
 			show_root = false,
 			transparent_panel = false,
+		},
+		dap = {
+			enabled = false,
+			enable_ui = false,
 		},
 		which_key = false,
 		indent_blankline = {
@@ -98,11 +112,16 @@ scheme.setup({
 		notify = true,
 		telekasten = true,
 		symbols_outline = true,
-	}
+		mini = false,
+		aerial = false,
+		vimwiki = true,
+		beacon = true,
+	},
+	color_overrides = {},
+	highlight_overrides = {},
 })
 
 vim.g.catppuccin_flavour = "mocha"
--- vim.cmd[[colorscheme catppuccin]]
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then
