@@ -129,9 +129,10 @@ keymap("i", "jj", "<ESC>:w<CR>", opts)
 keymap("i", "kk", "<ESC>", opts)
 
 -- Visual --
+local visual_opts = {noremap = true, silent = true, expr = false}
+keymap("v", "<leader>y", '"+y', visual_opts)
 
 -- REFACTORING --
-local visual_opts = {noremap = true, silent = true, expr = false}
 keymap("v", "<leader>rr", "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", visual_opts)
 
 -- -- Remaps for the refactoring operations currently offered by the plugin

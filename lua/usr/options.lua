@@ -1,5 +1,4 @@
 local options = {
-	clipboard = "unnamedplus",
 	fileencoding = "utf-8",
 	hlsearch = true,
 	mouse = "a",
