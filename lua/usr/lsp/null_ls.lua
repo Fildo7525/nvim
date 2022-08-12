@@ -39,7 +39,7 @@ null_ls.setup({
 		}),
 
 		-- CMAKE
-		formatting.cmake_format,
+		-- formatting.cmake_format,
 
 		-- SNIPPETS
 		-- completion.luasnip,

@@ -8,6 +8,7 @@ local root_files = {
 	'.clang-format',
 	'compile_commands.json',
 	'compile_flags.txt',
+	'build.sh', -- buildProject
 	'configure.ac', -- AutoTools
 }
 
