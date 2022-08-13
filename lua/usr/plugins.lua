@@ -80,7 +80,6 @@ return packer.startup(function(use)
 	use "L3MON4D3/LuaSnip" --snippet engine
 	use {
 		"rafamadriz/friendly-snippets", -- a bunch of snippets to use
-		commit = "57274f4d87b9ccb961092b25560ba300f691e943"
 	}
 
 		-- cmp plugins

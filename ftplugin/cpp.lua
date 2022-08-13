@@ -10,4 +10,4 @@ function QtQuerryFinder()
 end
 
 keymap("n", "<leader>sh", ":ClangdSwitchSourceHeader<CR>", opts)
-keymap("n", "<leader>qf", ":lua QtQuerryFinder()<CR>", opts)
+keymap("n", "<F2>", ":lua QtQuerryFinder()<CR>", opts)
