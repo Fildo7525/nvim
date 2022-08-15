@@ -1,3 +1,0 @@
-[submodule "debuggers/java-debug"]
-	path = debuggers/java-debug
-	url = git@github.com:microsoft/java-debug.git
