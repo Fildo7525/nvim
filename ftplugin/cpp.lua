@@ -14,23 +14,27 @@ function QtQuerryFinder()
 end
 
 --- NOTE: The function is not perfect. There are rules you have to obey:
--- 	1) Have the source file in the same dir as the header file.
--- 	2) The functino must be defined on one line.
+-- 	1) The functino must be defined on one line.
 --
----@param file           string Is a header file name with a full path.
--- 				  The file can have extension either .h or .hpp.
+---@param headerFile     string Is a header file name with a full path. The file can have extension
+-- 						 either .h or .hpp.
 ---@param line           string Full line taken from the edditor. The line must end with a semicolon.
---				  The function must be defined in one line.
+-- 						 The function must be defined in one line.
+---@param promptForSourceFile    boolean Weather to prompt the user for source file.
 ---@param className?     string If the function is not in a class give there a nil.
-function CreateDefinition(file, line, className)
+function CreateDefinition(headerFile, line, promptForSourceFile, className)
 	local functionName = vim.fn.expand("<cword>")
 
-	if string.sub(file, -1) == "h" then
-		file = string.gsub(file, "[.]%w$","")
+	if string.sub(headerFile, -1) == "h" then
+		headerFile = string.gsub(headerFile, "[.]%w$","")
 	else
-		file = string.gsub(file, "[.]%w%w%w$", "")
+		headerFile = string.gsub(headerFile, "[.]%w%w%w$", "")
 	end
-	file = file .. ".cpp"
+	headerFile = headerFile .. ".cpp"
+
+	if promptForSourceFile then
+		headerFile = vim.fn.input("Source File: ", headerFile)
+	end
 
 	line = Trim(line)
 	line = string.sub(line, 1, -2)
@@ -39,7 +43,7 @@ function CreateDefinition(file, line, className)
 		line = string.gsub(line, " " .. functionName .. "[(]", " " .. className .. "::" .. functionName .."(", 1)
 	end
 
-	local out = io.open(file, 'a+')
+	local out = io.open(headerFile, 'a+')
 	if out ~= nil then
 		out:write(line, "\n\n")
 		out:flush()
@@ -61,14 +65,15 @@ function CreateClassMethodDefinition()
 		className = string.gsub(className, "[.]%w%w%w$", "")
 	end
 
-	CreateDefinition(file, line, className)
+	CreateDefinition(file, line, false, className)
 end
 
 function CreateFunctionDefinition()
 	local line = vim.fn.getline('.')
 	local file = vim.api.nvim_buf_get_name(0)
 
-	CreateDefinition(file, line, nil)
+
+	CreateDefinition(file, line, false)
 end
 
 keymap("n", "<leader>sh", ":ClangdSwitchSourceHeader<CR>", opts)
