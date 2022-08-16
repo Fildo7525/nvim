@@ -4,8 +4,13 @@ local opts = { noremap = true, silent = true }
 
 local keymap = vim.api.nvim_set_keymap
 
-function Trim(s)
+local function trim(s)
   return (string.gsub(s, "^%s*(.-)%s*$", "%1"))
+end
+
+local function file_exists(name)
+   local f=io.open(name,"r")
+   if f~=nil then io.close(f) return true else return false end
 end
 
 function QtQuerryFinder()
@@ -25,25 +30,35 @@ end
 function CreateDefinition(headerFile, line, promptForSourceFile, className)
 	local functionName = vim.fn.expand("<cword>")
 
+	local sourceFile = ""
 	if string.sub(headerFile, -1) == "h" then
-		headerFile = string.gsub(headerFile, "[.]%w$","")
+		sourceFile = string.gsub(headerFile, "[.]%w$","")
 	else
-		headerFile = string.gsub(headerFile, "[.]%w%w%w$", "")
+		sourceFile = string.gsub(headerFile, "[.]%w%w%w$", "")
 	end
-	headerFile = headerFile .. ".cpp"
+	sourceFile = sourceFile .. ".cpp"
 
 	if promptForSourceFile then
-		headerFile = vim.fn.input("Source File: ", headerFile)
+		sourceFile = vim.fn.input("Source File: ", sourceFile)
 	end
 
-	line = Trim(line)
+	line = trim(line)
 	line = string.sub(line, 1, -2)
 	line = line .. "\n{\n\n}"
 	if className ~= nil then
 		line = string.gsub(line, " " .. functionName .. "[(]", " " .. className .. "::" .. functionName .."(", 1)
 	end
 
-	local out = io.open(headerFile, 'a+')
+	if not file_exists(sourceFile) then
+		local out = io.open(sourceFile, "w")
+		if out ~= nil then
+			out:write("#include \"" .. headerFile .. "\"\n\n")
+			out:flush()
+			out:close()
+		end
+	end
+
+	local out = io.open(sourceFile, 'a+')
 	if out ~= nil then
 		out:write(line, "\n\n")
 		out:flush()
@@ -71,7 +86,6 @@ end
 function CreateFunctionDefinition()
 	local line = vim.fn.getline('.')
 	local file = vim.api.nvim_buf_get_name(0)
-
 
 	CreateDefinition(file, line, false)
 end
