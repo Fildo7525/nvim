@@ -15,18 +15,16 @@ end
 
 --- NOTE: The function is not perfect. There are rules you have to obey:
 -- 	1) Have the source file in the same dir as the header file.
--- 	2) There must not be any space before the space in the function name:
--- 		e.g.: WRONG: QMap<QString, QString> functinoName();
--- 								  ^
--- 		The space is the problem.
--- 	3) The functino must be defined on one line.
+-- 	2) The functino must be defined on one line.
 --
----@param file           string - Is a header file name with a full path.
+---@param file           string Is a header file name with a full path.
 -- 				  The file can have extension either .h or .hpp.
----@param line           string - Full line taken from the edditor. The line must end with a semicolon.
+---@param line           string Full line taken from the edditor. The line must end with a semicolon.
 --				  The function must be defined in one line.
----@param className?     string - If the function is not in a class give there a nil.
+---@param className?     string If the function is not in a class give there a nil.
 function CreateDefinition(file, line, className)
+	local functionName = vim.fn.expand("<cword>")
+
 	if string.sub(file, -1) == "h" then
 		file = string.gsub(file, "[.]%w$","")
 	else
@@ -38,8 +36,7 @@ function CreateDefinition(file, line, className)
 	line = string.sub(line, 1, -2)
 	line = line .. "\n{\n\n}"
 	if className ~= nil then
-		line = string.gsub(line, " ", " " .. className .. "::", 1)
-		print(line)
+		line = string.gsub(line, " " .. functionName .. "[(]", " " .. className .. "::" .. functionName .."(", 1)
 	end
 
 	local out = io.open(file, 'a+')
