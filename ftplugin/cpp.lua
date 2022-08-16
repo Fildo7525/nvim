@@ -19,7 +19,7 @@ function QtQuerryFinder()
 end
 
 --- NOTE: The function is not perfect. There are rules you have to obey:
--- 	1) The functino must be defined on one line.
+-- 	1) The function must be defined on one line.
 --
 ---@param headerFile     string Is a header file name with a full path. The file can have extension
 -- 						 either .h or .hpp.
@@ -29,14 +29,18 @@ end
 ---@param className?     string If the function is not in a class give there a nil.
 function CreateDefinition(headerFile, line, promptForSourceFile, className)
 	local functionName = vim.fn.expand("<cword>")
-
 	local sourceFile = ""
+
 	if string.sub(headerFile, -1) == "h" then
 		sourceFile = string.gsub(headerFile, "[.]%w$","")
 	else
 		sourceFile = string.gsub(headerFile, "[.]%w%w%w$", "")
 	end
 	sourceFile = sourceFile .. ".cpp"
+
+	if promptForSourceFile then
+		sourceFile = vim.fn.input("Source File: ", headerFile)
+	end
 
 	if promptForSourceFile then
 		sourceFile = vim.fn.input("Source File: ", sourceFile)
@@ -66,7 +70,11 @@ function CreateDefinition(headerFile, line, promptForSourceFile, className)
 	end
 end
 
-function CreateClassMethodDefinition()
+--- Create Method declaration in source file. Class Name is either deduced from the header file,
+-- or the user is prompted to input the class name.
+---@param classNamePrompt? boolean Wether to ask for a class name.
+---@param sourceFilePrompt boolean Wether to ask for a source file name.
+function CreateClassMethodDefinition(sourceFilePrompt, classNamePrompt)
 	local line = vim.fn.getline('.')
 	local file = vim.api.nvim_buf_get_name(0)
 
@@ -80,14 +88,20 @@ function CreateClassMethodDefinition()
 		className = string.gsub(className, "[.]%w%w%w$", "")
 	end
 
-	CreateDefinition(file, line, false, className)
+	if classNamePrompt then
+		className = vim.fn.input("Enter the class name: ", className)
+	end
+
+	CreateDefinition(file, line, sourceFilePrompt, className)
 end
 
-function CreateFunctionDefinition()
+--- Create function definition in source file.
+---@param sourceFilePrompt boolean Wether to prompt the user for source file name.
+function CreateFunctionDefinition(sourceFilePrompt)
 	local line = vim.fn.getline('.')
 	local file = vim.api.nvim_buf_get_name(0)
 
-	CreateDefinition(file, line, false)
+	CreateDefinition(file, line, sourceFilePrompt)
 end
 
 keymap("n", "<leader>sh", ":ClangdSwitchSourceHeader<CR>", opts)
