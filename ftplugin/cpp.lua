@@ -39,19 +39,33 @@ function CreateDefinition(headerFile, line, promptForSourceFile, className)
 	sourceFile = sourceFile .. ".cpp"
 
 	if promptForSourceFile then
-		sourceFile = vim.fn.input("Source File: ", headerFile)
-	end
-
-	if promptForSourceFile then
 		sourceFile = vim.fn.input("Source File: ", sourceFile)
 	end
 
+	-- trim the line, remove semicolon and add curly braces
 	line = trim(line)
 	line = string.sub(line, 1, -2)
 	line = line .. "\n{\n\n}"
-	if className ~= nil then
-		line = string.gsub(line, " " .. functionName .. "[(]", " " .. className .. "::" .. functionName .."(", 1)
+
+	-- remove static and explicit keywords
+	if line:find("static") == 1 then
+		line = line:gsub("static ", "")
+	elseif line:find("explicit") == 1 then
+		line = line:gsub("explicit", "")
+	elseif line:find(functionName) == 1 then
+		line = line:gsub(functionName, " " .. functionName)
 	end
+
+	if className ~= nil then
+		if string.find(line, " [*]" .. functionName) then
+			line = string.gsub(line, " [*]" .. functionName .. "[(]", " *" .. className .. "::" .. functionName .."(", 1)
+		elseif string.find(line, " &" .. functionName) then
+			line = string.gsub(line, " &" .. functionName .. "[(]", " &" .. className .. "::" .. functionName .."(", 1)
+		else
+			line = string.gsub(line, " " .. functionName .. "[(]", " " .. className .. "::" .. functionName .."(", 1)
+		end
+	end
+	line = trim(line)
 
 	if not file_exists(sourceFile) then
 		local out = io.open(sourceFile, "w")
