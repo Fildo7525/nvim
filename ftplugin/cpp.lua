@@ -74,12 +74,12 @@ end
 -- CORE FUNCTION FOR DEFINITIONS --
 -----------------------------------
 
--- 	NOTE: Default arguments are not deleted.
+-- Creates definition in the source file. Takes care of class scope (if it is a function no scope),
+-- default parameters and catches the method / function on multiple lines.
 --
----@param headerFile	 string Is a header file name with a full path. The file can have extension
--- 						 either .h or .hpp.
 ---@param promptForSourceFile	boolean Wether to prompt the user for source file.
-function CreateDefinition(headerFile, promptForSourceFile)
+local function createDefinition(promptForSourceFile)
+	local headerFile = vim.api.nvim_buf_get_name(0)
 	local functionName = vim.fn.expand("<cword>")
 	local sourceFile = ""
 	local className = getClassName()
@@ -110,13 +110,12 @@ function CreateDefinition(headerFile, promptForSourceFile)
 		line = line:gsub(functionName, " " .. functionName)
 	end
 
-	-- This doesn't work properly
-	if line:find(" = (%w+)[:]?[:]?(%w+)?,") then
-		print("comma present")
-		line = line:gsub(" = (%w+)[:]?[:]?(%w+)?,", ",")
-	elseif line:find(" = (%w+).+?[)]") then
-		print("paranthese present")
-		line = line:gsub(" = (%w+).+?[)]", ")")
+	if line:find(" = (.+),") then
+		line = line:gsub(" = (.+),", ",")
+	end
+
+	if line:find(" = (.+)[)]") then
+		line = line:gsub(" = (.+)[)]", ")")
 	end
 
 	if className ~= "" then
@@ -165,13 +164,13 @@ function QtQuerryFinder()
 	vim.cmd(":!kfmclient openURL " .. address)
 end
 
---- Create Method declaration in source file. Class Name is either deduced from the header file,
--- or the user is prompted to input the class name.
+--- Create Method declaration in source file. Class name is deduced from treesitter.
+-- The method or function can be declared on multiple lines.
+-- Default parameters are removed.
+--
 ---@param sourceFilePrompt boolean Wether to ask for a source file name.
 function CreateClassMethodDefinition(sourceFilePrompt)
-	local file = vim.api.nvim_buf_get_name(0)
-
-	CreateDefinition(file, sourceFilePrompt)
+	createDefinition(sourceFilePrompt)
 end
 
 
