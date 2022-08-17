@@ -3,8 +3,6 @@ if not status_ok then
 	return
 end
 
-
-
 ----------------------
 -- HELPER FUNCTIONS --
 ----------------------
@@ -52,6 +50,17 @@ local function getClassName()
 	return class
 end
 
+local function getFunctionName()
+	local lineNumber = unpack(vim.api.nvim_win_get_cursor(0))
+	local functionName = vim.fn.getline(lineNumber)
+
+	while functionName:sub(-1) ~= ";" do
+		lineNumber = lineNumber + 1
+		functionName = functionName .. "\n" .. vim.fn.getline(lineNumber)
+	end
+
+	return functionName
+end
 
 
 
@@ -65,20 +74,16 @@ end
 -- CORE FUNCTION FOR DEFINITIONS --
 -----------------------------------
 
---- NOTE: The function is not perfect. There are rules you have to obey:
--- 	1) The function must be defined on one line.
---
 -- 	NOTE: Default arguments are not deleted.
 --
 ---@param headerFile	 string Is a header file name with a full path. The file can have extension
 -- 						 either .h or .hpp.
----@param line		   string Full line taken from the edditor. The line must end with a semicolon.
--- 						 The function must be defined in one line.
 ---@param promptForSourceFile	boolean Wether to prompt the user for source file.
-function CreateDefinition(headerFile, line, promptForSourceFile)
+function CreateDefinition(headerFile, promptForSourceFile)
 	local functionName = vim.fn.expand("<cword>")
 	local sourceFile = ""
 	local className = getClassName()
+	local line = getFunctionName()
 
 	if string.sub(headerFile, -1) == "h" then
 		sourceFile = string.gsub(headerFile, "[.]%w$","")
@@ -164,10 +169,9 @@ end
 -- or the user is prompted to input the class name.
 ---@param sourceFilePrompt boolean Wether to ask for a source file name.
 function CreateClassMethodDefinition(sourceFilePrompt)
-	local line = vim.fn.getline('.')
 	local file = vim.api.nvim_buf_get_name(0)
 
-	CreateDefinition(file, line, sourceFilePrompt)
+	CreateDefinition(file, sourceFilePrompt)
 end
 
 
@@ -183,5 +187,4 @@ local keymap = vim.api.nvim_set_keymap
 keymap("n", "<leader>sh", ":ClangdSwitchSourceHeader<CR>", opts)
 keymap("n", "<F2>", ":lua QtQuerryFinder()<CR>", opts)
 keymap("n", "<F3>", ":lua CreateClassMethodDefinition()<CR>", opts)
-keymap("n", "<F4>", ":lua CreateClassMethodDefinition(true)<CR>", opts)
 
