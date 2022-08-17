@@ -1,8 +1,13 @@
-local opts = { noremap = true, silent = true }
+local status_ok, ts = pcall(require, "nvim-treesitter")
+if not status_ok then
+	return
+end
 
--- local term_opts = { silent = true }
 
-local keymap = vim.api.nvim_set_keymap
+
+----------------------
+-- HELPER FUNCTIONS --
+----------------------
 
 --- Trims string.
 ---@param s string String to be trimmed.
@@ -14,32 +19,66 @@ end
 --- Checks if the file with name 'name' exists.
 ---@param name string File name.
 ---@return boolean Wether the file exists.
-local function file_exists(name)
-   local f=io.open(name,"r")
-   if f~=nil then io.close(f) return true else return false end
+local function fileExists(name)
+	local f=io.open(name,"r")
+	if f~=nil then io.close(f) return true else return false end
 end
 
---- Open qt-5 documentation about the word under cursor.
-function QtQuerryFinder()
-	local address = "https://doc.qt.io/qt-5/" .. vim.fn.expand("<cword>"):lower() .. ".html"
-	-- ERROR: open / xdg-open doesn't work for me
-	vim.cmd(":!kfmclient openURL " .. address)
+--- Splits string on delimiter.
+---@param s string To split.
+---@param delimiter string On what to split on.
+---@return table Splitted string.
+local function split(s, delimiter)
+	local result = {};
+	for match in (s..delimiter):gmatch("(.-)"..delimiter) do
+		table.insert(result, match);
+	end
+	return result;
 end
+
+--- Returns class name using treesitter.
+---@return string Class name of the functino.
+local function getClassName()
+	local classLine = ts.statusline({type_patterns = {'class'}})
+	if classLine == "" then
+		return ""
+	end
+
+	local class = split(classLine, " ")[2]
+	if class:sub(-1) == ":" then
+		class = class:sub(0, -2)
+	end
+
+	return class
+end
+
+
+
+
+
+
+
+
+
+
+-----------------------------------
+-- CORE FUNCTION FOR DEFINITIONS --
+-----------------------------------
 
 --- NOTE: The function is not perfect. There are rules you have to obey:
 -- 	1) The function must be defined on one line.
 --
 -- 	NOTE: Default arguments are not deleted.
 --
----@param headerFile     string Is a header file name with a full path. The file can have extension
+---@param headerFile	 string Is a header file name with a full path. The file can have extension
 -- 						 either .h or .hpp.
----@param line           string Full line taken from the edditor. The line must end with a semicolon.
+---@param line		   string Full line taken from the edditor. The line must end with a semicolon.
 -- 						 The function must be defined in one line.
----@param promptForSourceFile    boolean Weather to prompt the user for source file.
----@param className?     string If the function is not in a class give there a nil.
-function CreateDefinition(headerFile, line, promptForSourceFile, className)
+---@param promptForSourceFile	boolean Wether to prompt the user for source file.
+function CreateDefinition(headerFile, line, promptForSourceFile)
 	local functionName = vim.fn.expand("<cword>")
 	local sourceFile = ""
+	local className = getClassName()
 
 	if string.sub(headerFile, -1) == "h" then
 		sourceFile = string.gsub(headerFile, "[.]%w$","")
@@ -70,12 +109,12 @@ function CreateDefinition(headerFile, line, promptForSourceFile, className)
 	if line:find(" = (%w+)[:]?[:]?(%w+)?,") then
 		print("comma present")
 		line = line:gsub(" = (%w+)[:]?[:]?(%w+)?,", ",")
-	elseif line:find(" = (%w+)[:]?[:]?(%w+)?[)]") then
+	elseif line:find(" = (%w+).+?[)]") then
 		print("paranthese present")
-		line = line:gsub(" = (%w+)[:]?[:]?(%w+)?[)]", ")")
+		line = line:gsub(" = (%w+).+?[)]", ")")
 	end
 
-	if className ~= nil then
+	if className ~= "" then
 		if string.find(line, " [*]" .. functionName) then
 			line = string.gsub(line, " [*]" .. functionName .. "[(]", " *" .. className .. "::" .. functionName .."(", 1)
 		elseif string.find(line, " &" .. functionName) then
@@ -87,7 +126,7 @@ function CreateDefinition(headerFile, line, promptForSourceFile, className)
 	-- trim the line because of the constructor edge case
 	line = trim(line)
 
-	if not file_exists(sourceFile) then
+	if not fileExists(sourceFile) then
 		local out = io.open(sourceFile, "w")
 		if out ~= nil then
 			out:write("#include \"" .. headerFile .. "\"\n\n")
@@ -104,42 +143,45 @@ function CreateDefinition(headerFile, line, promptForSourceFile, className)
 	end
 end
 
---- Create Method declaration in source file. Class Name is either deduced from the header file,
--- or the user is prompted to input the class name.
----@param classNamePrompt? boolean Wether to ask for a class name.
----@param sourceFilePrompt boolean Wether to ask for a source file name.
-function CreateClassMethodDefinition(sourceFilePrompt, classNamePrompt)
-	local line = vim.fn.getline('.')
-	local file = vim.api.nvim_buf_get_name(0)
 
-	local indexOfLastSlashInName = string.find(file, "/[^/]*$")
 
-	local className = string.sub(file, indexOfLastSlashInName)
-	className = string.sub(className, 2)
-	if string.sub(file, -1) == "h" then
-		className = string.gsub(className, "[.]%w$","")
-	else
-		className = string.gsub(className, "[.]%w%w%w$", "")
-	end
 
-	if classNamePrompt then
-		className = vim.fn.input("Enter the class name: ", className)
-	end
 
-	CreateDefinition(file, line, sourceFilePrompt, className)
+
+
+----------------------
+-- MAPPED FUNCTIONS --
+----------------------
+
+--- Open qt-5 documentation about the word under cursor.
+function QtQuerryFinder()
+	local address = "https://doc.qt.io/qt-5/" .. vim.fn.expand("<cword>"):lower() .. ".html"
+	-- ERROR: open / xdg-open doesn't work for me
+	vim.cmd(":!kfmclient openURL " .. address)
 end
 
---- Create function definition in source file.
----@param sourceFilePrompt boolean Wether to prompt the user for source file name.
-function CreateFunctionDefinition(sourceFilePrompt)
+--- Create Method declaration in source file. Class Name is either deduced from the header file,
+-- or the user is prompted to input the class name.
+---@param sourceFilePrompt boolean Wether to ask for a source file name.
+function CreateClassMethodDefinition(sourceFilePrompt)
 	local line = vim.fn.getline('.')
 	local file = vim.api.nvim_buf_get_name(0)
 
 	CreateDefinition(file, line, sourceFilePrompt)
 end
 
+
+------------------------------
+-- OPTIONS FOR KEY MAPPINGS --
+------------------------------
+
+local opts = { noremap = true, silent = true }
+-- local term_opts = { silent = true }
+
+local keymap = vim.api.nvim_set_keymap
+
 keymap("n", "<leader>sh", ":ClangdSwitchSourceHeader<CR>", opts)
 keymap("n", "<F2>", ":lua QtQuerryFinder()<CR>", opts)
 keymap("n", "<F3>", ":lua CreateClassMethodDefinition()<CR>", opts)
-keymap("n", "<F4>", ":lua CreateFunctionDefinition()<CR>", opts)
+keymap("n", "<F4>", ":lua CreateClassMethodDefinition(true)<CR>", opts)
 
