@@ -4,22 +4,32 @@ local opts = { noremap = true, silent = true }
 
 local keymap = vim.api.nvim_set_keymap
 
+--- Trims string.
+---@param s string String to be trimmed.
+---@return string Trimmed string.
 local function trim(s)
   return (string.gsub(s, "^%s*(.-)%s*$", "%1"))
 end
 
+--- Checks if the file with name 'name' exists.
+---@param name string File name.
+---@return boolean Wether the file exists.
 local function file_exists(name)
    local f=io.open(name,"r")
    if f~=nil then io.close(f) return true else return false end
 end
 
+--- Open qt-5 documentation about the word under cursor.
 function QtQuerryFinder()
 	local address = "https://doc.qt.io/qt-5/" .. vim.fn.expand("<cword>"):lower() .. ".html"
+	-- ERROR: open / xdg-open doesn't work for me
 	vim.cmd(":!kfmclient openURL " .. address)
 end
 
 --- NOTE: The function is not perfect. There are rules you have to obey:
 -- 	1) The function must be defined on one line.
+--
+-- 	NOTE: Default arguments are not deleted.
 --
 ---@param headerFile     string Is a header file name with a full path. The file can have extension
 -- 						 either .h or .hpp.
@@ -56,6 +66,15 @@ function CreateDefinition(headerFile, line, promptForSourceFile, className)
 		line = line:gsub(functionName, " " .. functionName)
 	end
 
+	-- This doesn't work properly
+	if line:find(" = (%w+)[:]?[:]?(%w+)?,") then
+		print("comma present")
+		line = line:gsub(" = (%w+)[:]?[:]?(%w+)?,", ",")
+	elseif line:find(" = (%w+)[:]?[:]?(%w+)?[)]") then
+		print("paranthese present")
+		line = line:gsub(" = (%w+)[:]?[:]?(%w+)?[)]", ")")
+	end
+
 	if className ~= nil then
 		if string.find(line, " [*]" .. functionName) then
 			line = string.gsub(line, " [*]" .. functionName .. "[(]", " *" .. className .. "::" .. functionName .."(", 1)
@@ -65,6 +84,7 @@ function CreateDefinition(headerFile, line, promptForSourceFile, className)
 			line = string.gsub(line, " " .. functionName .. "[(]", " " .. className .. "::" .. functionName .."(", 1)
 		end
 	end
+	-- trim the line because of the constructor edge case
 	line = trim(line)
 
 	if not file_exists(sourceFile) then
