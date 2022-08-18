@@ -1,18 +1,10 @@
-local status_ok, ts = pcall(require, "nvim-treesitter")
+local status_ok, ts_utils = pcall(require, "nvim-treesitter.ts_utils")
 if not status_ok then
 	return
 end
-
 ----------------------
 -- HELPER FUNCTIONS --
 ----------------------
-
---- Trims string.
----@param s string String to be trimmed.
----@return string Trimmed string.
-local function trim(s)
-  return (string.gsub(s, "^%s*(.-)%s*$", "%1"))
-end
 
 --- Checks if the file with name 'name' exists.
 ---@param name string File name.
@@ -21,47 +13,6 @@ local function fileExists(name)
 	local f=io.open(name,"r")
 	if f~=nil then io.close(f) return true else return false end
 end
-
---- Splits string on delimiter.
----@param s string To split.
----@param delimiter string On what to split on.
----@return table Splitted string.
-local function split(s, delimiter)
-	local result = {};
-	for match in (s..delimiter):gmatch("(.-)"..delimiter) do
-		table.insert(result, match);
-	end
-	return result;
-end
-
---- Returns class name using treesitter.
----@return string Class name of the functino.
-local function getClassName()
-	local classLine = ts.statusline({type_patterns = {'class'}})
-	if classLine == "" then
-		return ""
-	end
-
-	local class = split(classLine, " ")[2]
-	if class:sub(-1) == ":" then
-		class = class:sub(0, -2)
-	end
-
-	return class
-end
-
-local function getFunctionName()
-	local lineNumber = unpack(vim.api.nvim_win_get_cursor(0))
-	local functionName = vim.fn.getline(lineNumber)
-
-	while functionName:sub(-1) ~= ";" do
-		lineNumber = lineNumber + 1
-		functionName = functionName .. "\n" .. vim.fn.getline(lineNumber)
-	end
-
-	return functionName
-end
-
 
 
 
@@ -80,10 +31,7 @@ end
 ---@param promptForSourceFile	boolean Wether to prompt the user for source file.
 local function createDefinition(promptForSourceFile)
 	local headerFile = vim.api.nvim_buf_get_name(0)
-	local functionName = vim.fn.expand("<cword>")
 	local sourceFile = ""
-	local className = getClassName()
-	local line = getFunctionName()
 
 	if string.sub(headerFile, -1) == "h" then
 		sourceFile = string.gsub(headerFile, "[.]%w$","")
@@ -93,42 +41,77 @@ local function createDefinition(promptForSourceFile)
 	sourceFile = sourceFile .. ".cpp"
 
 	if promptForSourceFile then
-		sourceFile = vim.fn.input("Source File: ", sourceFile)
+		sourceFile = vim.fn.input("Source file", headerFile)
 	end
 
-	-- trim the line, remove semicolon and add curly braces
-	line = trim(line)
-	line = string.sub(line, 1, -2)
-	line = line .. "\n{\n\n}"
+	local current_node = ts_utils.get_node_at_cursor()
 
-	-- remove static and explicit keywords
-	if line:find("static") == 1 then
-		line = line:gsub("static ", "")
-	elseif line:find("explicit") == 1 then
-		line = line:gsub("explicit", "")
-	elseif line:find(functionName) == 1 then
-		line = line:gsub(functionName, " " .. functionName)
-	end
+	local function_info = nil
+	local parts = {}
 
-	if line:find(" = (.+),") then
-		line = line:gsub(" = (.+),", ",")
-	end
-
-	if line:find(" = (.+)[)]") then
-		line = line:gsub(" = (.+)[)]", ")")
-	end
-
-	if className ~= "" then
-		if string.find(line, " [*]" .. functionName) then
-			line = string.gsub(line, " [*]" .. functionName .. "[(]", " *" .. className .. "::" .. functionName .."(", 1)
-		elseif string.find(line, " &" .. functionName) then
-			line = string.gsub(line, " &" .. functionName .. "[(]", " &" .. className .. "::" .. functionName .."(", 1)
-		else
-			line = string.gsub(line, " " .. functionName .. "[(]", " " .. className .. "::" .. functionName .."(", 1)
+	while current_node ~= nil do
+		local type = current_node:type()
+		if (type == 'field_declaration' or type == 'function_definition' or type == 'declaration') and not function_info then
+			function_info = { return_type = '', declaration = nil }
+			for node, name in current_node:iter_children() do
+				if node:named() then
+					if name == 'type' then
+						function_info.return_type = vim.treesitter.query.get_node_text(node, 0)
+					elseif name == 'declarator' then
+						function_info.declaration = vim.treesitter.query.get_node_text(node, 0)
+					end
+				end
+			end
+		elseif type == 'struct_specifier' or type == 'class_specifier' or type == 'namespace_definition' then
+			if not function_info then
+				-- no function found
+				return ''
+			end
+			for node, name in current_node:iter_children() do
+				if node:named() then
+					if name == 'name' then
+						table.insert(parts, 1, vim.treesitter.query.get_node_text(node, 0))
+					end
+				end
+			end
 		end
+		current_node = current_node:parent()
 	end
-	-- trim the line because of the constructor edge case
-	line = trim(line)
+
+	if not function_info then
+		return ''
+	end
+	-- is not the destructor and the return type is a pointer of a reference
+	local found, _, prefix, name = function_info.declaration:find('^(%W+)%s*(%w.*)')
+	if found and prefix ~= '~' then
+		function_info.return_type = function_info.return_type .. prefix
+		function_info.declaration = name
+	end
+
+	local specifier = table.concat(parts, '::')
+
+	if specifier:len() > 0 then
+		specifier = specifier .. '::' .. function_info.declaration
+	else
+		specifier = function_info.declaration
+	end
+
+	if function_info.return_type:len() > 0 then
+		function_info.return_type = function_info.return_type .. ' '
+	end
+
+	local definition = string.format("%s%s", function_info.return_type, specifier)
+
+	if definition:find(" = (.+),") then
+		definition = definition:gsub(" = (.+),", ",")
+	end
+
+	if definition:find(" = (.+)[)]") then
+		definition = definition:gsub(" = (.+)[)]", ")")
+	end
+
+	-- remove override and multiple spaces
+	definition = definition:gsub("^(.+)%)(.*)override(.*)", "%1)%2 %3"):gsub("%s+", " ") .. "\n{\n\n}\n"
 
 	if not fileExists(sourceFile) then
 		local out = io.open(sourceFile, "w")
@@ -141,7 +124,7 @@ local function createDefinition(promptForSourceFile)
 
 	local out = io.open(sourceFile, 'a+')
 	if out ~= nil then
-		out:write(line, "\n\n")
+		out:write(definition, "\n")
 		out:flush()
 		out:close()
 	end
@@ -186,4 +169,5 @@ local keymap = vim.api.nvim_set_keymap
 keymap("n", "<leader>sh", ":ClangdSwitchSourceHeader<CR>", opts)
 keymap("n", "<F2>", ":lua QtQuerryFinder()<CR>", opts)
 keymap("n", "<F3>", ":lua CreateClassMethodDefinition()<CR>", opts)
+keymap("n", "<F4>", ":lua print(cpp_generate_body())<CR>", opts)
 
