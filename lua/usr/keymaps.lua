@@ -53,14 +53,14 @@ keymap("n", "<leader>gb", "<cmd>Telescope git_branches<CR>", opts)
 keymap("n", "<leader>gs", "<cmd>Telescope git_status<CR>", opts)
 
 -- GIT signs
-keymap("n", "gp", ":Gitsigns preview_hunk<CR>", opts)
+keymap("n", "gpr", ":Gitsigns preview_hunk<CR>", opts)
 keymap("n", "gbl", ":Gitsigns blame_line<CR>", opts)
 keymap("n", "gsh", ":Gitsigns stage_hunk<CR>", opts)
 keymap("n", "gsb", ":Gitsigns stage_buffer<CR>", opts)
 keymap("n", "grh", ":Gitsigns reset_hunk<CR>", opts)
 keymap("n", "gtd", ":Gitsigns toggle_deleted<CR>", opts)
-keymap("n", "<leader>gn", ":Gitsigns next_hunk<CR>", opts)
-keymap("n", "<leader>gp", ":Gitsigns prev_hunk<CR>", opts)
+keymap("n", "gnh", ":Gitsigns next_hunk<CR>", opts)
+keymap("n", "gph", ":Gitsigns prev_hunk<CR>", opts)
 
 ---@diagnostic disable-next-line: lowercase-global
 function getCommitIndex()
