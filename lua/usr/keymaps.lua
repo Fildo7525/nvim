@@ -106,17 +106,6 @@ keymap("n", "<leader>nf", ":lua require('neogen').generate({ type = 'func'})<CR>
 keymap("n", "<leader>nt", ":lua require('neogen').generate({ type = 'type'})<CR>", opts)
 keymap("n", "<leader>ni", ":lua require('neogen').generate({ type = 'file'})<CR>", opts)
 
--- BOOKMARKS
-keymap("n", "<leader>ba", ":BookmarkAnnotate<CR>", opts)
-keymap("n", "<leader>bc", ":BookmarkClear<CR>", opts)
-keymap("n", "<leader>be", ":BookmarkClearAll<CR>", opts)
-keymap("n", "<leader>bm", ":BookmarkMoveToLine<CR>", opts)
-keymap("n", "<leader>bs", ":BookmarkSave", opts)
-keymap("n", "<leader>bl", ":BookmarkLoad", opts)
-keymap("n", "<leader>bp", ":BookmarkPrev<CR>", opts)
-keymap("n", "<leader>bl", ":BookmarkNext<CR>", opts)
-keymap("n", "<leader>bb", ":BookmarkShowAll<CR>", opts)
-
 keymap("n", "<leader>tr", "<cmd>Trouble<cr>",opts)
 keymap("n", "<leader>twd", "<cmd>Trouble workspace_diagnostics<cr>",opts)
 keymap("n", "<leader>tdd", "<cmd>Trouble document_diagnostics<cr>",opts)
