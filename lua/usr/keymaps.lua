@@ -43,9 +43,15 @@ keymap("n", "<leader>nd", "<CMD>lua _NCDU_TOGGLE()<CR>", opts)
 
 -- TELESCOPE --
 keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
-keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts)
+--[[ keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts) ]]
 keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
 keymap("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)
+keymap("n", "<leader>rs", "<cmd>Telescope resume<CR>", opts)
+keymap("n", "<leader>ss", "<cmd>lua require('usr.tscope.adjustments').source_search()<CR>", opts)
+keymap("n", "<leader>ag", "<cmd>lua require('usr.tscope.adjustments').extend_live_grep()<CR>", opts)
+keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts)
+keymap("n", "<leader>so", "<cmd>lua require('usr.tscope.adjustments').extend_live_grep(true)<CR>", opts)
+keymap("n", "<leader>fs", "<cmd>lua require('usr.tscope.adjustments').extend_grep_string()<CR>", opts)
 
 -- telescope git commands
 keymap("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", opts)
