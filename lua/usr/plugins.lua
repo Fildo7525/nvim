@@ -135,6 +135,12 @@ return packer.startup(function(use)
 		run = ':TSUpdate'
 	}
 	use "p00f/nvim-ts-rainbow"
+	use {
+		'nvim-treesitter/nvim-treesitter-context',
+		requires = {
+			'nvim-treesitter/nvim-treesitter',
+		},
+	}
 
 	-- doxygen
 	use {
