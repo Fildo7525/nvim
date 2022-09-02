@@ -34,13 +34,17 @@ To use the LSP's type :LspInstall and install given servers
 To use lsp for c/cpp/objc download clangd, clangd-format, and clang-tidy using your package manager
 The formating standard is based on WebKit (tabsize - 4, strictly using tabs)
 
-<h3>DAP (currently not supported)</h3>
+<h3>DAP</h3>
+
+DAP is currently supported for C/C++
 
 For cpp debugger download vscode and inside download debugger for cpp.
 Find 
 
     find / -xdev -type f -name "OpenDebugAD7" 2> /dev/null
 
+It should be located at ${HOME}/.vscode/...
+
 copy the address to debug adapter for cpp in
 
-    lua/usr/dap/nvimdap.lua
+    lua/usr/dap/settings/dapcpp.lua

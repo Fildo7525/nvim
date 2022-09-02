@@ -156,14 +156,6 @@ return packer.startup(function(use)
 	use "github/copilot.vim"
 	use "RRethy/vim-illuminate"
 
-
-	-- markdown files preview
-	use {
-		"iamcco/markdown-preview.nvim",
-		run = "cd app && npm install",
-		ft = "markdown",
-	}
-
 	-- COMMENTING
 	use "numToStr/Comment.nvim"
 	use "JoosepAlviste/nvim-ts-context-commentstring"
@@ -173,10 +165,9 @@ return packer.startup(function(use)
 	use "kdheepak/lazygit.nvim"
 
 	-- DAP
-	-- use "mfussenegger/nvim-dap"
-	-- use "theHamsta/nvim-dap-virtual-text"
-	-- use "rcarriga/nvim-dap-ui"
-	-- use "Pocco81/DAPInstall.nvim"
+	use "mfussenegger/nvim-dap"
+	use "theHamsta/nvim-dap-virtual-text"
+	use "rcarriga/nvim-dap-ui"
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
