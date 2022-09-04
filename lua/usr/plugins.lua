@@ -4,7 +4,7 @@ local fn = vim.fn
 local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
 -- vim.notify(install_path)
 if fn.empty(fn.glob(install_path)) > 0 then
-PACKER_BOOTSTRAP = fn.system {
+	PACKER_BOOTSTRAP = fn.system {
 		"git",
 		"clone",
 		"--depth",
@@ -82,14 +82,14 @@ return packer.startup(function(use)
 		"rafamadriz/friendly-snippets", -- a bunch of snippets to use
 	}
 
-		-- cmp plugins
+	-- cmp plugins
 	use "hrsh7th/nvim-cmp" -- The completion plugin
 	use "hrsh7th/cmp-buffer" -- buffer completions
 	use "hrsh7th/cmp-path" -- path completions
 	use "hrsh7th/cmp-cmdline" -- cmdline completions
 	use "saadparwaiz1/cmp_luasnip" -- snippet completions
 	use "hrsh7th/cmp-nvim-lsp"
-	use "hrsh7th/cmp-nvim-lua"	-- lua nvim scripting
+	use "hrsh7th/cmp-nvim-lua" -- lua nvim scripting
 	use "windwp/nvim-autopairs"
 	-- show function signature
 	use "ray-x/lsp_signature.nvim"
@@ -107,8 +107,8 @@ return packer.startup(function(use)
 	use {
 		"ThePrimeagen/refactoring.nvim",
 		requires = {
-			{"nvim-lua/plenary.nvim"},
-			{"nvim-treesitter/nvim-treesitter"}
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-treesitter/nvim-treesitter" }
 		}
 	}
 
@@ -175,4 +175,3 @@ return packer.startup(function(use)
 		require("packer").sync()
 	end
 end)
-
