@@ -43,10 +43,10 @@ keymap("n", "<leader>nd", "<CMD>lua _NCDU_TOGGLE()<CR>", opts)
 
 -- TELESCOPE --
 keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
+keymap("n", "<leader>re", "<cmd>Telescope resume<CR>", opts)
 --[[ keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts) ]]
 keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
 keymap("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)
-keymap("n", "<leader>rs", "<cmd>Telescope resume<CR>", opts)
 keymap("n", "<leader>ss", "<cmd>lua require('usr.tscope.adjustments').source_search()<CR>", opts)
 keymap("n", "<leader>ag", "<cmd>lua require('usr.tscope.adjustments').extend_live_grep()<CR>", opts)
 keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts)
