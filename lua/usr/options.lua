@@ -12,7 +12,7 @@ local options = {
 	relativenumber = true,
 	smartindent = true,
 	conceallevel = 0,
-	list = true;
+	list = true,
 }
 
 for k, v in pairs(options) do
