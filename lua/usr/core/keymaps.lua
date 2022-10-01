@@ -99,6 +99,9 @@ keymap("n", "<leader>wq", ":wq<CR>", opts)
 keymap("n", "<leader>qq", ":q<CR>", opts)
 keymap("n", "<leader>bw", ":w <bar> :Bdelete! %d <CR>", opts) -- buffer writing
 keymap("n", "<leader>bd", ":Bdelete! %d<CR>", opts) -- buffer delete force
+keymap("n", "<leader>ml", ":BufferLineMovePrev<CR>", opts)
+keymap("n", "<leader>mr", ":BufferLineMoveNext<CR>", opts)
+
 
 -- Resize with arrows
 keymap("n", "<C-UP>", ":resize -2<CR>", opts)
