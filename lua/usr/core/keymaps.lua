@@ -80,9 +80,11 @@ keymap("n", "gbl", ":Gitsigns blame_line<CR>", opts)
 keymap("n", "gsh", ":Gitsigns stage_hunk<CR>", opts)
 keymap("n", "gsb", ":Gitsigns stage_buffer<CR>", opts)
 keymap("n", "grh", ":Gitsigns reset_hunk<CR>", opts)
+keymap("n", "grb", ":Gitsigns reset_buffer<CR>", opts)
 keymap("n", "gtd", ":Gitsigns toggle_deleted<CR>", opts)
 keymap("n", "gnh", ":Gitsigns next_hunk<CR>", opts)
 keymap("n", "gph", ":Gitsigns prev_hunk<CR>", opts)
+keymap("n", "guh", ":Gitsigns undo_stage_hunk<CR>", opts)
 
 ---@diagnostic disable-next-line: lowercase-global
 function getCommitIndex()
