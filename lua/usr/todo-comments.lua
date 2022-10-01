@@ -3,7 +3,7 @@ if not status_ok then
 	return
 end
 
-local icons = require "usr.icons"
+local icons = require "usr.core.icons"
 
 local error_red = "#F44747"
 local warning_orange = "#ff8800"

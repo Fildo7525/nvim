@@ -36,14 +36,15 @@ keymap("n", "gf", ":e <cfile><CR>", opts)
 keymap("n", "<leader>4s", ":%s/    /<TAB>/g<CR>", opts)
 keymap("n", "<leader>2s", ":%s/  /<TAB>/g<CR>", opts)
 
-keymap("n", "<leader>lg", "<CMD>lua _LAZYGIT_TOGGLE()<CR>", opts)
-keymap("n", "<leader>py", "<CMD>lua _PYTHON_TOGGLE()<CR>", opts)
-keymap("n", "<leader>ht", "<CMD>lua _HTOP_TOGGLE()<CR>", opts)
-keymap("n", "<leader>nd", "<CMD>lua _NCDU_TOGGLE()<CR>", opts)
+keymap("n", "<leader>lg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
+keymap("n", "<leader>py", "<cmd>lua _PYTHON_TOGGLE()<CR>", opts)
+keymap("n", "<leader>ht", "<cmd>lua _HTOP_TOGGLE()<CR>", opts)
+keymap("n", "<leader>nd", "<cmd>lua _NCDU_TOGGLE()<CR>", opts)
 
 -- TELESCOPE --
 keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
 keymap("n", "<leader>re", "<cmd>Telescope resume<CR>", opts)
+keymap("n", "<leader>of", "<cmd>Telescope oldfiles<CR>", opts)
 --[[ keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts) ]]
 keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
 keymap("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)

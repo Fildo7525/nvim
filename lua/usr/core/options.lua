@@ -27,4 +27,5 @@ vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set formatoptions-=cro]]
 vim.cmd [[set statusline+=%-{get(b:,'gitsigns_status','')}]]
 vim.cmd [[set clipboard+=unnamedplus]]
-vim.cmd [[set spell spelllang=en_us]]
+-- vim.cmd [[set spell spelllang=en_us]]
+
