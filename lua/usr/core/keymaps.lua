@@ -140,6 +140,10 @@ keymap("n", "<leader>tl", "<cmd>Trouble loclist<cr>",opts)
 keymap("n", "<leader>tq", "<cmd>Trouble quickfix<cr>",opts)
 keymap("n", "gR", "<cmd>Trouble lsp_references<cr>",opts)
 
+-- fold methods
+keymap("n", "<leader>fm", "v%zf",opts)
+
+
 -- Press jk fast to enter
 keymap("i", "jj", "<ESC>:w<CR>", opts)
 keymap("i", "kk", "<ESC>", opts)
