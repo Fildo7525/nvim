@@ -17,6 +17,21 @@ vim.g.maplocalleader = " "
 --			command - c
 
 --	NORMAL	--
+
+function ReloadConfig()
+	for name,_ in pairs(package.loaded) do
+		if name:match('^usr') then
+			package.loaded[name] = nil
+		end
+	end
+
+	dofile(vim.env.MYVIMRC)
+	vim.notify("Nvim configuration reloaded!", vim.log.levels.INFO)
+end
+
+-- Reload init.lua
+keymap("n", "<leader><cr>", ":lua ReloadConfig()<cr>", opts)
+
 -- init.lua edditink
 keymap("n", "<leader>sc", ":e ~/.config/nvim/init.lua<CR>", opts)
 
