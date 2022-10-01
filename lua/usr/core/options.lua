@@ -13,6 +13,7 @@ local options = {
 	smartindent = true,
 	conceallevel = 0,
 	list = true,
+	cursorline = true,
 }
 
 for k, v in pairs(options) do
