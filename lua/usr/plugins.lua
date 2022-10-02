@@ -134,6 +134,17 @@ return packer.startup(function(use)
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate'
 	}
+	use {
+		-- Optional but recommended
+		-- 'nvim-treesitter/nvim-treesitter',
+		'lewis6991/spellsitter.nvim',
+		config = function ()
+			require('spellsitter').setup ({
+				enable = true,
+				debug = false,
+			})
+		end
+	}
 	use "p00f/nvim-ts-rainbow"
 	use {
 		'nvim-treesitter/nvim-treesitter-context',
