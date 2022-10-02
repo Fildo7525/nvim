@@ -44,16 +44,16 @@ local config = {
 		-- 💀
 		"-jar",
 		jdtls_home .. "plugins/org.eclipse.equinox.launcher_1.6.400.v20210924-0641.jar",
-		-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^                                       ^^^^^^^^^^^^^^
-		-- Must point to the                                                     Change this to
-		-- eclipse.jdt.ls installation                                           the actual version
+		-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^									   ^^^^^^^^^^^^^^
+		-- Must point to the													 Change this to
+		-- eclipse.jdt.ls installation										   the actual version
 
 		-- 💀
 		"-configuration",
 		jdtls_home .. "config_linux",
-		-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        ^^^^^^
-		-- Must point to the                      Change to one of `linux`, `win` or `mac`
-		-- eclipse.jdt.ls installation            Depending on your system.
+		-- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^		^^^^^^
+		-- Must point to the					  Change to one of `linux`, `win` or `mac`
+		-- eclipse.jdt.ls installation			Depending on your system.
 
 		-- 💀
 		-- See `data directory configuration` section in the README
@@ -90,7 +90,7 @@ local config = {
 
 	initializationOptions = {
 		bundles = {
-            "~/.config/nvim/debuggers/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-0.35.0.jar",
+			"~/.config/nvim/debuggers/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-0.35.0.jar",
 		},
 	},
 
