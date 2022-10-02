@@ -39,7 +39,13 @@ null_ls.setup({
 		}),
 
 		-- CMAKE
-		-- formatting.cmake_format,
+		formatting.cmake_format.with({
+			extra_args = {
+				"--tab-size 4",
+				"--use-tabchars true",
+				"--enable-sort true",
+			},
+		}),
 
 		-- SNIPPETS
 		-- completion.luasnip,
