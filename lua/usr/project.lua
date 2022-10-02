@@ -16,7 +16,19 @@ project.setup({
 
 	-- All the patterns used to detect root dir, when **"pattern"** is in
 	-- detection_methods
-	patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json", "pom.xml", "build.sh", "configure.sh" },
+	patterns = {
+		".git",
+		"_darcs",
+		".hg",
+		".bzr",
+		".svn",
+		".Makefile",
+		".package.json",
+		".pom.xml",
+		".build.sh",
+		".configure.sh",
+		"compile_commands.json",
+	},
 
 	-- Table of lsp clients to ignore by name
 	-- eg: { "efm", ... }
@@ -32,6 +44,12 @@ project.setup({
 	-- When set to false, you will get a message when project.nvim changes your
 	-- directory.
 	silent_chdir = true,
+
+	-- What scope to change the directory, valid options are
+	-- * global (default)
+	-- * tab
+	-- * win
+	scope_chdir = 'global',
 
 	-- Path where project.nvim will store the project history for use in
 	-- telescope

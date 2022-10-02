@@ -52,7 +52,7 @@ return packer.startup(function(use)
 	use 'goolord/alpha-nvim'
 
 	-- PROJECTS
-	-- use 'ahmedkhalf/project.nvim'
+	use 'ahmedkhalf/project.nvim'
 
 	-- SHOW INDENTATION
 	use "lukas-reineke/indent-blankline.nvim"
