@@ -5,12 +5,12 @@
 return {
 	kind = {
 		Text = "",
-		-- Method = "m",
-		-- Function = "",
-		-- Constructor = "",
-		Method = "",
-		Function = "",
-		Constructor = "",
+		Method = "m",
+		Function = "",
+		Constructor = "",
+		--[[ Method = "", ]]
+		--[[ Function = "", ]]
+		--[[ Constructor = "", ]]
 		Field = "",
 		-- Variable = "",
 		Variable = "",
@@ -22,10 +22,10 @@ return {
 		Unit = "",
 		Value = "",
 		Enum = "",
-		-- Keyword = "",
-		Keyword = "",
-		-- Snippet = "",
-		Snippet = "",
+		Keyword = "",
+		--[[ Keyword = "", ]]
+		Snippet = "",
+		--[[ Snippet = "", ]]
 		Color = "",
 		File = "",
 		Reference = "",
