@@ -42,7 +42,7 @@ end
 function Logger:cleanup()
 	self.file:close()
 	if self.wasError then
-		vim.notify("An error occured, see logs for details")
+		vim.notify("An error occured, see " .. self.file_name .." for details", vim.log.levels.ERROR)
 	else
 		os.remove(self.file_name)
 	end
