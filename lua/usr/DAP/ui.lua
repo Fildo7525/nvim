@@ -1,8 +1,4 @@
-local status, dapui = pcall(require, "dapui")
-if not status then
-	vim.notify("dapui not installed")
-	return
-end
+local dapui = require("dapui")
 
 dapui.setup({
 	icons = { expanded = "▾", collapsed = "▸" },
@@ -60,11 +56,7 @@ dapui.setup({
 	}
 })
 
-local status_dap, dap = pcall(require, "dap")
-if not status_dap then
-	vim.notify("There was an issue whit dap");
-	return
-end
+local dap = require("dap")
 
 local opts = { silent = true, }
 local keymap = vim.api.nvim_set_keymap

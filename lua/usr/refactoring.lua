@@ -1,7 +1,4 @@
-local status_ok, refactor = pcall(require, "refactoring")
-if not status_ok then
-	return;
-end
+local refactor = require("refactoring")
 
 refactor.setup({
 	 -- overriding printf statement for cpp

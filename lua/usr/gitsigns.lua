@@ -1,8 +1,4 @@
-local status_ok, gitsigns = pcall(require, "gitsigns")
-if not status_ok then
-	vim.notify("gitsigns error")
-	return
-end
+local gitsigns = require("gitsigns")
 
 gitsigns.setup {
 	signs = {

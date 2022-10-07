@@ -1,7 +1,4 @@
-local status_ok, scroll = pcall(require, "neoscroll")
-if not status_ok then
-	return;
-end
+local scroll = require("neoscroll")
 
 scroll.setup({
 	-- All these keys will be mapped to their corresponding default scrolling animation

@@ -1,11 +1,7 @@
 local colorscheme = "catppuccin"
 local colors = require("catppuccin.palettes").get_palette()
 
-local status_ok_cat, scheme = pcall(require, colorscheme)
-if not status_ok_cat then
-	vim.notify("catppuccin could not be loaded")
-	return
-end
+local scheme = require(colorscheme)
 
 scheme.setup({
 	transparent_background = false,

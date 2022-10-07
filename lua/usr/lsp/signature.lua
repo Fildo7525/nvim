@@ -1,7 +1,4 @@
-local status, signature = pcall(require, "lsp_signature")
-if not status then
-	vim.notify("Signature not loaded")
-end
+local signature = require("lsp_signature")
 
 local config = {
 	debug = false, -- set to true to enable debug logging

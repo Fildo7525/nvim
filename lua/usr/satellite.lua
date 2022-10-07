@@ -1,7 +1,4 @@
-local status_ok, sat = pcall(require, "satellite")
-if not status_ok then
-	return;
-end
+local sat = require("satellite")
 
 sat.setup {
 	current_only = false,

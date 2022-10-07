@@ -1,8 +1,4 @@
-local status_ok, _ = pcall(require, "lspconfig")
-if not status_ok then
-	vim.notify("lspconfig error")
-	return
-end
+local _ = require("lspconfig")
 
 require("usr.lsp.lsp-installer")
 require("usr.lsp.handlers").setup()

@@ -1,7 +1,4 @@
-local status_ok, null_ls = pcall(require, "null-ls")
-if not status_ok then
-	vim.notify("Null ls did not work")
-end
+local null_ls = require("null-ls")
 
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
 local formatting = null_ls.builtins.formatting

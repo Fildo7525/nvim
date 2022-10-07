@@ -1,9 +1,4 @@
-local treesitter_ok, treesitter = pcall(require, "nvim-treesitter.configs")
-if not treesitter_ok then
-	vim.notify("treesitter error")
-	return
-end
-
+local treesitter = require("nvim-treesitter.configs")
 
 treesitter.setup {
 	-- One of "all", "maintained" (parsers with maintainers), or a list of languages

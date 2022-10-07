@@ -1,8 +1,4 @@
-local staus_ok, telescope = pcall(require, "telescope.builtin")
-if not staus_ok then
-	error("Telescope is not installed")
-	return
-end
+local telescope = require("telescope.builtin")
 
 local M = {}
 

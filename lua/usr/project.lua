@@ -1,8 +1,5 @@
-local status_ok, project = pcall(require, "project_nvim")
-if not status_ok then
-	vim.notify("project_nvim error")
-	return
-end
+local project = require("project_nvim")
+
 project.setup({
 	-- Manual mode doesn't automatically change your root directory, so you have
 	-- the option to manually do so using `:ProjectRoot` command.
@@ -56,10 +53,6 @@ project.setup({
 	datapath = vim.fn.stdpath("data"),
 })
 
-local tele_status_ok, telescope = pcall(require, "telescope")
-if not tele_status_ok then
-	vim.notify("telescope project error")
-	return
-end
+local telescope = require("telescope")
 
 telescope.load_extension('projects')

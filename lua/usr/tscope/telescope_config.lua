@@ -1,11 +1,5 @@
-local status, telescope = pcall(require, "telescope")
-if not status then
-	vim.notify("telescope error")
-	return
-end
-
+local telescope = require("telescope")
 local trouble = require("trouble.providers.telescope")
-
 local actions = require("telescope.actions")
 
 telescope.setup {

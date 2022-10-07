@@ -1,8 +1,4 @@
-local status, dap = pcall(require, 'dap')
-if not status then
-	vim.notify("Dap is not installed")
-	return
-end
+local dap = require('dap')
 
 
 dap.adapters.cppdbg = {

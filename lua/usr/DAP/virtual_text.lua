@@ -1,8 +1,4 @@
-local status_ok, vtext = pcall(require, 'nvim-dap-virtual-text')
-if not status_ok then
-	vim.notify("DAP virutal text error")
-	return
-end
+local vtext = require('nvim-dap-virtual-text')
 
 vtext.setup {
 	enabled = true,						-- enable this plugin (the default)

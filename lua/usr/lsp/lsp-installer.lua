@@ -1,14 +1,5 @@
-local status_ok, lsp_installer = pcall(require, "nvim-lsp-installer")
-if not status_ok then
-	vim.notify("nvim-lsp-installer error")
-	return
-end
-
-local status_lsp, lspconfig = pcall(require, "lspconfig")
-if not status_lsp then
-	vim.notify("lspconfig not present")
-	return
-end
+local lsp_installer = require("nvim-lsp-installer")
+local lspconfig = require("lspconfig")
 
 local servers = {
 	"jsonls",
