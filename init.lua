@@ -1,28 +1,31 @@
-require("usr.alpha")
-require("usr.autopairs")
-require("usr.annotations")
-require("usr.buffline")
-require("usr.cmp")
-require("usr.comment")
-require("usr.copilot")
-require("usr.core")
-require("usr.gitsigns")
-require("usr.illuminate")
-require("usr.impatient")
-require("usr.indentation")
-require("usr.lsp")
-require("usr.lualine")
-require("usr.nvim-tree")
-require("usr.plugins")
-require("usr.project")
-require("usr.refactoring")
-require("usr.satellite")
-require("usr.scroll")
-require("usr.toggleterm")
-require("usr.todo-comments")
-require("usr.trouble")
-require("usr.tscope")
-require("usr.ts")
+local pluginLoader = require("usr.core.loader.load")
 
-require("usr.DAP")
+pluginLoader:load_configs({
+	"usr.alpha",
+	"usr.autopairs",
+	"usr.annotations",
+	"usr.buffline",
+	"usr.cmp",
+	"usr.comment",
+	"usr.copilot",
+	"usr.core",
+	"usr.gitsigns",
+	"usr.illuminate",
+	"usr.impatient",
+	"usr.indentation",
+	"usr.lsp",
+	"usr.lualine",
+	"usr.nvim-tree",
+	"usr.plugins",
+	"usr.project",
+	"usr.refactoring",
+	"usr.satellite",
+	"usr.scroll",
+	"usr.toggleterm",
+	"usr.todo-comments",
+	"usr.trouble",
+	"usr.tscope",
+	"usr.ts",
 
+	"usr.DAP",
+})
