@@ -52,7 +52,7 @@ return packer.startup(function(use)
 	use 'goolord/alpha-nvim'
 
 	-- PROJECTS
-	use 'ahmedkhalf/project.nvim'
+	use 'ahmedkhalf/project.nvim' -- switch between projects on the system
 
 	-- SHOW INDENTATION
 	use "lukas-reineke/indent-blankline.nvim"
@@ -87,9 +87,9 @@ return packer.startup(function(use)
 	use "hrsh7th/cmp-buffer" -- buffer completions
 	use "hrsh7th/cmp-path" -- path completions
 	use "hrsh7th/cmp-cmdline" -- cmdline completions
-	use "saadparwaiz1/cmp_luasnip" -- snippet completions
 	use "hrsh7th/cmp-nvim-lsp"
 	use "hrsh7th/cmp-nvim-lua" -- lua nvim scripting
+	use "saadparwaiz1/cmp_luasnip" -- snippet completions
 	use "windwp/nvim-autopairs"
 	-- show function signature
 	use "ray-x/lsp_signature.nvim"
@@ -167,7 +167,7 @@ return packer.startup(function(use)
 		tag = "*"
 	}
 	use "folke/todo-comments.nvim" -- highlight comments like TODO:
-	use "RRethy/vim-illuminate"
+	use "RRethy/vim-illuminate" -- highlight all occurances of a word under cursor
 
 	-- COMMENTING
 	use "numToStr/Comment.nvim"
@@ -179,8 +179,8 @@ return packer.startup(function(use)
 
 	-- DAP
 	use "mfussenegger/nvim-dap"
-	use "theHamsta/nvim-dap-virtual-text"
 	use "rcarriga/nvim-dap-ui"
+	use "theHamsta/nvim-dap-virtual-text"
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
