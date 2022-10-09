@@ -23,17 +23,21 @@ todo_comments.setup {
 		HACK = { icon = icons.ui.Fire, color = warning_orange },
 		WARN = { icon = icons.diagnostics.Warning, color = warning_orange, alt = { "WARNING", "XXX" } },
 		PERF = { icon = icons.ui.Dashboard, color = perf_purple, alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
-		NOTE = { icon = icons.ui.Note, color = info_yellow, alt = { "INFO" } },
+		NOTE = { icon = icons.ui.Note, color = hint_blue, alt = { "INFO" } },
+		TEST = { icon = icons.ui.Test, color = info_yellow, alt = { "TESTING", "PASSED", "FAILED" } },
 	},
-	-- merge_keywords = true, -- when true, custom keywords will be merged with the defaults
+	gui_style = {
+		fg = "BOLD", -- The gui style to use for the fg highlight group.
+		bg = "NONE", -- The gui style to use for the bg highlight group.
+	},
+	merge_keywords = true, -- when true, custom keywords will be merged with the defaults
 	-- highlighting of the line containing the todo comment
 	-- * before: highlights before the keyword (typically comment characters)
 	-- * keyword: highlights of the keyword
 	-- * after: highlights after the keyword (todo text)
 	highlight = {
 		before = "", -- "fg" or "bg" or empty
-		-- keyword = "wide", -- "fg", "bg", "wide" or empty. (wide is the same as bg, but will also highlight surrounding characters)
-		keyword = "fg", -- "fg", "bg", "wide" or empty. (wide is the same as bg, but will also highlight surrounding characters)
+		keyword = "bg", -- "fg", "bg", "wide", "wide_bg", "wide_fg" or empty. (wide and wide_bg is the same as bg, but will also highlight surrounding characters, wide_fg acts accordingly but with fg)
 		after = "fg", -- "fg" or "bg" or empty
 		pattern = [[.*<(KEYWORDS)\s*:]], -- pattern or table of patterns, used for highlightng (vim regex)
 		comments_only = true, -- uses treesitter to match keywords in comments only
@@ -41,14 +45,15 @@ todo_comments.setup {
 		exclude = {}, -- list of file types to exclude highlighting
 	},
 	-- list of named colors where we try to extract the guifg from the
-	-- list of hilight groups or use the hex color if hl not found as a fallback
-	-- colors = {
-	--	 error = { "LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626" },
-	--	 warning = { "LspDiagnosticsDefaultWarning", "WarningMsg", "#FBBF24" },
-	--	 info = { "LspDiagnosticsDefaultInformation", "#2563EB" },
-	--	 hint = { "LspDiagnosticsDefaultHint", "#10B981" },
-	--	 default = { "Identifier", "#7C3AED" },
-	-- },
+	-- list of highlight groups or use the hex color if hl not found as a fallback
+	colors = {
+		error = { "LspDiagnosticsDefaultError", "ErrorMsg", "#DC2626" },
+		warning = { "LspDiagnosticsDefaultWarning", "WarningMsg", "#FBBF24" },
+		info = { "LspDiagnosticsDefaultInformation", "#2563EB" },
+		hint = { "LspDiagnosticsDefaultHint", "#10B981" },
+		default = { "Identifier", "#7C3AED" },
+		test = { "Identifier", "#FF00FF" }
+	},
 	search = {
 		command = "rg",
 		args = {
