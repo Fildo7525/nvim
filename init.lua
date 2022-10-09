@@ -7,7 +7,6 @@ pluginLoader:load_configs({
 	"usr.buffline",
 	"usr.cmp",
 	"usr.comment",
-	"usr.copilot",
 	"usr.core",
 	"usr.gitsigns",
 	"usr.illuminate",

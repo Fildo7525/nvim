@@ -167,7 +167,6 @@ return packer.startup(function(use)
 		tag = "*"
 	}
 	use "folke/todo-comments.nvim" -- highlight comments like TODO:
-	use "github/copilot.vim"
 	use "RRethy/vim-illuminate"
 
 	-- COMMENTING
