@@ -100,9 +100,6 @@ keymap("n", "<leader>wq", ":wq<CR>", opts)
 keymap("n", "<leader>qq", ":q<CR>", opts)
 keymap("n", "<leader>bw", ":w <bar> :Bdelete! %d <CR>", opts) -- buffer writing
 keymap("n", "<leader>bd", ":Bdelete! %d<CR>", opts) -- buffer delete force
-keymap("n", "<leader>ml", ":BufferLineMovePrev<CR>", opts)
-keymap("n", "<leader>mr", ":BufferLineMoveNext<CR>", opts)
-
 
 -- Resize with arrows
 keymap("n", "<C-UP>", ":resize -2<CR>", opts)
@@ -119,8 +116,10 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 -- keymap("n", "<leader>e", ":Lex 15<CR>", opts)
 
 -- NAVIGATE BUFFERS --
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
-keymap("n", "<S-l>", ":bnext<CR>", opts)
+keymap("n", "<S-h>", ":BufferLineCyclePrev<CR>", opts)
+keymap("n", "<S-l>", ":BufferLineCycleNext<CR>", opts)
+keymap("n", "<leader>ml", ":BufferLineMovePrev<CR>", opts)
+keymap("n", "<leader>mr", ":BufferLineMoveNext<CR>", opts)
 
 -- MOVE TEXT UP & DOWN
 -- keymap("n", "<A-S-k>", "<ESC>:m .+1<CR>==gi", opts)
