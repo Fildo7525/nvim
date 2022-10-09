@@ -114,7 +114,10 @@ return packer.startup(function(use)
 
 	-- LUALINE & BUFFLINE
 	use 'nvim-lualine/lualine.nvim'
-	use 'akinsho/bufferline.nvim'
+	use {
+		'akinsho/bufferline.nvim',
+		tag = "v2.*"
+	}
 	use 'famiu/bufdelete.nvim'
 
 	-- DEVICONS and NVIM-TREE
