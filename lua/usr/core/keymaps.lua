@@ -115,6 +115,10 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- keymap("n", "<leader>e", ":Lex 15<CR>", opts)
 
+-- MARKDOWN PREVIEW
+keymap("n", "mpn", ":MarkdownPreview<CR>", opts)
+keymap("n", "mpf", ":MarkdownPreviewStop<CR>", opts)
+
 -- NAVIGATE BUFFERS --
 keymap("n", "<S-h>", ":BufferLineCyclePrev<CR>", opts)
 keymap("n", "<S-l>", ":BufferLineCycleNext<CR>", opts)
