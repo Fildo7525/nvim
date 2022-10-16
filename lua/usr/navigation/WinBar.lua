@@ -1,7 +1,9 @@
+local icons = require("usr.core.icons")
+
 require('winbar').setup({
 	enabled = true,
 
-	show_file_path = true,
+	show_file_path = false,
 	show_symbols = true,
 
 	colors = {
@@ -11,10 +13,10 @@ require('winbar').setup({
 	},
 
 	icons = {
-		file_icon_default = '',
-		seperator = '>',
-		editor_state = '●',
-		lock_icon = '',
+		file_icon_default = icons.kind.File,
+		seperator = icons.ui.ArrowClosed,
+		editor_state = icons.ui.BigCircle,
+		lock_icon = icons.ui.Lock,
 	},
 
 	exclude_filetype = {
