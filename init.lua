@@ -27,4 +27,5 @@ pluginLoader:load_configs({
 	"usr.ts",
 
 	"usr.DAP",
+	"usr.WinBar",
 })
