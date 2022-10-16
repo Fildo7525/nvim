@@ -3,7 +3,7 @@ local luasnip = require("luasnip")
 local icons = require('usr.core.icons')
 
 require("luasnip/loaders/from_vscode").load({
-	paths = {"/home/fildo7525/.local/share/nvim/site/pack/packer/start/friendly-snippets"},
+	paths = { "~/.local/share/nvim/site/pack/packer/start/friendly-snippets" },
 })
 
 local check_backspace = function()
