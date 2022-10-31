@@ -7,6 +7,7 @@ local servers = {
 	"pyright",
 	"cmake",
 	"lemminx",
+	"texlab",
 	"vimls",
 	"yamlls",
 	"clangd",
@@ -91,6 +92,11 @@ for _, server in pairs(servers) do
 	if server == "lemminx" then
 		local xml_opts = require("usr.lsp.settings.lemminx")
 		opts = vim.tbl_deep_extend("force", xml_opts, opts)
+	end
+
+	if server == "texlab" then
+		local latex_opts = require("usr.lsp.settings.texlab")
+		opts = vim.tbl_deep_extend("force", latex_opts, opts)
 	end
 
 	if server == "vimls" then
