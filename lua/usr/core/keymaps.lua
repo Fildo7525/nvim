@@ -98,11 +98,11 @@ keymap("n", "<leader>gd", ":lua getCommitIndex()<CR>", opts)
 
 -- SAVING --
 keymap("n", "<leader>w", ":w<CR>", opts)
-keymap("n", "<leader>wq", ":lua require('usr.core.buffReopener').SaveOpenedFiles()<CR> | :wq<CR>", opts)
+keymap("n", "<leader>wq", ":lua require('revolver').SaveOpenedFiles()<CR> | :wq<CR>", opts)
 keymap("n", "<leader>qq", ":q<CR>", opts)
 keymap("n", "<leader>bw", ":w <bar> :Bdelete! %d <CR>", opts) -- buffer writing
 keymap("n", "<leader>bd", ":bd<CR>", opts) -- buffer delete force
-keymap("n", "<leader>lf", ":lua require('usr.core.buffReopener').OpenSavedFiles()<CR>", opts)
+keymap("n", "<leader>lf", ":lua require('revolver').OpenSavedFiles()<CR>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-UP>", ":resize -2<CR>", opts)
