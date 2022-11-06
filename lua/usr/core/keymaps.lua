@@ -123,8 +123,8 @@ keymap("n", "mpf", ":MarkdownPreviewStop<CR>", opts)
 -- NAVIGATE BUFFERS --
 keymap("n", "<S-h>", ":BufferLineCyclePrev<CR>", opts)
 keymap("n", "<S-l>", ":BufferLineCycleNext<CR>", opts)
-keymap("n", "<leader>ml", ":BufferLineMovePrev<CR>", opts)
-keymap("n", "<leader>mr", ":BufferLineMoveNext<CR>", opts)
+keymap("n", "<leader>mh", ":BufferLineMovePrev<CR>", opts)
+keymap("n", "<leader>ml", ":BufferLineMoveNext<CR>", opts)
 
 -- MOVE TEXT UP & DOWN
 -- keymap("n", "<A-S-k>", "<ESC>:m .+1<CR>==gi", opts)
