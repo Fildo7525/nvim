@@ -2,6 +2,7 @@ local options = {
 	fileencoding = "utf-8",
 	hlsearch = true,
 	mouse = "a",
+	mousemodel="extend",
 	termguicolors = true,
 	splitright = true,
 	splitbelow = true,
