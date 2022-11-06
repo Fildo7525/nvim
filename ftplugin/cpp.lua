@@ -144,7 +144,7 @@ end
 function QtQuerryFinder()
 	local address = "https://doc.qt.io/qt-5/" .. vim.fn.expand("<cword>"):lower() .. ".html"
 	-- ERROR: open / xdg-open doesn't work for me
-	vim.cmd(":!kfmclient openURL " .. address)
+	vim.cmd(":!brave-browser " .. address)
 end
 
 --- Create Method declaration in source file. Class name is deduced from treesitter.
