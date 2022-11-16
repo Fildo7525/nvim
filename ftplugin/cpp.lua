@@ -168,6 +168,5 @@ local keymap = vim.api.nvim_set_keymap
 
 keymap("n", "<leader>sh", ":ClangdSwitchSourceHeader<CR>", opts)
 keymap("n", "<F2>", ":lua QtQuerryFinder()<CR>", opts)
-keymap("n", "<F3>", ":lua CreateClassMethodDefinition()<CR>", opts)
-keymap("n", "<F4>", ":lua print(cpp_generate_body())<CR>", opts)
+keymap("n", "<leader>md", ":lua CreateClassMethodDefinition()<CR>", opts)
 
