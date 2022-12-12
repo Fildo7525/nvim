@@ -49,8 +49,8 @@ keymap("n", "<leader>hs", ":vsplit<CR>", opts)
 keymap("n", "gf", ":e <cfile><CR>", opts)
 
 -- substitute spaces for tabs
-keymap("n", "<leader>4s", ":%s/    /<TAB>/g<CR>", opts)
-keymap("n", "<leader>2s", ":%s/  /<TAB>/g<CR>", opts)
+keymap("n", "<leader>4s", ":%s/    /<TAB>/g<CR>:set shiftwidth=4<CR>:set tabstop=4<CR>:set noexpandtab<CR>/asdfsaf<CR>/<CR>", opts)
+keymap("n", "<leader>2s", ":%s/  /<TAB>/g<CR>:set shiftwidth=4<CR>:set tabstop=4<CR>:set noexpandtab<CR>/asdfsaf<CR>/<CR>", opts)
 
 keymap("n", "<leader>lg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
 keymap("n", "<leader>py", "<cmd>lua _PYTHON_TOGGLE()<CR>", opts)
