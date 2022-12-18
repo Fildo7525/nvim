@@ -191,3 +191,7 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 -- Nvimtree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
+
+-- ChatGPT
+keymap("n", "<leader>gp", ":ChatGPT<cr>", opts)
+

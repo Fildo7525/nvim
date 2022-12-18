@@ -1,13 +1,14 @@
 local pluginLoader = require("usr.core.loader.load")
 
 pluginLoader:load_configs({
-	"usr.alpha",
-	"usr.autopairs",
 	"usr.annotations",
+	"usr.autopairs",
 	"usr.buffline",
+	"usr.chatai",
 	"usr.cmp",
 	"usr.comment",
 	"usr.core",
+	"usr.DAP",
 	"usr.gitsigns",
 	"usr.illuminate",
 	"usr.impatient",
@@ -18,12 +19,11 @@ pluginLoader:load_configs({
 	"usr.plugins",
 	"usr.project",
 	"usr.refactoring",
-	"usr.toggleterm",
 	"usr.todo-comments",
+	"usr.toggleterm",
 	"usr.trouble",
-	"usr.tscope",
 	"usr.ts",
-
-	"usr.DAP",
+	"usr.tscope",
+	"usr.alpha",
 	"usr.WinBar",
 })
