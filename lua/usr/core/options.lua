@@ -1,4 +1,5 @@
 local options = {
+	autoread = true,
 	fileencoding = "utf-8",
 	hlsearch = true,
 	mouse = "a",
