@@ -59,6 +59,7 @@ keymap("n", "<leader>nd", "<cmd>lua _NCDU_TOGGLE()<CR>", opts)
 
 -- TELESCOPE --
 keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
+keymap("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find<CR>", opts)
 keymap("n", "<leader>re", "<cmd>Telescope resume<CR>", opts)
 keymap("n", "<leader>of", "<cmd>Telescope oldfiles<CR>", opts)
 --[[ keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts) ]]
