@@ -8,6 +8,7 @@ local root_files = {
 	'compile_flags.txt',
 	'build.sh', -- buildProject
 	'configure.ac', -- AutoTools
+	'.gitignore',
 }
 
 local function rDir(fname)
@@ -27,7 +28,7 @@ return {
 			build = {
 				args = { "-src", "-silent", "-output-directory=.build", "-interaction=nonstopmode", "-synctex=1", "%f" },
 				executable = "latexmk",
-				forwardSearchAfter = false,
+				forwardSearchAfter = true,
 				onSave = false
 			},
 			auxDirectory = ".build",
@@ -36,9 +37,10 @@ return {
 				args = {
 					" -synctex=1",
 					"-interaction=nonstopmode",
+					"-output-directory=.build",
 					"%f",
-					"%p",
-					"%l",
+					--[[ "%p", ]]
+					--[[ "%l", ]]
 				}
 			},
 			chktex = {
@@ -54,7 +56,7 @@ return {
 			bibtexFormatter = "texlab",
 			latexFormatter = "latexindent",
 			latexindent = {
-				modifyLineBreaks = false
+				modifyLineBreaks = true,
 			}
 		}
 	},
