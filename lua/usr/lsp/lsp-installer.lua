@@ -11,6 +11,9 @@ local servers = {
 	"vimls",
 	"yamlls",
 	"clangd",
+	"marksman",
+	"tsserver",
+	"rust_analyzer",
 	"jdtls",
 }
 
@@ -99,14 +102,13 @@ for _, server in pairs(servers) do
 		opts = vim.tbl_deep_extend("force", latex_opts, opts)
 	end
 
-	if server == "vimls" then
-		opts = opts
-	end
-
 	if server == "yamlls" then
 		local yaml_opts = {} -- require("usr.lsp.serrings.yamlls")
 		opts = vim.tbl_deep_extend("force", yaml_opts, opts)
 	end
+
+	-- Leave default opts for vimls, marksman, rust-analyzer, tsserver
+
 	-- This setup() function is exactly the same as lspconfig's setup function.
 	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 	-- if server ~= "clangd" then
