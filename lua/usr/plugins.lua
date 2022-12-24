@@ -95,6 +95,8 @@ return packer.startup(function(use)
 	use "ray-x/lsp_signature.nvim"
 
 	--	LSP
+	use "williamboman/mason.nvim"
+	use "williamboman/mason-lspconfig.nvim"
 	use "neovim/nvim-lspconfig" -- enable LSP
 	use "williamboman/nvim-lsp-installer"
 	use 'mfussenegger/nvim-jdtls'
