@@ -1,10 +1,5 @@
 local cmp = require("cmp")
-local luasnip = require("luasnip")
 local icons = require('usr.core.icons')
-
-require("luasnip/loaders/from_vscode").load({
-	paths = { "~/.local/share/nvim/site/pack/packer/start/friendly-snippets" },
-})
 
 local check_backspace = function()
 	local col = vim.fn.col "." - 1
@@ -14,7 +9,7 @@ end
 cmp.setup {
 	snippet = {
 		expand = function(args)
-			luasnip.lsp_expand(args.body) -- For `luasnip` users.
+			require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
 		end,
 	},
 	mapping = {
@@ -56,8 +51,6 @@ cmp.setup {
 		["<S-Tab>"] = cmp.mapping(function(fallback)
 			if cmp.visible() then
 				cmp.select_prev_item()
-			--[[ elseif luasnip.jumpable(-1) then ]]
-			--[[ 	luasnip.jump(-1) ]]
 			elseif require('neogen').jumpable(true) then
 				require('neogen').jump_prev()
 			else

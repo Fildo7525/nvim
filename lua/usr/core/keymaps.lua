@@ -111,8 +111,8 @@ keymap("n", "<C-LEFT>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-RIGHT>", ":vertical resize +2<CR>", opts)
 
 --	NAVIGATE WINDOWS	--
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
+keymap("n", "<C-UP>", "<C-w>k", opts)
+keymap("n", "<C-DOWN>", "<C-w>j", opts)
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
