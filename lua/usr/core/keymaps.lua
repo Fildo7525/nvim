@@ -111,8 +111,8 @@ keymap("n", "<C-LEFT>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-RIGHT>", ":vertical resize +2<CR>", opts)
 
 --	NAVIGATE WINDOWS	--
-keymap("n", "<C-UP>", "<C-w>k", opts)
-keymap("n", "<C-DOWN>", "<C-w>j", opts)
+keymap("n", "<C-k>", "<C-w>k", opts)
+keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
@@ -125,8 +125,8 @@ keymap("n", "mpf", ":MarkdownPreviewStop<CR>", opts)
 -- NAVIGATE BUFFERS --
 keymap("n", "<S-h>", ":BufferLineCyclePrev<CR>", opts)
 keymap("n", "<S-l>", ":BufferLineCycleNext<CR>", opts)
-keymap("n", "<leader>mh", ":BufferLineMovePrev<CR>", opts)
-keymap("n", "<leader>ml", ":BufferLineMoveNext<CR>", opts)
+keymap("n", "<C-i>", ":BufferLineMovePrev<CR>", opts)
+keymap("n", "<C-o>", ":BufferLineMoveNext<CR>", opts)
 
 -- MOVE TEXT UP & DOWN
 -- keymap("n", "<A-S-k>", "<ESC>:m .+1<CR>==gi", opts)
