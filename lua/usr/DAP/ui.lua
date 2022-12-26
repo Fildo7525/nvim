@@ -1,7 +1,8 @@
 local dapui = require("dapui")
+local icons = require("usr.core.icons")
 
 dapui.setup({
-	icons = { expanded = "▾", collapsed = "▸" },
+	icons = { expanded = "▾", collapsed = "▸", current_frame = icons.ui.Home },
 	mappings = {
 		-- Use a table to apply multiple mappings
 		expand = { "<CR>", "<2-LeftMouse>" },
@@ -13,7 +14,7 @@ dapui.setup({
 	},
 	-- Expand lines larger than the window
 	-- Requires >= 0.7
-	expand_lines = vim.fn.has("nvim-0.7"),
+	expand_lines = vim.fn.has("nvim-0.7") == 1,
 	-- Layouts define sections of the screen to place windows.
 	-- The position can be "left", "right", "top" or "bottom".
 	-- The size specifies the height/width depending on position. It can be an Int
@@ -25,10 +26,10 @@ dapui.setup({
 		{
 			elements = {
 			-- Elements can be strings or table with id and size keys.
-				{ id = "scopes", size = 0.25 },
-				"breakpoints",
-				"stacks",
+				{ id = "scopes", size = 0.5 },
 				"watches",
+				{ id = "breakpoints", size = 0.05},
+				{ id = "stacks", size = 0.075 },
 			},
 			size = 40, -- 40 columns
 			position = "left",
@@ -42,6 +43,22 @@ dapui.setup({
 			position = "bottom",
 		},
 	},
+	controls = {
+		-- Requires Neovim nightly (or 0.8 when released)
+		enabled = true,
+		-- Display controls in this element
+		element = "repl",
+		icons = {
+			pause = icons.dap.pause,
+			play =icons.dap.play,
+			step_into = icons.dap.stepInto,
+			step_over = icons.dap.stepOver,
+			step_out = icons.dap.stepOut,
+			step_back = icons.dap.stepBack,
+			run_last = icons.dap.runLast,
+			terminate = icons.dap.terminate,
+		},
+	},
 	floating = {
 		max_height = nil, -- These can be integers or a float between 0 and 1.
 		max_width = nil, -- Floats will be treated as percentage of your screen.
@@ -53,6 +70,7 @@ dapui.setup({
 	windows = { indent = 1 },
 	render = {
 		max_type_length = nil, -- Can be integer or nil.
+		max_value_lines = 100, -- Can be integer or nil.
 	}
 })
 
@@ -62,7 +80,8 @@ local opts = { silent = true, }
 local keymap = vim.api.nvim_set_keymap
 
 -- INSPECT the variable
-keymap('n', '<leader>i', '<Cmd>lua require("dapui").eval()<CR>', opts)
+vim.keymap.set('n', '<leader>k', function() require("dapui").eval() end)
+vim.keymap.set('v', '<leader>k', function() require("dapui").eval() end)
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
 	dapui.open()

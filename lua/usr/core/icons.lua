@@ -73,6 +73,7 @@ return {
 		Project = "",
 		Dashboard = "",
 		History = "",
+		Home = "﫷",
 		Comment = "",
 		Bug = "",
 		Code = "",
@@ -107,4 +108,14 @@ return {
 		Tag = "",
 		Watch = "",
 	},
+	dap = {
+		pause = "",
+		play = "",
+		stepInto = "",
+		stepOver = "",
+		stepOut = "",
+		stepBack = "",
+		runLast = "ﬀ",
+		terminate = "",
+	}
 }
