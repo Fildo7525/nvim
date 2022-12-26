@@ -102,6 +102,7 @@ keymap("n", "<leader>wq", ":lua require('revolver').SaveOpenedFiles()<CR> | :wq<
 keymap("n", "<leader>qq", ":q<CR>", opts)
 keymap("n", "<leader>bw", ":w <bar> :Bdelete! %d <CR>", opts) -- buffer writing
 keymap("n", "<leader>bd", ":bd<CR>", opts) -- buffer delete force
+keymap("n", "<leader>bD", ":Bdelete!<CR>", opts) -- buffer delete force
 keymap("n", "<leader>lf", ":lua require('revolver').OpenSavedFiles()<CR>", opts)
 
 -- Resize with arrows
