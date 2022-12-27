@@ -1,8 +1,12 @@
 local icons = require("usr.core.icons")
+local status, gaps = pcall(require, "nvim-gps")
+if not status then
+	vim.notify("Nvim gaps is not installed", vim.log.levels.ERROR)
+	return
+end
 
 -- Customized config
-require("nvim-gps").setup({
-
+gaps.setup({
 	disable_icons = false,           -- Setting it to true will disable all icons
 
 	icons = {

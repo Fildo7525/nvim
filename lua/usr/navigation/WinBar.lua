@@ -1,6 +1,11 @@
 local icons = require("usr.core.icons")
+local status, winbar = pcall(require, "winbar")
+if not status then
+	vim.notify("Winbar is not installed", vim.log.levels.ERROR)
+	return
+end
 
-require('winbar').setup({
+winbar.setup({
 	enabled = true,
 
 	show_file_path = false,
