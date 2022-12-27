@@ -6,11 +6,11 @@ require("nvim-gps").setup({
 	disable_icons = false,           -- Setting it to true will disable all icons
 
 	icons = {
-		["class-name"] = icons.kind.Class,      -- Classes and class-like objects
-		["function-name"] = icons.kind.Function,   -- Functions
-		["method-name"] = icons.kind.Method,     -- Methods (functions inside class-like objects)
-		["container-name"] = icons.kind.Struct,  -- Containers (example: lua tables)
-		["tag-name"] = icons.misc.Tag,         -- Tags (example: html tags)
+		["class-name"] = icons.kind.Class .. ' ',      -- Classes and class-like objects
+		["function-name"] = icons.kind.Function .. ' ',   -- Functions
+		["method-name"] = icons.kind.Method .. ' ',     -- Methods (functions inside class-like objects)
+		["container-name"] = icons.kind.Container .. ' ',  -- Containers (example: lua tables)
+		["tag-name"] = icons.misc.Tag .. ' '         -- Tags (example: html tags)
 	},
 
 	-- Add custom configuration per language or
