@@ -36,13 +36,15 @@ return {
 		Event = "",
 		Operator = "",
 		TypeParameter = "",
+		Container = "",
 	},
 	type = {
-		Array = "",
+		Array = "",
 		Number = "",
 		String = "",
 		Boolean = "蘒",
 		Object = "",
+		NullName = "[]",
 	},
 	documents = {
 		File = "",
