@@ -1,4 +1,9 @@
-local chatgpt = require("chatgpt");
+local status, chatgpt = pcall(require, "chatgpt");
+if not status then
+	vim.notify("ChatGPT is not installed an it will not be set up", vim.log.levels.WARN)
+	vim.keymap.del('n', '<leader>gp')
+	return
+end
 
 chatgpt.setup({
 	welcome_message = "What may I help you with?", -- set to "" if you don't like the fancy robot

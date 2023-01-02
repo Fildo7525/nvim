@@ -1,13 +1,14 @@
 local pluginLoader = require("usr.core.loader.load")
 
 pluginLoader:load_configs({
+	"usr.core",
+
 	"usr.annotations",
 	"usr.autopairs",
 	"usr.buffline",
 	"usr.chatai",
 	"usr.cmp",
 	"usr.comment",
-	"usr.core",
 	"usr.DAP",
 	"usr.gitsigns",
 	"usr.illuminate",
