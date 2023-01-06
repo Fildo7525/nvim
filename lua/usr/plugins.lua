@@ -213,6 +213,14 @@ return packer.startup(function(use)
 	})
 	use 'Fildo7525/Revolver'
 
+	-- HLS
+	use({
+		"asiryk/auto-hlsearch.nvim",
+		config = function()
+			require('auto-hlsearch').setup ()
+		end,
+	})
+
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
 	if PACKER_BOOTSTRAP then
