@@ -200,7 +200,7 @@ keymap("n", "<leader>gp", ":ChatGPT<cr>", opts)
 -- latex
 local pdfFile = function()
 	local file = vim.fn.expand('%:p')
-	local file = file:gsub(".tex", ".pdf")
+	file = file:gsub(".tex", ".pdf")
 	io.popen("zathura " .. file .. " --fork")
 end
 vim.keymap.set("n", "<leader>lv", pdfFile)
