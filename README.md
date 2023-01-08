@@ -48,3 +48,9 @@ It should be located at ${HOME}/.vscode/...
 copy the address to debug adapter for cpp in
 
     lua/usr/dap/settings/dapcpp.lua
+
+<h3>Spelling</h3>
+
+If the spell file you are looking for in not downloaded by neovim automaticly head to the server ```https://ftp.nluug.nl/vim/runtime/spell/```
+and download it manually to ```~/.config/nvim/spell/```. This will fix the issue.
+
