@@ -39,7 +39,7 @@ keymap("n", "<leader>sc", ":e ~/.config/nvim/init.lua<CR>", opts)
 keymap("n", "<F2>", ":term cmake -S . -B ./build && mv ./build/compile_commands.json .<CR>", opts)
 keymap("n", "<F4>", ":set spell!<CR>", term_opts)
 keymap("n", "<F5>", ":term ./compile.sh<CR>", term_opts)
-keymap("n", "<F8>", ":term ./build.sh<CR>", term_opts)
+keymap("n", "<F6>", ":term ./build.sh<CR>", term_opts)
 keymap("n", "<C-F8>", ":split <bar> term ./build.sh<CR>", term_opts)
 
 keymap("n", "<leader>vs", ":split<CR>", opts)
