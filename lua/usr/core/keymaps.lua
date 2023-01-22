@@ -30,7 +30,10 @@ function ReloadConfig()
 end
 
 -- Reload init.lua
-keymap("n", "<leader><cr>", ":lua ReloadConfig()<cr>", opts)
+vim.keymap.set("n", "<leader><cr>", function ()
+	ReloadConfig()
+	require('usr.tscope.lsp_reloader').terminate_detached_clients()
+end)
 
 -- init.lua edditink
 keymap("n", "<leader>sc", ":e ~/.config/nvim/init.lua<CR>", opts)
