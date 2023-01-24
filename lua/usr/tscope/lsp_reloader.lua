@@ -6,8 +6,6 @@ local action_state = require "telescope.actions.state"
 local lspconfig = require "lspconfig"
 
 local directories = {
-	".build",
-	"build",
 }
 
 local options = {
@@ -38,6 +36,35 @@ local table_size = function (table)
 	return size
 end
 
+local merge_tables = function (lhs, rhs)
+	local copy = lhs
+	for _, value in ipairs(rhs) do
+		table.insert(copy, value)
+	end
+	return copy
+end
+
+--- Parses the inputed directory for build directories.
+---@param directory string Directory to be parsed
+---@return table of directories located in the directory
+M.find_build_dirs = function (directory)
+	local i, t, popen = 0, {}, io.popen
+
+	local pfile = popen('find ' .. directory .. ' -maxdepth 1 -type d | grep build')
+	if pfile == nil then
+		return {}
+	end
+
+	for filename in pfile:lines() do
+		i = i + 1
+		t[i] = filename
+	end
+	pfile:close()
+
+	return t
+end
+
+--- Terminates all clients that have no buffers attached to it.
 M.terminate_detached_clients = function ()
 	local clients = vim.lsp.get_active_clients()
 
@@ -48,12 +75,16 @@ M.terminate_detached_clients = function ()
 	end
 end
 
-M.change_compilation_source = function(sources)
+--- Telescope picker changing the compilationDatabasePath where compile_commands.json is located.
+---@param directory string Directory to parse for build directories. If nil the cwd is parsed.
+M.change_compilation_source = function(directory)
 	local opts = require('telescope.themes').get_dropdown{}
+	local parsed_dirs = M.find_build_dirs(directory or ".")
+
 	pickers.new(opts, {
-		prompt_title = "colors",
+		prompt_title = "compilationDatabasePath",
 		finder = finders.new_table {
-			results = sources or directories,
+			results = merge_tables(parsed_dirs, directories),
 		},
 		sorter = conf.generic_sorter(opts),
 		attach_mappings = function(prompt_bufnr, map)
