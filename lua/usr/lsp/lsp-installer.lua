@@ -2,19 +2,19 @@ local lsp_installer = require("nvim-lsp-installer")
 local lspconfig = require("lspconfig")
 
 local servers = {
-	"jsonls",
-	"sumneko_lua",
-	"pyright",
+	"clangd",
 	"cmake",
+	"jdtls",
+	"jsonls",
 	"lemminx",
+	"marksman",
+	"pyright",
+	"rust_analyzer",
+	"sumneko_lua",
 	"texlab",
+	"tsserver",
 	"vimls",
 	"yamlls",
-	"clangd",
-	"marksman",
-	"tsserver",
-	"rust_analyzer",
-	"jdtls",
 }
 
 local settings = {
