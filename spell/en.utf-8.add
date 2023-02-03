@@ -1,1 +1,6 @@
 texlive
+mutex
+ostream
+json
+doxygen
+odometry
