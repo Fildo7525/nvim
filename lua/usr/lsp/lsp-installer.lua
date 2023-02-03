@@ -2,6 +2,7 @@ local lsp_installer = require("nvim-lsp-installer")
 local lspconfig = require("lspconfig")
 
 local servers = {
+	"bashls",
 	"clangd",
 	"cmake",
 	"jdtls",
@@ -58,6 +59,11 @@ for _, server in pairs(servers) do
 		on_attach = require("usr.lsp.handlers").on_attach,
 		capabilities = require("usr.lsp.handlers").capabilities,
 	}
+
+	if server == "bashls" then
+		local jsonls_opts = require("usr.lsp.settings.bash")
+		opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
+	end
 
 	if server == "clangd" then
 		local clang_opts = require("usr.lsp.settings.clangd")
