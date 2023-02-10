@@ -22,7 +22,7 @@ end
 ---@return table Logger object
 function M.init(logs_dir)
 	local log_path = logs_dir
-	os.execute("mkdir " .. log_path)
+	os.execute("mkdir -p " .. log_path)
 	local file_name = log_path .. date_time() .. ".log"
 	Logger.file_name = file_name
 	Logger.file = io.open(file_name, "a")
