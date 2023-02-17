@@ -76,7 +76,7 @@ M.terminate_detached_clients = function ()
 end
 
 --- Telescope picker changing the compilationDatabasePath where compile_commands.json is located.
----@param directory string Directory to parse for build directories. If nil the cwd is parsed.
+---@param directory? string? Directory to parse for build directories. If nil the cwd is parsed.
 M.change_compilation_source = function(directory)
 	local opts = require('telescope.themes').get_dropdown{}
 	local parsed_dirs = M.find_build_dirs(directory or ".")
@@ -87,11 +87,17 @@ M.change_compilation_source = function(directory)
 			results = merge_tables(parsed_dirs, directories),
 		},
 		sorter = conf.generic_sorter(opts),
-		attach_mappings = function(prompt_bufnr, map)
+		attach_mappings = function(prompt_bufnr)
 			actions.select_default:replace(function()
 				actions.close(prompt_bufnr)
 				local selection = action_state.get_selected_entry()
-				vim.lsp.stop_client(get_client_buffers("clangd"), true)
+				local client = get_client_buffers("clangd")
+				if #client == 0 then
+					vim.notify("The clangd server is not running.", vim.log.levels.ERROR)
+					return
+				end
+
+				vim.lsp.stop_client(client, true)
 
 				local clangConfig = require("usr.lsp.settings.clangd");
 				clangConfig.init_options = {compilationDatabasePath = selection[1]}
