@@ -7,7 +7,7 @@ require("mason").setup()
 
 local servers = {
 	"jsonls",
-	"sumneko_lua",
+	"lua_ls",
 	"pyright",
 	"cmake",
 	"lemminx",
