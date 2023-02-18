@@ -1,6 +1,9 @@
 local M = {}
 
--- TODO: backfill this to template
+-- TODO: make the hover colorful using the next methods:
+-- vim.lsp.util.convert_input_to_markdown_lines()
+-- vim.lsp.util.stylize_markdown()
+-- vim.lsp.util.try_trim_markdown_code_blocks()
 M.setup = function()
  	local signs = {
  	 	{ name = "DiagnosticSignError", text = " "},
