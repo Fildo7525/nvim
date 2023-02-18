@@ -3,6 +3,7 @@ local pluginLoader = require("usr.core.loader.load")
 pluginLoader:load_configs({
 	"usr.core",
 
+	"usr.alpha",
 	"usr.annotations",
 	"usr.autopairs",
 	"usr.buffline",
