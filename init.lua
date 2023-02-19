@@ -10,6 +10,7 @@ pluginLoader:load_configs({
 	"usr.chatai",
 	"usr.cmp",
 	"usr.comment",
+	"usr.copilot",
 	"usr.DAP",
 	"usr.gitsigns",
 	"usr.illuminate",

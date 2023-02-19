@@ -211,6 +211,7 @@ return packer.startup(function(use)
 			"nvim-telescope/telescope.nvim"
 		},
 	})
+	use "github/copilot.vim"
 	use 'Fildo7525/Revolver'
 
 	-- HLS
