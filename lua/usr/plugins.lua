@@ -221,6 +221,7 @@ return packer.startup(function(use)
 			require('auto-hlsearch').setup ()
 		end,
 	})
+	use "theHamsta/nvim-semantic-tokens"
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
