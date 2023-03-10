@@ -22,26 +22,31 @@ return {
 	filetypes = { "tex", "plaintex", "bib" },
 	root_dir = rDir(fname),
 	single_file_support = true,
+	flags = {
+		allow_incremental_sync = false,
+	},
 	settings = {
 		texlab = {
 			rootDirectory = rDir(fname),
 			build = {
-				args = { "-src", "-silent", "-output-directory=.build", "-interaction=nonstopmode", "-synctex=1", "%f" },
+				args = { "-src", "-silent", "-output-directory=build", "-interaction=nonstopmode", "-synctex=1", "%f" },
 				executable = "latexmk",
 				forwardSearchAfter = true,
 				onSave = false
 			},
-			auxDirectory = ".build",
+			auxDirectory = "build",
+			--[[ forwardSearch = { ]]
+			--[[ 	executable = "pdflatex", ]]
+			--[[ 	args = { ]]
+			--[[ 		" -synctex=1", ]]
+			--[[ 		"-interaction=nonstopmode", ]]
+			--[[ 		"-output-directory=.build", ]]
+			--[[ 		"%f", ]]
+			--[[ 	} ]]
+			--[[ }, ]]
 			forwardSearch = {
-				executable = "pdflatex",
-				args = {
-					" -synctex=1",
-					"-interaction=nonstopmode",
-					"-output-directory=.build",
-					"%f",
-					--[[ "%p", ]]
-					--[[ "%l", ]]
-				}
+				args = { "--synctex-forward", "%l:1:%f", "%p" },
+				executable = "zathura",
 			},
 			chktex = {
 				onOpenAndSave = true,
@@ -52,7 +57,7 @@ return {
 				allowedPatterns = {},
 				ignoredPatterns = {},
 			},
-			formatterLineLength = 80,
+			formatterLineLength = 125,
 			bibtexFormatter = "texlab",
 			latexFormatter = "latexindent",
 			latexindent = {
