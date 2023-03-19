@@ -1,6 +1,7 @@
 local telescope = require("telescope")
 local trouble = require("trouble.providers.telescope")
 local actions = require("telescope.actions")
+local lga_actions = require("telescope-live-grep-args.actions")
 
 telescope.setup {
 	defaults = {
@@ -33,6 +34,8 @@ telescope.setup {
 				["<C-k>"] = actions.cycle_history_prev,
 				["<C-j>"] = actions.cycle_history_next,
 				["<c-t>"] = trouble.open_with_trouble,
+				["<C-p>"] = lga_actions.quote_prompt(),
+				["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
 			},
 			n = {
 				["<c-t>"] = trouble.open_with_trouble,
@@ -41,4 +44,5 @@ telescope.setup {
 	}
 }
 
+telescope.load_extension("live_grep_args")
 -- telescope.load_extension('ros')

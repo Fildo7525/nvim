@@ -74,7 +74,9 @@ keymap("n", "<leader>ss", "<cmd>lua require('usr.tscope.adjustments').source_sea
 keymap("n", "<leader>ag", "<cmd>lua require('usr.tscope.adjustments').extend_live_grep()<CR>", opts)
 keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts)
 keymap("n", "<leader>so", "<cmd>lua require('usr.tscope.adjustments').extend_live_grep(true)<CR>", opts)
-keymap("n", "<leader>fs", "<cmd>lua require('usr.tscope.adjustments').extend_grep_string()<CR>", opts)
+keymap("n", "<leader>fs", "<cmd>Telescope grep_string<CR>", opts)
+keymap("n", "<leader>fd", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
+
 vim.keymap.set('n', "<leader>cc", function ()
 	local reloader = require("usr.tscope.lsp_reloader")
 	reloader.change_compilation_source()

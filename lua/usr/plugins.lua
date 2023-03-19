@@ -129,11 +129,20 @@ return packer.startup(function(use)
 	use 'kyazdani42/nvim-tree.lua'
 
 	-- TELESCOPE
-	use 'nvim-telescope/telescope.nvim'
+	use {
+		'nvim-telescope/telescope.nvim',
+		requires = {
+			"nvim-telescope/telescope-live-grep-args.nvim",
+		},
+	}
 	use "BurntSushi/ripgrep"
 
 	-- TERMINAL POPUP WINDOW
 	use "akinsho/toggleterm.nvim"
+	use {
+		"ckipp01/stylua-nvim",
+		run = "cargo install stylua",
+	}
 
 	-- treesitter
 	use {
