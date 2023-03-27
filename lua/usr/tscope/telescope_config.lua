@@ -5,6 +5,12 @@ local lga_actions = require("telescope-live-grep-args.actions")
 
 telescope.setup {
 	defaults = {
+		layout_config = {
+			horizontal = {
+				preview_cutoff = 0,
+			},
+			vertical = horizontal,
+		},
 		layout_strategy = 'vertical',
 		-- horizontal (default)
 		-- vertical
@@ -44,5 +50,4 @@ telescope.setup {
 	}
 }
 
-telescope.load_extension("live_grep_args")
 -- telescope.load_extension('ros')
