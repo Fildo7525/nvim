@@ -2,6 +2,7 @@ local telescope = require("telescope")
 local trouble = require("trouble.providers.telescope")
 local actions = require("telescope.actions")
 local lga_actions = require("telescope-live-grep-args.actions")
+local action_layout = require "telescope.actions.layout"
 
 telescope.setup {
 	defaults = {
@@ -9,7 +10,9 @@ telescope.setup {
 			horizontal = {
 				preview_cutoff = 0,
 			},
-			vertical = horizontal,
+			vertical = {
+				preview_cutoff = 0,
+			},
 		},
 		layout_strategy = 'vertical',
 		-- horizontal (default)
@@ -42,9 +45,11 @@ telescope.setup {
 				["<c-t>"] = trouble.open_with_trouble,
 				["<C-p>"] = lga_actions.quote_prompt(),
 				["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+				["<M-p>"] = action_layout.toggle_preview,
 			},
 			n = {
 				["<c-t>"] = trouble.open_with_trouble,
+				["<M-p>"] = action_layout.toggle_preview,
 			}
 		}
 	}
