@@ -7,7 +7,7 @@ filetype plugin indent on
 
 " This will only work if `vim --version` includes `+clientserver`!
 if empty(v:servername) && exists('*remote_startserver')
-  call remote_startserver('VIM')
+	call remote_startserver('VIM')
 endif
 
 " This enables Vim's and neovim's syntax-related features. Without this, some
@@ -31,6 +31,13 @@ let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 " supported backends and further explanation is provided in the documentation,
 " see ":help vimtex-compiler".
 let g:vimtex_compiler_method = 'latexrun'
+let g:vimtex_compiler_latexrun = {
+	\ 'build_dir' : 'build',
+	\ 'options' : [
+	\   '-verbose-cmds',
+	\   '--latex-args="-synctex=1"',
+	\ ],
+	\}
 
 " Most VimTeX mappings rely on localleader and this can be changed with the
 " following line. The default is usually fine and is the symbol "\".
