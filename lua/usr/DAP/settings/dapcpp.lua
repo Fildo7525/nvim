@@ -6,7 +6,7 @@ dap.adapters.cppdbg = {
 	id = 'cppdbg',
 	type = 'executable',
 	-- Must be from vscode cannot be cloned DUNNO why
-	command = '/home/fildo7525/.vscode/extensions/ms-vscode.cpptools-1.13.9-linux-x64/debugAdapters/bin/OpenDebugAD7',
+	command = '/home/fildo7525/.vscode/extensions/ms-vscode.cpptools-1.14.4-linux-x64/debugAdapters/bin/OpenDebugAD7',
 }
 
 dap.configurations.cpp = {
