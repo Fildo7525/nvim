@@ -43,7 +43,7 @@ return {
 		end,
 	single_file_support = true,
 	init_options = {
-		compilationDatabasePath="./build",
+		compilationDatabasePath="build",
 	},
 	capabilities = local_cap,
 	commands = {
