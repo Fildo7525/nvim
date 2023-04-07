@@ -1,12 +1,11 @@
 -- This has to be first or else nothing will work
-require("usr.plugins")
+require("usr.lazyManager")
 require("usr.core")
 
 require("usr.alpha")
 require("usr.annotations")
 require("usr.autopairs")
 require("usr.buffline")
-require("usr.chatai")
 require("usr.cmp")
 require("usr.comment")
 require("usr.copilot")
@@ -25,4 +24,3 @@ require("usr.toggleterm")
 require("usr.trouble")
 require("usr.ts")
 require("usr.tscope")
-require("usr.alpha")
