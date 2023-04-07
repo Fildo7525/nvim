@@ -7,6 +7,9 @@ return {
 		"nvim-telescope/telescope.nvim",
 	},
 	lazy = true,
+	keys = {
+		{ "<leader>gp", ":ChatGPT<cr>", desc = "Open window with Chat GPT-4" },
+	},
 	config = {
 		welcome_message = "What may I help you with?", -- set to "" if you don't like the fancy robot
 		loading_text = "loading",

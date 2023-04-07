@@ -61,14 +61,13 @@ keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
 keymap("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find<CR>", opts)
 keymap("n", "<leader>re", "<cmd>Telescope resume<CR>", opts)
 keymap("n", "<leader>of", "<cmd>Telescope oldfiles<CR>", opts)
---[[ keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts) ]]
+keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
 keymap("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)
 keymap("n", "<leader>pr", "<cmd>Telescope projects<CR>", opts)
 keymap("n", "<leader>fr", "<cmd>Telescope lsp_references<CR>", opts)
 keymap("n", "<leader>ss", "<cmd>lua require('usr.tscope.adjustments').source_search()<CR>", opts)
 keymap("n", "<leader>ag", "<cmd>lua require('usr.tscope.adjustments').extend_live_grep()<CR>", opts)
-keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts)
 keymap("n", "<leader>so", "<cmd>lua require('usr.tscope.adjustments').extend_live_grep(true)<CR>", opts)
 keymap("n", "<leader>fs", "<cmd>Telescope grep_string<CR>", opts)
 keymap("n", "<leader>fd", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
@@ -124,8 +123,6 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
--- keymap("n", "<leader>e", ":Lex 15<CR>", opts)
-
 -- MARKDOWN PREVIEW
 keymap("n", "mpn", ":MarkdownPreview<CR>", opts)
 keymap("n", "mpf", ":MarkdownPreviewStop<CR>", opts)
@@ -137,8 +134,6 @@ keymap("n", "<C-i>", ":BufferLineMovePrev<CR>", opts)
 keymap("n", "<C-o>", ":BufferLineMoveNext<CR>", opts)
 
 -- MOVE TEXT UP & DOWN
--- keymap("n", "<A-S-k>", "<ESC>:m .+1<CR>==gi", opts)
--- keymap("n", "<A-S-j>", "<ESC>:m .-2<CR>==gi", opts)
 keymap("n", "<C-S-j>", ":move '<-2<CR>", opts)
 keymap("n", "<C-S-k>", ":move '>+1<CR>", opts)
 
@@ -170,19 +165,6 @@ keymap("v", "<leader>y", '"+y', visual_opts)
 -- REFACTORING --
 keymap("v", "<leader>rr", "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", visual_opts)
 
--- -- Remaps for the refactoring operations currently offered by the plugin
--- keymap("v", "<leader>re", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function')<CR>]], visual_opts)
--- keymap("v", "<leader>rf", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Function To File')<CR>]], visual_opts)
--- keymap("v", "<leader>rv", [[ <Esc><Cmd>lua require('refactoring').refactor('Extract Variable')<CR>]], visual_opts)
--- keymap("v", "<leader>ri", [[ <Esc><Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], visual_opts)
---
--- -- Extract block doesn't need visual mode
--- keymap("n", "<leader>rb", [[ <Cmd>lua require('refactoring').refactor('Extract Block')<CR>]], visual_opts)
--- keymap("n", "<leader>rbf", [[ <Cmd>lua require('refactoring').refactor('Extract Block To File')<CR>]], visual_opts)
---
--- -- Inline variable can also pick up the identifier currently under the cursor without visual mode
--- keymap("n", "<leader>ri", [[ <Cmd>lua require('refactoring').refactor('Inline Variable')<CR>]], visual_opts)
-
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
@@ -200,15 +182,5 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 -- Nvimtree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
-
--- ChatGPT
-keymap("n", "<leader>gp", ":ChatGPT<cr>", opts)
-
--- latex
-local pdfFile = function()
-	local file = vim.fn.expand('%:p')
-	file = file:gsub(".tex", ".pdf")
-	io.popen("zathura " .. file .. " --fork")
-end
-vim.keymap.set("n", "<leader>lv", pdfFile)
+-- keymap("n", "<leader>e", ":Lex 15<CR>", opts)
 
