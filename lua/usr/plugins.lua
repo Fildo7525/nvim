@@ -147,7 +147,8 @@ return packer.startup(function(use)
 	-- treesitter
 	use {
 		'nvim-treesitter/nvim-treesitter',
-		run = ':TSUpdate'
+		run = ':TSUpdate',
+		commit = "e559b6fb3f1b09d96568705c668abb8c55b7e3e4"
 	}
 	use {
 		-- Optional but recommended
