@@ -12,9 +12,16 @@ sat.setup {
 		},
 		diagnostic = {
 			enable = true,
+			signs = {'-', '=', '≡'},
+			min_severity = vim.diagnostic.severity.HINT,
 		},
 		gitsigns = {
 			enable = true,
+			signs = { -- can only be a single character (multibyte is okay)
+				add = "│",
+				change = "│",
+				delete = "-",
+			},
 		},
 		marks = {
 			enable = true,
