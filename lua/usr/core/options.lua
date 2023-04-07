@@ -13,7 +13,7 @@ local options = {
 	number = true,
 	relativenumber = false,
 	smartindent = true,
-	conceallevel = 0,
+	conceallevel = 0, -- can create error on lazy installing plugins
 	list = true,
 	cursorline = true,
 }
