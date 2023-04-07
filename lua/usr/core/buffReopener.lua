@@ -108,7 +108,7 @@ M.OpenSavedFiles = function ()
 		return false
 	end
 	-- workspace location. Currently unused
----@diagnostic disable-next-line: unused-local
+	---@diagnostic disable-next-line: unused-local
 	local wd = readLine(file)
 	local files = 0
 	while true do
