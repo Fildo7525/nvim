@@ -4,10 +4,6 @@ local term_opts = { silent = true }
 
 local keymap = vim.api.nvim_set_keymap
 
-keymap("", "<SPACE>", "<NOP>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- MODES
 --			normal - n
 --			insert - i

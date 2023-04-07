@@ -1,32 +1,28 @@
-local pluginLoader = require("usr.core.loader.load")
+-- This has to be first or else nothing will work
+require("usr.plugins")
+require("usr.core")
 
-pluginLoader:load_configs({
-	"usr.core",
-
-	"usr.alpha",
-	"usr.annotations",
-	"usr.autopairs",
-	"usr.buffline",
-	"usr.chatai",
-	"usr.cmp",
-	"usr.comment",
-	"usr.copilot",
-	"usr.DAP",
-	"usr.gitsigns",
-	"usr.illuminate",
-	"usr.impatient",
-	"usr.indentation",
-	"usr.lsp",
-	"usr.lualine",
-	"usr.navigation",
-	"usr.plugins",
-	"usr.project",
-	"usr.refactoring",
-	"usr.todo-comments",
-	"usr.toggleterm",
-	"usr.trouble",
-	"usr.ts",
-	"usr.tscope",
-	"usr.alpha",
-	"usr.WinBar",
-})
+require("usr.alpha")
+require("usr.annotations")
+require("usr.autopairs")
+require("usr.buffline")
+require("usr.chatai")
+require("usr.cmp")
+require("usr.comment")
+require("usr.copilot")
+require("usr.DAP")
+require("usr.gitsigns")
+require("usr.illuminate")
+require("usr.impatient")
+require("usr.indentation")
+require("usr.lsp")
+require("usr.lualine")
+require("usr.navigation")
+require("usr.project")
+require("usr.refactoring")
+require("usr.todo-comments")
+require("usr.toggleterm")
+require("usr.trouble")
+require("usr.ts")
+require("usr.tscope")
+require("usr.alpha")
