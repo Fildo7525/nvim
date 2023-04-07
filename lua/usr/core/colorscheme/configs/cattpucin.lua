@@ -1,6 +1,4 @@
 local colorscheme = "catppuccin"
-local colors = require("catppuccin.palettes").get_palette()
-
 local scheme = require(colorscheme)
 
 scheme.setup({
@@ -9,14 +7,15 @@ scheme.setup({
 		light = "latte",
 		dark = "mocha",
 	},
-	compile_path = vim.fn.stdpath("cache") .. "/catppuccin",
 	transparent_background = false,
-	term_colors = false,
+	term_colors = true,
 	dim_inactive = {
 		enabled = false,
 		shade = "dark",
 		percentage = 0.15,
 	},
+	no_italic = false, -- Force no italic
+	no_bold = false, -- Force no bold
 	styles = {
 		comments = { "italic" },
 		conditionals = { "italic" },
