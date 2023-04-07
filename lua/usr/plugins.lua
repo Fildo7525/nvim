@@ -72,7 +72,7 @@ return packer.startup(function(use)
 	-- SCROLLING --
 	use {
 		"lewis6991/satellite.nvim",
-		commit = "f9d0b08faebe97ccd3822df5d1581b0757c0ca66",
+		--[[ commit = "f9d0b08faebe97ccd3822df5d1581b0757c0ca66", ]]
 	}
 	use "karb94/neoscroll.nvim"
 
