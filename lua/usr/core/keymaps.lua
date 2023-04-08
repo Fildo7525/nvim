@@ -25,6 +25,10 @@ function ReloadConfig()
 	vim.notify("Nvim configuration reloaded!", vim.log.levels.INFO)
 end
 
+vim.keymap.set("n", "<leader>lh", function ()
+	require("usr.lsp.hover").display_hover()
+end)
+
 -- Reload init.lua
 vim.keymap.set("n", "<leader><cr>", function ()
 	ReloadConfig()
@@ -184,3 +188,4 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 -- keymap("n", "<leader>e", ":Lex 15<CR>", opts)
 
+--[[ keymap("n", "J", "<cmd>lua require('usr.lsp.hover).display_hover()<CR>", opts) ]]
