@@ -117,7 +117,7 @@ return {
 			})
 		end
 	},
-	"p00f/nvim-ts-rainbow",
+	"mrjones2014/nvim-ts-rainbow",
 	{
 		'nvim-treesitter/nvim-treesitter-context',
 		dependencies = {
