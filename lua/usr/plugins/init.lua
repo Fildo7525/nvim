@@ -8,9 +8,6 @@ return {
 	-- PROJECTS
 	"ahmedkhalf/project.nvim", -- switch between projects on the system
 
-	-- SHOW INDENTATION
-	"lukas-reineke/indent-blankline.nvim",
-
 	-- dependencies
 	"nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
 	"nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
