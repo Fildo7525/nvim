@@ -160,10 +160,9 @@ return {
 	"github/copilot.vim",
 	"Fildo7525/Revolver",
 	{
-		dir = "~/Documents/sourcing/pretty_hover",
-		config = function()
-			require('pretty_hover').setup()
-		end,
+		"Fildo7525/pretty_hover",
+		event = "LspAttach",
+		opts = 	{},
 	},
 
 	-- HLS
