@@ -5,12 +5,9 @@ local servers = {
 	"bashls",
 	"clangd",
 	"cmake",
-	"jdtls",
-	"jsonls",
 	"lemminx",
 	"marksman",
 	"pyright",
-	"rust_analyzer",
 	"lua_ls",
 	"texlab",
 	"tsserver",
@@ -42,15 +39,9 @@ local settings = {
 	},
 
 	log_level = vim.log.levels.INFO,
-	-- max_concurrent_installers = 4,
-	-- install_root_dir = path.concat { vim.fn.stdpath "data", "lsp_servers" },
 }
 
 lsp_installer.setup(settings)
-
--- Register a handler that will be called for all installed servers.
--- Alternatively, you may also register handlers on specific server instances instead (see example below).
--- lsp_installer.on_server_ready(function(server)
 
 local opts = {}
 
@@ -84,9 +75,6 @@ for _, server in pairs(servers) do
 				vim.lsp.buf.semantic_tokens_full()
 			end
 		end
-		-- opts = require("usr.lsp.settings.clangdExt")
-		-- require("clangd_extensions").setup(opts)
-		-- require("usr.keymaps").SetupClangKeymaps()
 	end
 
 	if server == "jsonls" then
@@ -102,11 +90,6 @@ for _, server in pairs(servers) do
 	if server == "pyright" then
 		local pyright_opts = require("usr.lsp.settings.pyright")
 		opts = vim.tbl_deep_extend("force", pyright_opts, opts)
-	end
-
-	if server == "jdtls" then
-		local jdtls_opts = require("usr.lsp.settings.jdtls")
-		opts = vim.tbl_deep_extend("force", jdtls_opts, opts)
 	end
 
 	if server == "cmake" then
@@ -129,12 +112,6 @@ for _, server in pairs(servers) do
 		opts = vim.tbl_deep_extend("force", yaml_opts, opts)
 	end
 
-	-- Leave default opts for vimls, marksman, rust-analyzer, tsserver
-
-	-- This setup() function is exactly the same as lspconfig's setup function.
-	-- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-	-- if server ~= "clangd" then
-		lspconfig[server].setup(opts)
-	-- end
+	lspconfig[server].setup(opts)
 end
 

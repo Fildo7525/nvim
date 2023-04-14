@@ -17,8 +17,6 @@ local servers = {
 	"clangd",
 	"marksman",
 	"tsserver",
-	"rust_analyzer",
-	"jdtls",
 }
 
 require("mason-lspconfig").setup({
