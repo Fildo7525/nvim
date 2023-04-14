@@ -23,7 +23,7 @@ return {
 	-- SCROLLING --
 	{
 		"lewis6991/satellite.nvim",
-		--[[ commit = "f9d0b08faebe97ccd3822df5d1581b0757c0ca66", ]]
+		commit = "f9d0b08faebe97ccd3822df5d1581b0757c0ca66",
 	},
 	"karb94/neoscroll.nvim",
 
@@ -42,14 +42,14 @@ return {
 	"hrsh7th/cmp-nvim-lua", -- lua nvim scripting
 	"saadparwaiz1/cmp_luasnip", -- snippet completions
 	"windwp/nvim-autopairs",
-	-- show function signature
-	"ray-x/lsp_signature.nvim",
 
 	--	LSP
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
 	"neovim/nvim-lspconfig", -- enable LSP
 	"williamboman/nvim-lsp-installer",
+	-- show function signature
+	"ray-x/lsp_signature.nvim",
 	"jose-elias-alvarez/null-ls.nvim",
 	"antoinemadec/FixCursorHold.nvim", -- This is needed to fix lsp doc highlight
 	"lervag/vimtex",
@@ -96,12 +96,14 @@ return {
 		build = "cargo install stylua",
 	},
 
-	-- treesitter
+	-- TREESITTER
 	{
 		'nvim-treesitter/nvim-treesitter',
 		build = ':TSUpdate',
-		commit = "e559b6fb3f1b09d96568705c668abb8c55b7e3e4"
+		--[[ commit = "e559b6fb3f1b09d96568705c668abb8c55b7e3e4" ]]
 	},
+
+	-- TREESITTER PLUGINS
 	{
 		-- Optional but recommended
 		-- 'nvim-treesitter/nvim-treesitter',
@@ -114,7 +116,12 @@ return {
 				debug = false,
 		},
 	},
-	"mrjones2014/nvim-ts-rainbow",
+	{
+		"mrjones2014/nvim-ts-rainbow",
+		dependencies = {
+			'nvim-treesitter/nvim-treesitter',
+		},
+	},
 	{
 		'nvim-treesitter/nvim-treesitter-context',
 		dependencies = {
@@ -122,14 +129,13 @@ return {
 		},
 	},
 
-	-- doxygen
+	-- DOXYGEN
 	{
 		"danymat/neogen",
 		opts = {},
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},
-		-- Uncomment next line if you want to follow only stable versions
 		version = "*"
 	},
 	"folke/todo-comments.nvim", -- highlight comments like TODO:
@@ -170,5 +176,7 @@ return {
 		"asiryk/auto-hlsearch.nvim",
 		opts = {},
 	},
+
+	-- GRAY OUT UNUSED CODE
 	"theHamsta/nvim-semantic-tokens",
 }
