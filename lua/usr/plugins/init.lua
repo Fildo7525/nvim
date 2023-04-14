@@ -107,12 +107,13 @@ return {
 		-- Optional but recommended
 		-- 'nvim-treesitter/nvim-treesitter',
 		'lewis6991/spellsitter.nvim',
-		config = function ()
-			require('spellsitter').setup ({
+		dependencies = {
+			'nvim-treesitter/nvim-treesitter',
+		},
+		opts = {
 				enable = true,
 				debug = false,
-			})
-		end
+		},
 	},
 	"mrjones2014/nvim-ts-rainbow",
 	{
@@ -125,9 +126,7 @@ return {
 	-- doxygen
 	{
 		"danymat/neogen",
-		config = function()
-			require('neogen').setup {}
-		end,
+		opts = {},
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},
@@ -171,9 +170,7 @@ return {
 	-- HLS
 	{
 		"asiryk/auto-hlsearch.nvim",
-		config = function()
-			require('auto-hlsearch').setup ()
-		end,
+		opts = {},
 	},
 	"theHamsta/nvim-semantic-tokens",
 }
