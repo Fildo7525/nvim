@@ -1,4 +1,7 @@
 return {
+	-- NVIM DOCS
+	"folke/neodev.nvim",
+
 	-- SPEEDUP
 	"lewis6991/impatient.nvim",
 
@@ -23,7 +26,6 @@ return {
 	-- SCROLLING --
 	{
 		"lewis6991/satellite.nvim",
-		commit = "f9d0b08faebe97ccd3822df5d1581b0757c0ca66",
 	},
 	"karb94/neoscroll.nvim",
 
@@ -100,7 +102,6 @@ return {
 	{
 		'nvim-treesitter/nvim-treesitter',
 		build = ':TSUpdate',
-		--[[ commit = "e559b6fb3f1b09d96568705c668abb8c55b7e3e4" ]]
 	},
 
 	-- TREESITTER PLUGINS
@@ -155,11 +156,10 @@ return {
 	"theHamsta/nvim-dap-virtual-text",
 
 	-- WINBAR
-	"fgheng/winbar.nvim",
 	{
-		"SmiteshP/nvim-gps",
+		"SmiteshP/nvim-navic",
 		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
+			"neovim/nvim-lspconfig",
 		},
 	},
 

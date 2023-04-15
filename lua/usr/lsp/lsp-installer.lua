@@ -61,6 +61,13 @@ for _, server in pairs(servers) do
 		opts = vim.tbl_deep_extend("force", clang_opts, opts)
 		opts.on_attach = function(client, bufnr)
 			require("usr.lsp.handlers").on_attach(client, bufnr)
+
+			-- winbar showing the current function
+			if client.server_capabilities.documentSymbolProvider then
+				vim.notify("The nvim-navic is attached", vim.log.levels.INFO);
+				require("nvim-navic").attach(client, bufnr)
+			end
+
 			local caps = client.server_capabilities
 			if caps.semanticTokensProvider and caps.semanticTokensProvider.full then
 				local augroup = vim.api.nvim_create_augroup("SemanticTokens", {})
