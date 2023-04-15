@@ -8,7 +8,7 @@ local config = {
 
 	bind = true, -- This is mandatory, otherwise border config won't get registered.
 			   -- If you want to hook lspsaga or other signature handler, pls set to false
-	doc_lines = 10, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
+	doc_lines = 0, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
 				 -- set to 0 if you DO NOT want any API comments be shown
 				 -- This setting only take effect in insert mode, it does not affect signature help in normal
 				 -- mode, 10 by default
@@ -33,6 +33,7 @@ local config = {
 	handler_opts = {
 		border = "rounded"   -- double, rounded, single, shadow, none
 	},
+	wrap = false, -- allow doc/signature text wrap inside floating_window, useful if your lsp return doc/sig is too long
 
 	always_trigger = false, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
 
