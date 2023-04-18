@@ -4,22 +4,5 @@
 -- Lsp-installer.
 
 require("mason").setup()
-
-local servers = {
-	"jsonls",
-	"lua_ls",
-	"pyright",
-	"cmake",
-	"lemminx",
-	"texlab",
-	"vimls",
-	"yamlls",
-	"clangd",
-	"marksman",
-	"tsserver",
-}
-
-require("mason-lspconfig").setup({
-	ensure_installed = servers,
-})
+require("mason-lspconfig").setup()
 
