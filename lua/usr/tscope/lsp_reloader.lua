@@ -15,17 +15,6 @@ local options = {
 
 local M = {}
 
-local get_client_buffers = function (clientName)
-	local clients = vim.lsp.get_active_clients()
-	local numbers = {}
-	for _, value in ipairs(clients) do
-		if value.name == clientName then
-			 table.insert(numbers, value)
-		end
-	end
-	return numbers
-end
-
 local table_size = function (table)
 	local size = 0
 
@@ -39,7 +28,9 @@ end
 local merge_tables = function (lhs, rhs)
 	local copy = lhs
 	for _, value in ipairs(rhs) do
-		table.insert(copy, value)
+		if not vim.tbl_contains(copy, value) then
+			table.insert(copy, value)
+		end
 	end
 	return copy
 end
@@ -52,12 +43,12 @@ M.find_build_dirs = function (directory)
 
 	local pfile = popen('find ' .. directory .. ' -maxdepth 1 -type d | grep build')
 	if pfile == nil then
-		return {}
+		return t
 	end
 
 	for filename in pfile:lines() do
 		i = i + 1
-		t[i] = filename
+		t[i] = filename:gsub("./", "")
 	end
 	pfile:close()
 
@@ -79,7 +70,8 @@ end
 ---@param directory? string? Directory to parse for build directories. If nil the cwd is parsed.
 M.change_compilation_source = function(directory)
 	local opts = require('telescope.themes').get_dropdown{}
-	local parsed_dirs = M.find_build_dirs(directory or ".")
+	local parsed_dirs = { vim.lsp.get_active_clients({name="clangd"})[1].config.init_options.compilationDatabasePath }
+	parsed_dirs = merge_tables(parsed_dirs, M.find_build_dirs(directory or "."))
 
 	pickers.new(opts, {
 		prompt_title = "compilationDatabasePath",
@@ -91,7 +83,7 @@ M.change_compilation_source = function(directory)
 			actions.select_default:replace(function()
 				actions.close(prompt_bufnr)
 				local selection = action_state.get_selected_entry()
-				local client = get_client_buffers("clangd")
+				local client = vim.lsp.get_active_clients({name = "clangd"})
 				if #client == 0 then
 					vim.notify("The clangd server is not running.", vim.log.levels.ERROR)
 					return
