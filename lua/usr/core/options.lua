@@ -1,21 +1,22 @@
 local options = {
 	autoread = true,
+	conceallevel = 0, -- can create error on lazy installing plugins
+	cursorline = true,
+	expandtab = false,
 	fileencoding = "utf-8",
 	hlsearch = true,
+	linebreak = true,
+	list = true,
 	mouse = "a",
 	mousemodel="extend",
-	termguicolors = true,
-	splitright = true,
-	splitbelow = true,
-	shiftwidth = 4,
-	tabstop = 4,
-	expandtab = false,
 	number = true,
 	relativenumber = false,
+	shiftwidth = 4,
 	smartindent = true,
-	conceallevel = 0, -- can create error on lazy installing plugins
-	list = true,
-	cursorline = true,
+	splitbelow = true,
+	splitright = true,
+	tabstop = 4,
+	termguicolors = true,
 }
 
 for k, v in pairs(options) do
