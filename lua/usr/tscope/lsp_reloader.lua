@@ -37,7 +37,7 @@ end
 
 --- Parses the inputed directory for build directories.
 ---@param directory string Directory to be parsed
----@return table of directories located in the directory
+---@return table Table of directories located in the directory
 M.find_build_dirs = function (directory)
 	local i, t, popen = 0, {}, io.popen
 
