@@ -33,7 +33,7 @@ local no_at_end = {
 	"či",
 }
 
-vim.keymap.set('n', 'lqf', function ()
+vim.keymap.set('n', '<leader>at', function ()
 	for _, x in pairs(no_at_end) do
 		vim.cmd('%s/\\<' .. x .. ' /' .. x .. '\\~/ge')
 		x = x:gsub("(%l)(%w*)", function(a,b) return string.upper(a)..b end) 
