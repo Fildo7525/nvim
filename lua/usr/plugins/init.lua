@@ -106,18 +106,6 @@ return {
 
 	-- TREESITTER PLUGINS
 	{
-		-- Optional but recommended
-		-- 'nvim-treesitter/nvim-treesitter',
-		'lewis6991/spellsitter.nvim',
-		dependencies = {
-			'nvim-treesitter/nvim-treesitter',
-		},
-		opts = {
-				enable = true,
-				debug = false,
-		},
-	},
-	{
 		"mrjones2014/nvim-ts-rainbow",
 		dependencies = {
 			'nvim-treesitter/nvim-treesitter',
@@ -166,7 +154,7 @@ return {
 	"github/copilot.vim",
 	"Fildo7525/Revolver",
 	{
-		"Fildo7525/pretty_hover",
+		dir = "~/Documents/sourcing/pretty_hover",
 		event = "LspAttach",
 		opts = 	{},
 	},
