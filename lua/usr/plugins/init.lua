@@ -85,9 +85,8 @@ return {
 	-- TELESCOPE
 	{
 		'nvim-telescope/telescope.nvim',
-		dependencies = {
-			"nvim-telescope/telescope-live-grep-args.nvim",
-		},
+		tag = '0.1.1',
+		dependencies = { 'nvim-lua/plenary.nvim' },
 	},
 	"BurntSushi/ripgrep",
 
