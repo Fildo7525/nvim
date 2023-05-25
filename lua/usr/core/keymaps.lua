@@ -37,6 +37,7 @@ end)
 
 -- init.lua edditink
 keymap("n", "<leader>sc", ":e ~/.config/nvim/init.lua<CR>", opts)
+keymap("n", "<leader>m", ":new<CR>:put =execute('messages')<CR>", opts)
 
 keymap("n", "n", "nzzzv", opts)
 keymap("n", "N", "Nzzzv", opts)
