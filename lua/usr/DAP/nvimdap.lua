@@ -1,5 +1,6 @@
 require("usr.DAP.settings.dapcpp")
 require("usr.DAP.settings.bashdap")
+require("usr.DAP.settings.daplua")
 
 local opts = { silent = true, }
 local keymap = vim.api.nvim_set_keymap
