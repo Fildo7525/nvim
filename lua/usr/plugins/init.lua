@@ -1,4 +1,5 @@
 return {
+	"jbyuki/one-small-step-for-vimkind",
 	-- NVIM DOCS
 	"folke/neodev.nvim",
 
