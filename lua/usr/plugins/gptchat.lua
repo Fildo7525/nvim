@@ -10,7 +10,7 @@ return {
 	keys = {
 		{ "<leader>gp", ":ChatGPT<cr>", desc = "Open window with Chat GPT-4" },
 	},
-	opts = {
+	config = {
 		welcome_message = "What may I help you with?", -- set to "" if you don't like the fancy robot
 		loading_text = "loading",
 		question_sign = "", -- you can use emoji if you want e.g. 🙂
@@ -50,7 +50,7 @@ return {
 			},
 		},
 		openai_params = {
-			model = "gpt-3.5-turbo",
+			model = "code-davinci-002",
 			frequency_penalty = 0,
 			presence_penalty = 0,
 			max_tokens = 300,
@@ -81,4 +81,3 @@ return {
 		},
 	}
 }
-
