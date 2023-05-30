@@ -34,12 +34,12 @@ navic.setup {
 		Typeparameter = ' ',
 	},
 	lsp = {
-		auto_attach = false,
+		auto_attach = true,
 		preference = nil,
 	},
-	highlight = false,
+	highlight = true,
 	separator = " > ",
-	depth_limit = 0,
+	depth_limit = 10,
 	depth_limit_indicator = "..",
 	safe_output = true
 }
