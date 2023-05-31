@@ -1,4 +1,5 @@
 local lualine = require("lualine")
+local icons = require("usr.core.icons")
 
 local hide_in_width = function()
 	return vim.fn.winwidth(0) > 80
@@ -52,8 +53,8 @@ local filename = {
 	path = 1,
 	symbols = {
 		readonly = " ",
-		unnamed = " ﳠ",
-		modified = "螺",
+		unnamed = icons.kind.Unnamed,
+		modified = " ",
 	}
 }
 
