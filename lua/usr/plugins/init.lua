@@ -74,7 +74,7 @@ return {
 	"nvim-lualine/lualine.nvim",
 	{
 		'akinsho/bufferline.nvim',
-		version = "v2.*"
+		version = "*"
 	},
 	"famiu/bufdelete.nvim",
 
