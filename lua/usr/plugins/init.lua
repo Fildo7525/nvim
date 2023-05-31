@@ -2,6 +2,7 @@ return {
 	"jbyuki/one-small-step-for-vimkind",
 	-- NVIM DOCS
 	"folke/neodev.nvim",
+	"loichyan/nerdfix",
 
 	-- SPEEDUP
 	"lewis6991/impatient.nvim",
@@ -147,12 +148,7 @@ return {
 	"theHamsta/nvim-dap-virtual-text",
 
 	-- WINBAR
-	{
-		"SmiteshP/nvim-navic",
-		dependencies = {
-			"neovim/nvim-lspconfig",
-		},
-	},
+	"Bekaboo/dropbar.nvim",
 
 	"github/copilot.vim",
 	"Fildo7525/Revolver",

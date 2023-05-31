@@ -130,6 +130,9 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
+vim.keymap.set("n", "<leader>db", require('dropbar.api').pick, opts)
+
+
 
 -- MARKDOWN PREVIEW
 keymap("n", "mpn", ":MarkdownPreview<CR>", opts)
