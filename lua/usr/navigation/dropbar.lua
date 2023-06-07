@@ -16,15 +16,25 @@ dropbar.setup{
 				and not vim.wo[win].diff
 		end,
 		update_events = {
-			'CursorMoved',
-			'CursorMovedI',
-			'DirChanged',
-			'FileChangedShellPost',
-			'TextChanged',
-			'TextChangedI',
-			'VimResized',
-			'WinResized',
-			'WinScrolled',
+			win = {
+				'CursorMoved',
+				'CursorMovedI',
+				'WinEnter',
+				'WinLeave',
+				'WinResized',
+				'WinScrolled',
+			},
+			buf = {
+				'BufModifiedSet',
+				'FileChangedShellPost',
+				'TextChanged',
+				'TextChangedI',
+			},
+			global = {
+				'DirChanged',
+				'VimResized',
+			}
+
 		},
 	},
 	icons = {
