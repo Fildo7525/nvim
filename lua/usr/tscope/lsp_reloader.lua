@@ -6,6 +6,7 @@ local action_state = require "telescope.actions.state"
 local lspconfig = require "lspconfig"
 
 local directories = {
+	".",
 }
 
 local options = {
