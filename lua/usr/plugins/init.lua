@@ -1,7 +1,7 @@
 return {
 	"jbyuki/one-small-step-for-vimkind",
 	-- NVIM DOCS
-	"folke/neodev.nvim",
+	{"folke/neodev.nvim", opts = {}},
 	"loichyan/nerdfix",
 
 	-- SPEEDUP
