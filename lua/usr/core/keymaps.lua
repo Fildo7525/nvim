@@ -192,4 +192,12 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 -- keymap("n", "<leader>e", ":Lex 15<CR>", opts)
 
+vim.cmd[[
+	augroup twig_ft
+		au!
+		autocmd BufNewFile,BufRead *.bbappend   set syntax=bitbake
+		autocmd BufNewFile,BufRead *.bb   set syntax=bitbake
+	augroup END
+]]
+
 --[[ keymap("n", "J", "<cmd>lua require('usr.lsp.hover).display_hover()<CR>", opts) ]]
