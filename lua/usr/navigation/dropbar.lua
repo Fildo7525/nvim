@@ -116,6 +116,32 @@ dropbar.setup{
 			},
 		},
 	},
+	symbol = {
+		preview = {
+			reorient = function(_, range)
+				local invisible = range['end'].line - vim.fn.line('w$') + 1
+				if invisible > 0 then
+					local view = vim.fn.winsaveview()
+					view.topline = view.topline + invisible
+					vim.fn.winrestview(view)
+				end
+			end,
+		},
+		jump = {
+			reorient = function(win, range)
+				local view = vim.fn.winsaveview()
+				local win_height = vim.api.nvim_win_get_height(win)
+				local topline = range.start.line - math.floor(win_height / 4)
+				if
+					topline > view.topline
+					and topline + win_height < vim.fn.line('$')
+				then
+					view.topline = topline
+					vim.fn.winrestview(view)
+				end
+			end,
+		},
+	},
 	bar = {
 		---@type dropbar_source_t[]|fun(buf: integer, win: integer): dropbar_source_t[]
 		sources = function(_, _)
@@ -123,15 +149,15 @@ dropbar.setup{
 			return {
 				sources.path,
 				{
-					get_symbols = function(buf, cursor)
+					get_symbols = function(buf, win, cursor)
 						if vim.bo[buf].ft == 'markdown' then
-							return sources.markdown.get_symbols(buf, cursor)
+							return sources.markdown.get_symbols(buf, win, cursor)
 						end
 						for _, source in ipairs({
 							sources.lsp,
 							sources.treesitter,
 						}) do
-							local symbols = source.get_symbols(buf, cursor)
+							local symbols = source.get_symbols(buf, win, cursor)
 							if not vim.tbl_isempty(symbols) then
 								return symbols
 							end
@@ -257,6 +283,15 @@ dropbar.setup{
 			filter = function(_)
 				return true
 			end,
+			modified = function(sym)
+				return sym:merge({
+					name = sym.name .. '[+]',
+					icon = ' ',
+					name_hl = 'DiffAdded',
+					icon_hl = 'DiffAdded',
+					-- ...
+				})
+			end
 		},
 		treesitter = {
 			-- Lua pattern used to extract a short name from the node text
