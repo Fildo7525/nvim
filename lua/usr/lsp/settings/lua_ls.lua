@@ -12,7 +12,7 @@ return {
 			},
 			telemetry = {
 				enable = false,
-			}
+			},
 		},
 	},
 }
