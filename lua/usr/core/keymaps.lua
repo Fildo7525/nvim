@@ -151,15 +151,15 @@ keymap("n", "<leader>nf", ":lua require('neogen').generate({ type = 'func'})<CR>
 keymap("n", "<leader>nt", ":lua require('neogen').generate({ type = 'type'})<CR>", opts)
 keymap("n", "<leader>ni", ":lua require('neogen').generate({ type = 'file'})<CR>", opts)
 
-keymap("n", "<leader>tr", "<cmd>Trouble<cr>",opts)
-keymap("n", "<leader>twd", "<cmd>Trouble workspace_diagnostics<cr>",opts)
-keymap("n", "<leader>tdd", "<cmd>Trouble document_diagnostics<cr>",opts)
-keymap("n", "<leader>tl", "<cmd>Trouble loclist<cr>",opts)
-keymap("n", "<leader>tq", "<cmd>Trouble quickfix<cr>",opts)
-keymap("n", "gR", "<cmd>Trouble lsp_references<cr>",opts)
+keymap("n", "<leader>tr", "<cmd>Trouble<cr>", opts)
+keymap("n", "<leader>twd", "<cmd>Trouble workspace_diagnostics<cr>", opts)
+keymap("n", "<leader>tdd", "<cmd>Trouble document_diagnostics<cr>", opts)
+keymap("n", "<leader>tl", "<cmd>Trouble loclist<cr>", opts)
+keymap("n", "<leader>tq", "<cmd>Trouble quickfix<cr>", opts)
+keymap("n", "gR", "<cmd>Trouble lsp_references<cr>", opts)
 
 -- fold methods
-keymap("n", "<leader>fm", "v%zf",opts)
+keymap("n", "<leader>fm", "v%zf", opts)
 
 
 -- Press jk fast to enter
