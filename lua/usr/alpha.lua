@@ -11,17 +11,17 @@ dashboard.section.header.val = {
 	[[ \/_/\/_/\/____/\/___/  \/__/    \/_/\/_/\/_/\/_/]],
 }
 dashboard.section.buttons.val = {
-	dashboard.button("f", "  Find file", ":Telescope find_files <CR>"),
-	dashboard.button("p", "  Open project", ":Telescope projects <CR>"),
-	dashboard.button("e", "  New file", ":ene <BAR> startinsert <CR>"),
+	dashboard.button("f", icons.ui.File .. " Find file", ":Telescope find_files <CR>"),
+	dashboard.button("p", icons.ui.Project .. " Open project", ":Telescope projects <CR>"),
+	dashboard.button("e", icons.ui.NewFile .. " New file", ":ene <BAR> startinsert <CR>"),
 	dashboard.button("r", icons.kind.RecentlyUsed .. " Recently used files", ":Telescope oldfiles <CR>"),
-	dashboard.button("t", "  Find text", ":Telescope live_grep <CR>"),
-	dashboard.button("c", "  Configuration", ":e ~/.config/nvim/init.lua <CR>"),
+	dashboard.button("t", icons.kind.TypeParameter .. " Find text", ":Telescope live_grep <CR>"),
+	dashboard.button("c", icons.ui.Configuration .. " Configuration", ":e ~/.config/nvim/init.lua <CR>"),
 	dashboard.button("q", icons.kind.Quit .. " Quit Neovim", ":qa<CR>"),
 }
 
 local function footer()
--- NOTE: requires the fortune-mod package to work
+	-- NOTE: requires the fortune-mod package to work
 	-- local handle = io.popen("fortune")
 	-- local fortune = handle:read("*a")
 	-- handle:close()
