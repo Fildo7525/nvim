@@ -1,3 +1,4 @@
+-- TODO: https://github.com/nosduco/remote-sshfs.nvim
 return {
 	"jbyuki/one-small-step-for-vimkind",
 	-- NVIM DOCS
