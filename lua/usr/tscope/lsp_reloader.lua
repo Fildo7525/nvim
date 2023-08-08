@@ -16,7 +16,7 @@ local options = {
 
 local M = {}
 
-local table_size = function (table)
+local function table_size(table)
 	local size = 0
 
 	for _ in pairs(table) do
@@ -26,7 +26,7 @@ local table_size = function (table)
 	return size
 end
 
-local merge_tables = function (lhs, rhs)
+local function merge_tables(lhs, rhs)
 	local copy = lhs
 	for _, value in ipairs(rhs) do
 		if not vim.tbl_contains(copy, value) then
@@ -39,17 +39,23 @@ end
 --- Parses the inputed directory for build directories.
 ---@param directory string Directory to be parsed
 ---@return table Table of directories located in the directory
-M.find_build_dirs = function (directory)
+function M.find_build_dirs(directory)
 	local i, t, popen = 0, {}, io.popen
 
-	local pfile = popen('find ' .. directory .. ' -maxdepth 1 -type d | grep build')
+	local pfile = popen('find ' .. directory .. ' -maxdepth 2 -type f -name "compile_commands.json"')
 	if pfile == nil then
 		return t
 	end
 
 	for filename in pfile:lines() do
 		i = i + 1
-		t[i] = filename:gsub("./", "")
+		local start = filename:find("./") + 2 or 1
+		local stop = filename:find("/compile_commands.json") - 1 or string.len(filename)
+		local tmp = filename:sub(start, stop)
+
+		if string.len(tmp) > 1 then
+			t[i] = tmp
+		end
 	end
 	pfile:close()
 
@@ -57,7 +63,7 @@ M.find_build_dirs = function (directory)
 end
 
 --- Terminates all clients that have no buffers attached to it.
-M.terminate_detached_clients = function ()
+function M.terminate_detached_clients()
 	local clients = vim.lsp.get_active_clients()
 
 	for _, value in ipairs(clients) do
@@ -69,7 +75,7 @@ end
 
 --- Telescope picker changing the compilationDatabasePath where compile_commands.json is located.
 ---@param directory? string? Directory to parse for build directories. If nil the cwd is parsed.
-M.change_compilation_source = function(directory)
+function M.change_compilation_source(directory)
 	local opts = require('telescope.themes').get_dropdown{}
 	local parsed_dirs = { vim.lsp.get_active_clients({name="clangd"})[1].config.init_options.compilationDatabasePath }
 	parsed_dirs = merge_tables(parsed_dirs, M.find_build_dirs(directory or "."))
