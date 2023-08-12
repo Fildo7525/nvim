@@ -5,6 +5,7 @@ local servers = {
 	"bashls",
 	"clangd",
 	"cmake",
+	"jsonls",
 	"lemminx",
 	"marksman",
 	"pyright",
@@ -52,8 +53,8 @@ for _, server in pairs(servers) do
 	}
 
 	if server == "bashls" then
-		local jsonls_opts = require("usr.lsp.settings.bash")
-		opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
+		local bash_opts = require("usr.lsp.settings.bash")
+		opts = vim.tbl_deep_extend("force", bash_opts, opts)
 	end
 
 	if server == "clangd" then
@@ -78,6 +79,11 @@ for _, server in pairs(servers) do
 		end
 	end
 
+	if server == "cmake" then
+		local cmake_opts = require("usr.lsp.settings.cmake")
+		opts = vim.tbl_deep_extend("force", cmake_opts, opts)
+	end
+
 	if server == "jsonls" then
 		local jsonls_opts = require("usr.lsp.settings.jsonls")
 		opts = vim.tbl_deep_extend("force", jsonls_opts, opts)
@@ -91,11 +97,6 @@ for _, server in pairs(servers) do
 	if server == "pyright" then
 		local pyright_opts = require("usr.lsp.settings.pyright")
 		opts = vim.tbl_deep_extend("force", pyright_opts, opts)
-	end
-
-	if server == "cmake" then
-		local cmake_opts = require("usr.lsp.settings.cmake")
-		opts = vim.tbl_deep_extend("force", cmake_opts, opts)
 	end
 
 	if server == "lemminx" then
