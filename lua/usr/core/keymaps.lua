@@ -32,7 +32,7 @@ end)
 -- Reload init.lua
 vim.keymap.set("n", "<leader><cr>", function ()
 	ReloadConfig()
-	require('usr.tscope.lsp_reloader').terminate_detached_clients()
+	require('usr.tscope.lsp-reloader').terminate_detached_clients()
 end)
 
 -- init.lua edditink
@@ -78,7 +78,7 @@ keymap("n", "<leader>fs", "<cmd>Telescope grep_string<CR>", opts)
 keymap("n", "<leader>fd", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
 
 vim.keymap.set('n', "<leader>cc", function ()
-	local reloader = require("usr.tscope.lsp_reloader")
+	local reloader = require("usr.tscope.lsp-reloader")
 	reloader.change_compilation_source()
 end)
 
