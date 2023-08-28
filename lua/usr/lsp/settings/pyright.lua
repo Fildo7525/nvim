@@ -6,11 +6,15 @@ return {
 			return require("lspconfig").util.find_git_ancestor(fname) or vim.fn.getcwd()
 		end,
 		python = {
+			disableLanguageServices = false,
+			disableOrganizeImports = false,
+			openFilesOnly = false,
 			analysis = {
-				typeCheckingMode = "off",
+				autoImportCompletions = true,
 				autoSearchPaths = true,
 				diagnosticMode = "workspace",
-				useLibraryCodeForTypes = true
+				typeCheckingMode = "basic", -- off, basic, strict
+				useLibraryCodeForTypes = true,
 			}
 		},
 		single_file_support = true,
