@@ -17,6 +17,7 @@ return {
 	-- dependencies
 	"nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
 	"nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
+	"Fildo7525/reloader.nvim",
 
 	-- colour scheme
 	"ghifarit53/tokyonight-vim", -- colour scheme
@@ -54,24 +55,24 @@ return {
 	"neovim/nvim-lspconfig", -- enable LSP
 	"williamboman/nvim-lsp-installer",
 	-- show function signature
-	{
-		"lvimuser/lsp-inlayhints.nvim",
-		event = "LspAttach",
-		branch = "anticonceal",
-		opts = {},
-		init = function()
-			vim.api.nvim_create_autocmd("LspAttach", {
-				group = vim.api.nvim_create_augroup("LspAttach_inlayhints", {}),
-				callback = function(args)
-					if not (args.data and args.data.client_id) then
-						return
-					end
-					local client = vim.lsp.get_client_by_id(args.data.client_id)
-					require("lsp-inlayhints").on_attach(client, args.buf)
-				end,
-			})
-		end,
-	},
+	--[[ { ]]
+	--[[ 	"lvimuser/lsp-inlayhints.nvim", ]]
+	--[[ 	event = "LspAttach", ]]
+	--[[ 	branch = "anticonceal", ]]
+	--[[ 	opts = {}, ]]
+	--[[ 	init = function() ]]
+	--[[ 		vim.api.nvim_create_autocmd("LspAttach", { ]]
+	--[[ 			group = vim.api.nvim_create_augroup("LspAttach_inlayhints", {}), ]]
+	--[[ 			callback = function(args) ]]
+	--[[ 				if not (args.data and args.data.client_id) then ]]
+	--[[ 					return ]]
+	--[[ 				end ]]
+	--[[ 				local client = vim.lsp.get_client_by_id(args.data.client_id) ]]
+	--[[ 				require("lsp-inlayhints").on_attach(client, args.buf) ]]
+	--[[ 			end, ]]
+	--[[ 		}) ]]
+	--[[ 	end, ]]
+	--[[ }, ]]
 	"ray-x/lsp_signature.nvim",
 	"jose-elias-alvarez/null-ls.nvim",
 	"antoinemadec/FixCursorHold.nvim", -- This is needed to fix lsp doc highlight
@@ -110,7 +111,7 @@ return {
 	{
 		'nvim-telescope/telescope.nvim',
 		tag = '0.1.2',
-		dependencies = { 'nvim-lua/plenary.nvim' },
+		dependencies = { 'nvim-lua/plenary.nvim', 'Fildo7525/reloader.nvim' },
 	},
 	"BurntSushi/ripgrep",
 
@@ -174,7 +175,7 @@ return {
 	{
 		dir = "~/Documents/sourcing/pretty_hover",
 		event = "LspAttach",
-		opts = 	{},
+		opts = {},
 	},
 
 	-- HLS
