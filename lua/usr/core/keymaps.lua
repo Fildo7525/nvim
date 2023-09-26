@@ -117,10 +117,10 @@ keymap("n", "<leader>bD", ":Bdelete!<CR>", opts) -- buffer delete force
 keymap("n", "<leader>lf", ":lua require('revolver').OpenSavedFiles()<CR>", opts)
 
 -- Resize with arrows
-keymap("n", "<C-UP>", ":resize -2<CR>", opts)
-keymap("n", "<C-DOWN>", ":resize +2<CR>", opts)
-keymap("n", "<C-LEFT>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-RIGHT>", ":vertical resize +2<CR>", opts)
+keymap("n", "<M-UP>", ":resize -2<CR>", opts)
+keymap("n", "<M-DOWN>", ":resize +2<CR>", opts)
+keymap("n", "<M-LEFT>", ":vertical resize -2<CR>", opts)
+keymap("n", "<M-RIGHT>", ":vertical resize +2<CR>", opts)
 
 --	NAVIGATE WINDOWS	--
 keymap("n", "<C-k>", "<C-w>k", opts)
