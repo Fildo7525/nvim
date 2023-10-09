@@ -6,8 +6,7 @@ https://github.com/neovim/neovim/releases <br />
 
 <h2>Startup</h2>
 
-    git clone git@github.com:Fildo7525/nvimLua.git
-    mv nvimLua nvim
+    git clone git@github.com:Fildo7525/nvim.git
     mv nvim/ ~/.config/
 
 Open the config for the first time and install all the plugins
