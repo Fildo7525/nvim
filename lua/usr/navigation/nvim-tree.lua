@@ -1,6 +1,7 @@
 -- following options are the default
 -- each of these are documented in `:help nvim-tree.OPTION_NAME`
 local nvim_tree = require("nvim-tree")
+local icons = require("usr.core.icons")
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -9,32 +10,32 @@ local config = {
 	diagnostics = {
 		enable = true,
 		icons = {
-			hint = "",
-			info = "",
-			warning = "",
-			error = "",
+			hint = icons.diagnostics.Hint,
+			info = icons.diagnostics.Information,
+			warning = icons.diagnostics.Warning,
+			error = icons.diagnostics.Error,
 		},
 	},
 	renderer = {
 		icons = {
 			glyphs = {
-				default = "",
-				symlink = "",
+				default = icons.kind.TextLines,
+				symlink = icons.kind.Reference,
 				git = {
-					unstaged = "",
-					staged = "",
-					unmerged = "",
-					renamed = "➜",
-					untracked = "",
-					deleted = "",
-					ignored = "◌",
+					unstaged = icons.git.Unstaged,
+					staged = icons.git.Staged,
+					unmerged = icons.git.Unmerged,
+					renamed = icons.git.Renamed,
+					untracked = icons.git.Untracked,
+					deleted = icons.git.Deleted,
+					ignored = icons.git.Ignored,
 				},
 				folder = {
-					default = "",
-					open = "",
-					empty = "",
-					empty_open = "",
-					symlink = "",
+					default = icons.documents.FullFolder,
+					open = icons.documents.OpenFullFolder,
+					empty = icons.documents.EmptyFolder,
+					empty_open = icons.documents.OpenFolder,
+					symlink = icons.documents.Symlink,
 				},
 			},
 		},
