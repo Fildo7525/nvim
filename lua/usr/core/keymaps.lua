@@ -76,11 +76,7 @@ keymap("n", "<leader>ag", "<cmd>lua require('usr.tscope.adjustments').extend_liv
 keymap("n", "<leader>so", "<cmd>lua require('usr.tscope.adjustments').extend_live_grep(true)<CR>", opts)
 keymap("n", "<leader>fs", "<cmd>Telescope grep_string<CR>", opts)
 keymap("n", "<leader>fd", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
-
-vim.keymap.set('n', "<leader>cc", function ()
-	local reloader = require("usr.tscope.lsp-reloader")
-	reloader.change_compilation_source()
-end)
+keymap('n', "<leader>cc", "<cmd>Telescope clang_reloader<CR>", opts)
 
 
 -- telescope git commands
