@@ -1,6 +1,12 @@
 local treesitter = require("nvim-treesitter.configs")
 
-treesitter.setup {
+require("ts_context_commentstring").setup({
+	enable = true,
+	enable_autocmd = false,
+})
+vim.g.skip_ts_context_commentstring_module = true
+
+treesitter.setup({
 	-- One of "all", "maintained" (parsers with maintainers), or a list of languages
 	-- ensure_installed = "maintained",
 	ensure_installed = "all",
@@ -30,12 +36,8 @@ treesitter.setup {
 	},
 
 	rainbow = {
-		enable = true;
+		enable = true,
 	},
 
 	indent = { enable = true, disable = { "yaml" } },
-	context_commentstring = {
-		enable = true,
-		enable_autocmd = false,
-	},
-}
+})
