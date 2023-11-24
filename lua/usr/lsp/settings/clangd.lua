@@ -1,3 +1,4 @@
+---@class lsp.ClientCapabilities
 local local_cap = vim.lsp.protocol.make_client_capabilities()
 local util = require 'lspconfig.util'
 local_cap.offsetEncoding = { "utf-16" }
@@ -43,7 +44,7 @@ return {
 		end,
 	single_file_support = true,
 	init_options = {
-		compilationDatabasePath="build",
+		compilationDatabasePath= vim.fn.getcwd() .. "/build",
 	},
 	capabilities = local_cap,
 	commands = {
