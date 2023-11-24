@@ -18,7 +18,7 @@ local servers = {
 
 local settings = {
 	ensure_installed = {},
-	-- automatic_installation = false,
+	automatic_installation = false,
 	ui = {
 		icons = {
 			-- server_installed = "◍",
