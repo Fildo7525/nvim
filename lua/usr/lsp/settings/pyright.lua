@@ -39,7 +39,8 @@ return {
 				typeCheckingMode = "basic", -- off, basic, strict
 				useLibraryCodeForTypes = true,
 			},
-			venvPath = getPipenvPath(),
+			pythonPath = getPipenvPath(),
+			venvPath = os.getenv('VIRTUAL_ENV') or '',
 		},
 		single_file_support = true,
 	},

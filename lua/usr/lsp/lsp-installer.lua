@@ -14,6 +14,7 @@ local servers = {
 	"tsserver",
 	"vimls",
 	"yamlls",
+	"matlab_ls",
 }
 
 local settings = {
@@ -60,23 +61,6 @@ for _, server in pairs(servers) do
 	if server == "clangd" then
 		local clangd_opts = require("usr.lsp.settings.clangd")
 		opts = vim.tbl_deep_extend("force", clangd_opts, opts)
-		--[[ opts.on_attach = function(client, bufnr) ]]
-		--[[ 	require("usr.lsp.handlers").on_attach(client, bufnr) ]]
-		--[[]]
-		--[[ 	local caps = client.server_capabilities ]]
-		--[[ 	if caps.semanticTokensProvider and caps.semanticTokensProvider.full then ]]
-		--[[ 		local augroup = vim.api.nvim_create_augroup("SemanticTokens", {}) ]]
-		--[[ 		vim.api.nvim_create_autocmd("TextChanged", { ]]
-		--[[ 			group = augroup, ]]
-		--[[ 			buffer = bufnr, ]]
-		--[[ 			callback = function() ]]
-		--[[ 				vim.lsp.buf.semantic_tokens_full() ]]
-		--[[ 			end, ]]
-		--[[ 		}) ]]
-		--[[ 		-- fire it first time on load as well ]]
-		--[[ 		vim.lsp.buf.semantic_tokens_full() ]]
-		--[[ 	end ]]
-		--[[ end ]]
 	end
 
 	if server == "cmake" then
@@ -112,6 +96,11 @@ for _, server in pairs(servers) do
 	if server == "yamlls" then
 		local yaml_opts = {} -- require("usr.lsp.serrings.yamlls")
 		opts = vim.tbl_deep_extend("force", yaml_opts, opts)
+	end
+
+	if server == "matlab_ls" then
+		local matlab_opts = require("usr.lsp.settings.matlabls")
+		opts = vim.tbl_deep_extend("force", matlab_opts, opts)
 	end
 
 	lspconfig[server].setup(opts)
