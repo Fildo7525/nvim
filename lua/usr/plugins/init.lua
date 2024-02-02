@@ -173,7 +173,7 @@ return {
 	"github/copilot.vim",
 	"Fildo7525/Revolver",
 	{
-		dir = "~/Documents/sourcing/pretty_hover",
+		"Fildo7525/pretty_hover",
 		event = "LspAttach",
 		opts = {},
 	},
