@@ -20,7 +20,6 @@ return {
 	"Fildo7525/reloader.nvim",
 
 	-- colour scheme
-	"ghifarit53/tokyonight-vim", -- colour scheme
 	"sheerun/vim-polyglot",
 	{
 		"catppuccin/nvim",
@@ -54,19 +53,6 @@ return {
 	"jose-elias-alvarez/null-ls.nvim",
 	"antoinemadec/FixCursorHold.nvim", -- This is needed to fix lsp doc highlight
 	"lervag/vimtex",
-	{
-		"folke/trouble.nvim",
-		dependencies = {
-			"kyazdani42/nvim-web-devicons",
-		},
-	},
-	{
-		"ThePrimeagen/refactoring.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-		}
-	},
 
 	-- LUALINE & BUFFLINE
 	"nvim-lualine/lualine.nvim",

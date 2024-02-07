@@ -1,5 +1,4 @@
 local telescope = require("telescope")
-local trouble = require("trouble.providers.telescope")
 local actions = require("telescope.actions")
 local action_layout = require "telescope.actions.layout"
 
@@ -41,11 +40,9 @@ telescope.setup {
 			i = {
 				["<C-k>"] = actions.cycle_history_prev,
 				["<C-j>"] = actions.cycle_history_next,
-				["<c-t>"] = trouble.open_with_trouble,
 				["<M-p>"] = action_layout.toggle_preview,
 			},
 			n = {
-				["<c-t>"] = trouble.open_with_trouble,
 				["<M-p>"] = action_layout.toggle_preview,
 			}
 		}
