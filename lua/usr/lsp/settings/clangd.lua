@@ -44,7 +44,7 @@ return {
 		end,
 	single_file_support = true,
 	init_options = {
-		compilationDatabasePath= vim.fn.getcwd() .. "/build",
+		compilationDatabasePath = vim.fn.getcwd() .. "/build",
 	},
 	capabilities = local_cap,
 	commands = {
