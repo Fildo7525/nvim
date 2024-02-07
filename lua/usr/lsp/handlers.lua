@@ -79,7 +79,6 @@ local function lsp_keymaps(bufnr)
  	vim.api.nvim_buf_set_keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
 
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "K", "<cmd>lua require('pretty_hover').hover()<CR>", opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>cl", "<cmd lua vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))<CR>", opts)
 
  	vim.api.nvim_buf_set_keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
  	vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-M-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
