@@ -62,10 +62,21 @@ return {
 	},
 	"famiu/bufdelete.nvim",
 
+	-- DEVICONS and NEO-TREE
 	"ryanoasis/vim-devicons",
 	{
 		"kyazdani42/nvim-web-devicons",
 		tag = "nerd-v2-compat",
+	},
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		branch = "v3.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"MunifTanjim/nui.nvim",
+			"3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+		}
 	},
 
 	-- TELESCOPE
