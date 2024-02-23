@@ -62,13 +62,11 @@ return {
 	},
 	"famiu/bufdelete.nvim",
 
-	-- DEVICONS and NVIM-TREE
 	"ryanoasis/vim-devicons",
 	{
 		"kyazdani42/nvim-web-devicons",
 		tag = "nerd-v2-compat",
 	},
-	"kyazdani42/nvim-tree.lua",
 
 	-- TELESCOPE
 	{
