@@ -56,9 +56,9 @@ local function createDefinition(promptForSourceFile)
 			for node, name in current_node:iter_children() do
 				if node:named() then
 					if name == 'type' then
-						function_info.return_type = vim.treesitter.query.get_node_text(node, 0)
+						function_info.return_type = vim.treesitter.get_node_text(node, 0)
 					elseif name == 'declarator' then
-						function_info.declaration = vim.treesitter.query.get_node_text(node, 0)
+						function_info.declaration = vim.treesitter.get_node_text(node, 0)
 					end
 				end
 			end
