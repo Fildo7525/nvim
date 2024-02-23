@@ -1,2 +1,2 @@
 require('usr.ts.treesitter')
-require('usr.ts.context')
+--[[ require('usr.ts.context') ]]
