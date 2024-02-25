@@ -40,6 +40,13 @@ neotree.setup({
 		highlight_separator = "NeoTreeTabSeparatorInactive",
 		highlight_separator_active = "NeoTreeTabSeparatorActive",
 	},
+	commands = {
+		system_open = function(state)
+			local node = state.tree:get_node()
+			local path = node:get_id()
+			vim.fn.jobstart({"xdg-open", path}, {detach = true})
+		end,
+	},
 	filesystem ={
 		hijack_netrw_behavior = "open_current",
 		group_empty_dirs = true,
@@ -47,6 +54,7 @@ neotree.setup({
 			mappings = {
 				["l"] = "open",
 				["h"] = "close_node",
+				["s"] = "system_open",
 			},
 			fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
 				["<C-j>"] = "move_cursor_down",
