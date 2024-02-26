@@ -143,7 +143,6 @@ end
 --- Open qt-5 documentation about the word under cursor.
 function QtQuerryFinder()
 	local address = "https://doc.qt.io/qt-5/" .. vim.fn.expand("<cword>"):lower() .. ".html"
-	-- ERROR: open / xdg-open doesn't work for me
 	vim.cmd(":!open " .. address .. " 2> /dev/null &")
 end
 
@@ -170,4 +169,5 @@ keymap("n", "<leader>sh", ":ClangdSwitchSourceHeader<CR>", opts)
 keymap("n", "<F2>", ":lua QtQuerryFinder()<CR>", opts)
 keymap("n", "<leader>md", ":lua CreateClassMethodDefinition()<CR>", opts)
 keymap("n", "<leader>cl", ":lua vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())<CR>", opts)
+keymap("n", "<leader>fo", ":! clang-format -i --style=file:.clang-format %<CR>", opts)
 
