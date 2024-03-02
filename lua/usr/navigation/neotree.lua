@@ -46,6 +46,11 @@ neotree.setup({
 			local path = node:get_id()
 			vim.fn.jobstart({"xdg-open", path}, {detach = true})
 		end,
+		set_to_middle = function(state)
+			-- Redraw, line [count] at center of window (default
+			-- cursor line). Leave the cursor in the same column.
+			vim.cmd("normal! zz")
+		end,
 	},
 	filesystem ={
 		hijack_netrw_behavior = "open_current",
@@ -55,6 +60,7 @@ neotree.setup({
 				["l"] = "open",
 				["h"] = "close_node",
 				["s"] = "system_open",
+				["z"] = "set_to_middle"
 			},
 			fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
 				["<C-j>"] = "move_cursor_down",
