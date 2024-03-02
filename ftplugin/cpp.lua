@@ -70,7 +70,7 @@ local function createDefinition(promptForSourceFile)
 			for node, name in current_node:iter_children() do
 				if node:named() then
 					if name == 'name' then
-						table.insert(parts, 1, vim.treesitter.query.get_node_text(node, 0))
+						table.insert(parts, 1, vim.treesitter.get_node_text(node, 0))
 					end
 				end
 			end
@@ -100,34 +100,28 @@ local function createDefinition(promptForSourceFile)
 		function_info.return_type = function_info.return_type .. ' '
 	end
 
-	local definition = string.format("%s%s", function_info.return_type, specifier)
+	local def = string.format("%s%s", function_info.return_type, specifier)
 
-	if definition:find(" = (.+),") then
-		definition = definition:gsub(" = (.+),", ",")
+	if def:find(" = (.+),") then
+		def = def:gsub(" = (.+),", ",")
 	end
 
-	if definition:find(" = (.+)[)]") then
-		definition = definition:gsub(" = (.+)[)]", ")")
+	if def:find(" = (.+)[)]") then
+		def = def:gsub(" = (.+)[)]", ")")
 	end
 
 	-- remove override and multiple spaces
-	definition = definition:gsub("^(.+)%)(.*)override(.*)", "%1)%2 %3"):gsub("%s+", " ") .. "\n{\n\n}\n"
+	def = def:gsub("^(.+)%)(.*)override(.*)", "%1)%2 %3"):gsub("%s+", " ")
 
-	if not fileExists(sourceFile) then
-		local out = io.open(sourceFile, "w")
-		if out ~= nil then
-			out:write("#include \"" .. headerFile .. "\"\n\n")
-			out:flush()
-			out:close()
-		end
+	local definition = { "", def, "{", "", "}" }
+	local source_buf_nr = vim.fn.bufnr(sourceFile)
+	if source_buf_nr == -1 then
+		vim.cmd("edit " .. sourceFile)
+		source_buf_nr = vim.fn.bufnr(sourceFile)
 	end
 
-	local out = io.open(sourceFile, 'a+')
-	if out ~= nil then
-		out:write(definition, "\n")
-		out:flush()
-		out:close()
-	end
+	vim.fn.bufload(source_buf_nr)
+	vim.fn.appendbufline(source_buf_nr, "$", definition)
 end
 
 
