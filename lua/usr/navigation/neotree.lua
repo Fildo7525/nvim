@@ -51,6 +51,11 @@ neotree.setup({
 			-- cursor line). Leave the cursor in the same column.
 			vim.cmd("normal! zz")
 		end,
+		execute = function(state)
+			local node = state.tree:get_node()
+			local path = node:get_id()
+			vim.cmd("! " .. path)
+		end,
 	},
 	filesystem ={
 		hijack_netrw_behavior = "open_current",
@@ -60,7 +65,8 @@ neotree.setup({
 				["l"] = "open",
 				["h"] = "close_node",
 				["s"] = "system_open",
-				["z"] = "set_to_middle"
+				["z"] = "set_to_middle",
+				["E"] = "execute",
 			},
 			fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
 				["<C-j>"] = "move_cursor_down",
