@@ -25,9 +25,7 @@ return {
 		"zsh",
 		"bash",
 	},
-	root_dir = function(fname)
-		return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
-	end,
+	root_dir = util.find_git_ancestor,
 	single_file_support = true,
 }
 
