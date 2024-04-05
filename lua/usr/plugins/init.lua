@@ -83,7 +83,7 @@ return {
 	{
 		'nvim-telescope/telescope.nvim',
 		tag = '0.1.6',
-		dependencies = { 'nvim-lua/plenary.nvim', '~/Documents/sourcing/reloader.nvim' },
+		dependencies = { 'nvim-lua/plenary.nvim', 'Fildo7525/reloader.nvim' },
 	},
 	"BurntSushi/ripgrep",
 
@@ -107,12 +107,6 @@ return {
 			'nvim-treesitter/nvim-treesitter',
 		},
 	},
-	--[[ { ]]
-	--[[ 	'nvim-treesitter/nvim-treesitter-context', ]]
-	--[[ 	dependencies = { ]]
-	--[[ 		'nvim-treesitter/nvim-treesitter', ]]
-	--[[ 	}, ]]
-	--[[ }, ]]
 
 	-- DOXYGEN
 	{
