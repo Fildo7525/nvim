@@ -5,7 +5,7 @@ local formatting = null_ls.builtins.formatting
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
 local diagnostics = null_ls.builtins.diagnostics
 -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/completion
--- local completion = null_ls.builtins.completion
+local completion = null_ls.builtins.completion
 --https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/code_action
 local code_actions = null_ls.builtins.code_actions
 
@@ -26,7 +26,7 @@ null_ls.setup({
 		}),
 		diagnostics.cppcheck.with({
 			extra_args = {
-				"--std=c++14",
+				"--std=c++17",
 				-- "--enable=all",
 				"--language=c++",
 				-- "--check-config",
@@ -43,6 +43,13 @@ null_ls.setup({
 				"--enable-sort true",
 			},
 		}),
+
+		-- SPELL
+		completion.spell,
+
+		-- MARKDOWN
+		diagnostics.alex,
+		diagnostics.buf,
 
 		-- SNIPPETS
 		-- completion.luasnip,

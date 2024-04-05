@@ -50,7 +50,7 @@ return {
 	"neovim/nvim-lspconfig", -- enable LSP
 	"williamboman/nvim-lsp-installer",
 	"ray-x/lsp_signature.nvim",
-	"jose-elias-alvarez/null-ls.nvim",
+	"nvimtools/none-ls.nvim",
 	"antoinemadec/FixCursorHold.nvim", -- This is needed to fix lsp doc highlight
 	"lervag/vimtex",
 
