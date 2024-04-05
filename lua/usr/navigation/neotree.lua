@@ -101,6 +101,7 @@ neotree.setup({
 				["s"] = "system_open",
 				["z"] = "set_to_middle",
 				["E"] = "execute",
+				["/"] = "",
 				["Y"] = "copy_name",
 			},
 			fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
