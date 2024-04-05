@@ -7,6 +7,12 @@ sat.setup {
 	excluded_filetypes = {},
 	width = 2,
 	handlers = {
+		cursor = {
+			enable = true,
+			symbols = { '⎺', '⎻', '⎼', '⎽' },
+			overlap = true,
+			priority = 0,
+		},
 		search = {
 			enable = true,
 		},
@@ -26,6 +32,13 @@ sat.setup {
 		marks = {
 			enable = true,
 			show_builtins = false, -- shows the builtin marks like [ ] < >
+			key = "",
+		},
+		quickfix = {
+			enable = true,
+			overlap = true,
+			priority = 3,
+			signs = { '-', '=', '≡'},
 		},
 	},
 }
