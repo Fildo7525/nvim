@@ -44,7 +44,7 @@ neotree.setup({
 		system_open = function(state)
 			local node = state.tree:get_node()
 			local path = node:get_id()
-			vim.fn.jobstart({"xdg-open", path}, {detach = true})
+			vim.ui.open(path)
 		end,
 		set_to_middle = function(state)
 			-- Redraw, line [count] at center of window (default
