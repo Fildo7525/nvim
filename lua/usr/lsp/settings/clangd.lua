@@ -15,9 +15,18 @@ local root_files = {
 	'compile',
 }
 
+local function get_clangd_path()
+	local current_dir = vim.fn.getcwd()
+	if current_dir:find("/esp") then
+		return vim.fn.getenv("HOME") .. "/Documents/STU/LS/TP/esp-clang/bin/clangd"
+	else
+		return "clangd"
+	end
+end
+
 -- TODO: add clang-tidy to on_atach with clangd
 return {
-	cmd = { "clangd",
+	cmd = { get_clangd_path(),
 		"--all-scopes-completion",
 		"--background-index",
 		"--clang-tidy",
