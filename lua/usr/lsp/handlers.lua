@@ -1,28 +1,26 @@
 local M = {}
 
--- TODO: make the hover colorful using the next methods:
--- vim.lsp.util.convert_input_to_markdown_lines()
--- vim.lsp.util.stylize_markdown()
--- vim.lsp.util.try_trim_markdown_code_blocks()
 M.setup = function()
 	local signs = {
-		{ name = "DiagnosticSignError", text = " "},
-		{ name = "DiagnosticSignWarn", text = " " },
-		{ name = "DiagnosticSignHint", text = " " },
-		{ name = "DiagnosticSignInfo", text = " " },
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.HINT] = "",
+			[vim.diagnostic.severity.INFO] = "",
+		},
+		numhl = {
+			[vim.diagnostic.severity.WARN] = 'WarningMsg',
+			[vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+			[vim.diagnostic.severity.HINT] = 'MoreMsg',
+			[vim.diagnostic.severity.INFO] = 'InfoMsg',
+		},
 	}
-
-	for _, sign in ipairs(signs) do
-		vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-	end
 
 	local config = {
 		-- disable virtual text
 		virtual_text = false,
 		-- show signs
-		signs = {
-			active = signs,
-		},
+		signs = signs,
 		update_in_insert = true,
 		underline = true,
 		severity_sort = true,
@@ -60,7 +58,7 @@ local function lsp_highlight_document(client)
 		]],
 			false
 		)
-	end
+ 	end
 	local illuminate = require("illuminate")
 	illuminate.on_attach(client)
 end
@@ -68,9 +66,9 @@ end
 -- To instead override globally
 -- local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
 -- function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
- --	opts = opts or {}
- --	opts.border = opts.border or signs
- --	return orig_util_open_floating_preview(contents, syntax, opts, ...)
+-- 	opts = opts or {}
+-- 	opts.border = opts.border or signs
+-- 	return orig_util_open_floating_preview(contents, syntax, opts, ...)
 -- end
 
 local function lsp_keymaps(bufnr)
