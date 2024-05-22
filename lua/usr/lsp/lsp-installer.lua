@@ -15,6 +15,7 @@ local servers = {
 	"vimls",
 	"yamlls",
 	"matlab_ls",
+	"gopls",
 }
 
 local settings = {
@@ -101,6 +102,11 @@ for _, server in pairs(servers) do
 	if server == "matlab_ls" then
 		local matlab_opts = require("usr.lsp.settings.matlabls")
 		opts = vim.tbl_deep_extend("force", matlab_opts, opts)
+	end
+
+	if server == "gopls" then
+		local go_opts = require("usr.lsp.settings.go")
+		opts = vim.tbl_deep_extend("force", go_opts, opts)
 	end
 
 	lspconfig[server].setup(opts)
