@@ -48,7 +48,6 @@ return {
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
 	"neovim/nvim-lspconfig", -- enable LSP
-	"williamboman/nvim-lsp-installer",
 	"ray-x/lsp_signature.nvim",
 	"nvimtools/none-ls.nvim",
 	"antoinemadec/FixCursorHold.nvim", -- This is needed to fix lsp doc highlight
@@ -56,10 +55,7 @@ return {
 
 	-- LUALINE & BUFFLINE
 	"nvim-lualine/lualine.nvim",
-	{
-		'akinsho/bufferline.nvim',
-		version = "*"
-	},
+	'akinsho/bufferline.nvim',
 	"famiu/bufdelete.nvim",
 
 	-- DEVICONS and NEO-TREE
@@ -73,7 +69,7 @@ return {
 		branch = "v3.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+			"kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
 			"MunifTanjim/nui.nvim",
 			"3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
 		}
@@ -147,7 +143,7 @@ return {
 
 	-- HLS
 	{
-		"asiryk/auto-hlsearch.nvim",
+		"Fildo7525/auto-hlsearch.nvim",
 		opts = {},
 	},
 
