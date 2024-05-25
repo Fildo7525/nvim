@@ -12,7 +12,10 @@ return {
 	"goolord/alpha-nvim",
 
 	-- PROJECTS
-	"ahmedkhalf/project.nvim", -- switch between projects on the system
+	{
+		"LennyPhoenix/project.nvim", -- switch between projects on the system
+		branch = "fix-get_clients",
+	},
 
 	-- dependencies
 	"nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
