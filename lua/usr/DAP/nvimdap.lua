@@ -7,7 +7,7 @@ local opts = { silent = true, }
 local keymap = vim.api.nvim_set_keymap
 
 -- require('dap')
-vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''})
+vim.fn.sign_define('DapBreakpoint', {text='', texthl='', linehl='', numhl=''})
 vim.fn.sign_define('DapStopped', {text='󰋇',  texthl='', linehl='', numhl=''})
 
 keymap("n", "<leader>dc", ":lua require'dap'.continue()<CR>", opts)
