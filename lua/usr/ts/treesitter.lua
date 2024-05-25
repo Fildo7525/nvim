@@ -1,10 +1,7 @@
 local treesitter = require("nvim-treesitter.configs")
 
-require("ts_context_commentstring").setup({
-	enable = true,
-	enable_autocmd = false,
-})
-vim.g.skip_ts_context_commentstring_module = true
+require("ts_context_commentstring").setup {}
+--[[ vim.g.skip_ts_context_commentstring_module = true ]]
 
 treesitter.setup({
 	-- One of "all", "maintained" (parsers with maintainers), or a list of languages
@@ -32,6 +29,12 @@ treesitter.setup({
 			if ok and stats and stats.size > max_filesize then
 				return true
 			end
+
+			if vim.bo.filetype == "tex" then
+				return true
+			end
+
+			return false
 		end,
 
 		-- Setting this to true will run `:h syntax` and tree-sitter at the same time.
