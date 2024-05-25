@@ -81,8 +81,8 @@ return {
 	-- TELESCOPE
 	{
 		'nvim-telescope/telescope.nvim',
-		tag = '0.1.6',
 		dependencies = { 'nvim-lua/plenary.nvim', 'Fildo7525/reloader.nvim' },
+		tag = '0.1.7',
 	},
 	"BurntSushi/ripgrep",
 
