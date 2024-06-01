@@ -30,10 +30,6 @@ treesitter.setup({
 				return true
 			end
 
-			if vim.bo.filetype == "tex" then
-				return true
-			end
-
 			return false
 		end,
 
