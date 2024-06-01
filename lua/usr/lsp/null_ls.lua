@@ -48,8 +48,6 @@ null_ls.setup({
 		completion.spell,
 
 		-- MARKDOWN
-		diagnostics.alex,
-		diagnostics.buf,
 
 		-- SNIPPETS
 		-- completion.luasnip,
