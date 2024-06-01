@@ -10,7 +10,7 @@ return {
 	keys = {
 		{ "<leader>gp", ":ChatGPT<cr>", desc = "Open window with Chat GPT-4" },
 	},
-	config = {
+	opts = {
 		welcome_message = "What may I help you with?", -- set to "" if you don't like the fancy robot
 		loading_text = "loading",
 		question_sign = "", -- you can use emoji if you want e.g. 🙂
