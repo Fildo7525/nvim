@@ -46,7 +46,11 @@ telescope.setup {
 				["<M-p>"] = action_layout.toggle_preview,
 			}
 		}
-	}
+	},
+	extensions = {
+		clang_reloader = {
+		},
+	},
 }
 
 -- telescope.load_extension('ros')
