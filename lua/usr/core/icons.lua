@@ -80,7 +80,7 @@ return {
 		Staged = " ",
 		Unmerged = " ",
 		Unstaged = " ",
-		Untracked = " ",
+		Untracked = "┆ ",
 	},
 	ui = {
 		ArrowClosed = " ",
