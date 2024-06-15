@@ -25,10 +25,6 @@ function ReloadConfig()
 	vim.notify("Nvim configuration reloaded!", vim.log.levels.INFO)
 end
 
-vim.keymap.set("n", "<leader>lh", function ()
-	require("usr.lsp.hover").display_hover()
-end)
-
 -- Reload init.lua
 vim.keymap.set("n", "<leader><cr>", function ()
 	ReloadConfig()
@@ -71,13 +67,8 @@ keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
 keymap("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)
 keymap("n", "<leader>pr", "<cmd>Telescope projects<CR>", opts)
 keymap("n", "<leader>fr", "<cmd>Telescope lsp_references<CR>", opts)
-keymap("n", "<leader>ss", "<cmd>lua require('usr.tscope.adjustments').source_search()<CR>", opts)
-keymap("n", "<leader>ag", "<cmd>lua require('usr.tscope.adjustments').extend_live_grep()<CR>", opts)
-keymap("n", "<leader>so", "<cmd>lua require('usr.tscope.adjustments').extend_live_grep(true)<CR>", opts)
 keymap("n", "<leader>fs", "<cmd>Telescope grep_string<CR>", opts)
-keymap("n", "<leader>fd", "<cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", opts)
 keymap('n', "<leader>cc", "<cmd>Telescope clang_reloader<CR>", opts)
-
 
 -- telescope git commands
 keymap("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", opts)
