@@ -144,7 +144,8 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Visual Block --
-keymap("v", "p", '"_dp', opts)
+vim.keymap.set("v", "p", '"_dP', opts)
+vim.keymap.set("v", "P", '"_dp', opts)
 
 -- Move text up and down
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
