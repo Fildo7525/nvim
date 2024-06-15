@@ -9,18 +9,31 @@ local diagnostics = {
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
 	sections = { "error", "warn" },
-	symbols = { error = " ", warn = " " },
+	symbols = {
+		error = icons.diagnostics.Error,
+		warn = icons.diagnostics.Warning,
+		info = icons.diagnostics.Info,
+		hint = icons.diagnostics.Hint
+	},
 	colored = true,
 	update_in_insert = false,
 	always_visible = true,
 }
 
+local function add_space(icon)
+	return " " .. icon
+end
+
 local diff = {
 	"diff",
 	colored = true,
-	symbols = { added = " ", modified = "  ", removed = "  " }, -- changes diff symbols
+	symbols = {
+		added = add_space(icons.git.Add),
+		modified = add_space(icons.git.Mod),
+		removed = add_space(icons.git.Remove),
+	}, -- changes diff symbols
 	diff_color = { added = 'diffAdd', modified = 'diffChange', removed = 'diffDelete'},
-	cond = hide_in_width
+	cond = hide_in_width,
 }
 
 local mode = {
@@ -52,26 +65,36 @@ local filename = {
 	file_status = true,
 	path = 1,
 	symbols = {
-		readonly = " ",
+		readonly = icons.access.ReadOnly,
 		unnamed = icons.kind.Unnamed,
-		modified = " ",
-	}
+		modified = icons.git.Mod,
+	},
 }
 
 local fileformat = {
 	"fileformat",
 	symbols = {
-		unix = '', -- e712
-		dos = '',  -- e70f
-		mac = '',  -- e711
-	}
+		unix = icons.system.Linux,
+		dos = icons.system.Windows,
+		mac = icons.system.Apple,
+	},
 }
 
 -- cool function for progress
 local progress = function()
 	local current_line = vim.fn.line(".")
 	local total_lines = vim.fn.line("$")
-	local chars = { "__", "▁▁", "▂▂", "▃▃", "▄▄", "▅▅", "▆▆", "▇▇", "██" }
+	local chars = {
+		icons.possition.Pos1,
+		icons.possition.Pos2,
+		icons.possition.Pos3,
+		icons.possition.Pos4,
+		icons.possition.Pos5,
+		icons.possition.Pos6,
+		icons.possition.Pos7,
+		icons.possition.Pos8,
+		icons.possition.Pos9,
+	}
 	local line_ratio = current_line / total_lines
 	local index = math.ceil(line_ratio * #chars)
 	return chars[index]
@@ -86,7 +109,7 @@ lualine.setup({
 		icons_enabled = true,
 		theme = "catppuccin",  --"catppuccin", -- "solarized_dark",
 		component_separators = { left = "", right = "" },
-		section_separators = { left = "", right = "" },
+		section_separators = { left = icons.ui.LeftSeparator, right = icons.ui.RightSeparator },
 		disabled_filetypes = { "dashboard", "NvimTree", "Outline" },
 		always_divide_middle = true,
 	},

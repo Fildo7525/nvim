@@ -12,14 +12,14 @@ bufferline.setup {
 		style_preset = bufferline.style_preset.minimal, -- or bufferline.style_preset.minimal,
 		themable = true, -- | false, -- allows highlight groups to be overriden i.e. sets highlights as default
 		indicator = {
-			icon = '▎', -- this should be omitted if indicator style is not 'icon'
+			icon = icons.git.BoldBar, -- this should be omitted if indicator style is not 'icon'
 			style = 'icon', -- | 'underline' | 'none',
 		},
 		buffer_close_icon = icons.ui.Close,
-		modified_icon = '●',
-		close_icon = '',
-		left_trunc_marker = '',
-		right_trunc_marker = '',
+		modified_icon = icons.git.Mod,
+		close_icon = icons.ui.Close,
+		left_trunc_marker = icons.ui.LeftMarker,
+		right_trunc_marker = icons.ui.RightMarker,
 		--- name_formatter can be used to change the buffer's label in the bufferline.
 		--- Please note some names can/will break the
 		--- bufferline so use this at your discretion knowing that it has
@@ -39,7 +39,7 @@ bufferline.setup {
 		diagnostics_update_in_insert = false,
 		-- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
 		diagnostics_indicator = function(count, level) --, diagnostics_dict, context)
-			local icon = level:match("error") and " " or " "
+			local icon = level:match("error") and icons.diagnostics.Error or icons.diagnostics.Warning
 			return " " .. icon .. count
 		end,
 		offsets = {

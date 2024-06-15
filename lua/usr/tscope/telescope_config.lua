@@ -1,6 +1,7 @@
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local action_layout = require "telescope.actions.layout"
+local icons = require("usr.core.icons")
 
 telescope.setup {
 	defaults = {
@@ -19,8 +20,8 @@ telescope.setup {
 		-- bottom_pane
 		-- center
 
-		prompt_prefix = " ",
-		selection_caret = " ",
+		prompt_prefix = icons.telescope.Prompt,
+		selection_caret = icons.telescope.Selection,
 		path_display = { "truncate" },
 		 -- path_display can be set to an array with a combination of:
 			-- - "hidden"	hide file names
