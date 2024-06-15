@@ -98,8 +98,6 @@ keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 vim.keymap.set("n", "<leader>db", require('dropbar.api').pick, opts)
 
-
-
 -- MARKDOWN PREVIEW
 keymap("n", "mpn", ":MarkdownPreview<CR>", opts)
 keymap("n", "mpf", ":MarkdownPreviewStop<CR>", opts)
@@ -130,7 +128,6 @@ keymap("n", "gR", "<cmd>Trouble lsp_references<cr>", opts)
 -- fold methods
 keymap("n", "<leader>fm", "v%zf", opts)
 
-
 -- Press jk fast to enter
 keymap("i", "jj", "<ESC>:w<CR>", opts)
 keymap("i", "kk", "<ESC>", opts)
@@ -146,12 +143,8 @@ keymap("v", "<leader>rr", "<Esc><cmd>lua require('telescope').extensions.refacto
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
--- Move text up and down
--- keymap("v", "<A-DOWN>", ":m .+1<CR>==", opts)
--- keymap("v", "<A-UP>", ":m .-2<CR>==", opts)
-keymap("v", "p", '"_dP', opts)
-
 -- Visual Block --
+keymap("v", "p", '"_dp', opts)
 
 -- Move text up and down
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
@@ -169,4 +162,3 @@ vim.cmd[[
 	augroup END
 ]]
 
---[[ keymap("n", "J", "<cmd>lua require('usr.lsp.hover).display_hover()<CR>", opts) ]]
