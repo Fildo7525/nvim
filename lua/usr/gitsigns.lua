@@ -2,13 +2,14 @@ local gitsigns = require("gitsigns")
 local icons = require("usr.core.icons")
 
 gitsigns.setup {
+	debug_mode = false,
 	signs = {
-		add = { hl = "GitSignsAdd", text = icons.git.BoldBar, numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
-		change = { hl = "GitSignsChange", text = icons.git.BoldBar, numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-		delete = { hl = "GitSignsDelete", text = icons.git.Deleted, numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-		topdelete = { hl = "GitSignsDelete", text = icons.git.Deleted, numhl = "GitSignsDeleteNr", linehl = "GitSignsDeleteLn" },
-		changedelete = { hl = "GitSignsChange", text = icons.git.BoldBar, numhl = "GitSignsChangeNr", linehl = "GitSignsChangeLn" },
-		untracked = { hl = "GitSignsUntracked", text = icons.git.Untracked, numhl = "GitSignsUntrackedNr", linehl = "GitSignsUntrackedLn" },
+		add = { text = icons.git.BoldBar },
+		change = { text = icons.git.BoldBar },
+		delete = { text = icons.git.Deleted },
+		topdelete = { text = icons.git.Deleted },
+		changedelete = { text = icons.git.BoldBar },
+		untracked = { text = icons.git.Untracked },
 	},
 	signcolumn = true, -- Toggle with `:Gitsigns toggle_signs`
 	numhl = false, -- Toggle with `:Gitsigns toggle_numhl`
@@ -28,9 +29,6 @@ gitsigns.setup {
 		ignore_whitespace = false,
 	},
 	current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
-	current_line_blame_formatter_opts = {
-		relative_time = false,
-	},
 	sign_priority = 6,
 	update_debounce = 100,
 	status_formatter = nil, -- Use default
