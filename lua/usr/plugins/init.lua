@@ -145,7 +145,7 @@ return {
 
 	-- HLS
 	{
-		"Fildo7525/auto-hlsearch.nvim",
+		"asiryk/auto-hlsearch.nvim",
 		opts = {},
 	},
 
