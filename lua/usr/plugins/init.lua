@@ -104,14 +104,6 @@ return {
 		build = ':TSUpdate',
 	},
 
-	-- TREESITTER PLUGINS
-	{
-		"mrjones2014/nvim-ts-rainbow",
-		dependencies = {
-			'nvim-treesitter/nvim-treesitter',
-		},
-	},
-
 	-- DOXYGEN
 	{
 		"danymat/neogen",
