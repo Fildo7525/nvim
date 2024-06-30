@@ -104,6 +104,8 @@ return {
 		build = ':TSUpdate',
 	},
 
+	"HiPhish/rainbow-delimiters.nvim",
+
 	-- DOXYGEN
 	{
 		"danymat/neogen",
