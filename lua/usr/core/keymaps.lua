@@ -2,7 +2,7 @@ local opts = { noremap = true, silent = true }
 
 local term_opts = { silent = true }
 
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 
 -- MODES
 --			normal - n
@@ -96,7 +96,7 @@ keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
-vim.keymap.set("n", "<leader>db", require('dropbar.api').pick, opts)
+keymap("n", "<leader>db", require('dropbar.api').pick, opts)
 
 -- MARKDOWN PREVIEW
 keymap("n", "mpn", ":MarkdownPreview<CR>", opts)
@@ -144,8 +144,8 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Visual Block --
-vim.keymap.set("v", "p", '"_dP', opts)
-vim.keymap.set("v", "P", '"_dp', opts)
+keymap("v", "p", '"_dP', opts)
+keymap("v", "P", '"_dp', opts)
 
 -- Move text up and down
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
