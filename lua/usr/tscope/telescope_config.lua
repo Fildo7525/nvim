@@ -42,6 +42,7 @@ telescope.setup {
 				["<C-k>"] = actions.cycle_history_prev,
 				["<C-j>"] = actions.cycle_history_next,
 				["<M-p>"] = action_layout.toggle_preview,
+				["<C-o>"] = function(p_bufnr) require("telescope.actions").send_selected_to_qflist(p_bufnr) vim.cmd.cfdo("edit") end,
 			},
 			n = {
 				["<M-p>"] = action_layout.toggle_preview,
