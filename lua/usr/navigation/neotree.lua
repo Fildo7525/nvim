@@ -98,17 +98,49 @@ neotree.setup({
 			mappings = {
 				["l"] = "open",
 				["h"] = "close_node",
+				["."] = "set_root",
 				["s"] = "system_open",
 				["z"] = "set_to_middle",
 				["E"] = "execute",
 				["/"] = "",
 				["Y"] = "copy_name",
 			},
-			fuzzy_finder_mappings = { -- define keymaps for filter popup window in fuzzy_finder_mode
+			-- define keymaps for filter popup window in fuzzy_finder_mode
+			fuzzy_finder_mappings = {
 				["<C-j>"] = "move_cursor_down",
 				["<C-k>"] = "move_cursor_up",
 			}
 		},
+	},
+	buffers = {
+		follow_current_file = {
+			-- This will find and focus the file in the active buffer every time
+			-- the current file is changed while the tree is open.
+			enabled = true,
+			-- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+			leave_dirs_open = false,
+		},
+		-- when true, empty folders will be grouped together
+		group_empty_dirs = true,
+		show_unloaded = true,
+		window = {
+			mappings = {
+				["d"] = "buffer_delete",
+				["h"] = "navigate_up",
+				["."] = "set_root",
+				["o"] = { "show_help", nowait=false, config = { title = "Order by", prefix_key = "o" }},
+				["l"] = "open",
+			}
+		},
+	},
+	git_status = {
+		window = {
+			position = "float",
+			mappings = {
+				["l"] = "open",
+				["."] = "set_root",
+			},
+		}
 	},
 	default_component_configs = {
 		diagnostics = {
