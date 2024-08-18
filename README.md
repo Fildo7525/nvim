@@ -1,11 +1,25 @@
 # nvimLua
 
+ > The links are pasted here as full links. Some browsers might not be able to open them.
+ > If you are using a browser that does not support the links, you can copy the link
+ > and paste it into the address bar.
+
+Table of Contents:
+- [Compatibility](#compatibility)
+- [Startup](#startup)
+- [Dependencies](#dependencies)
+- [Lsp](#lsp)
+- [DAP](#dap)
+- [Spelling](#spelling)
+
 ## Compatibility
 
 nvim version >= 0.7 <br />
+There is a specific branch for every branch from version 0.7.2. From version 0.11 (prerelease) I started using bob, (https://github.com/MordechaiHadad/bob)
+command for nvim version management. The version is included in the tags of the releases if they changed. Otherwise you can find the neovim releases on
 https://github.com/neovim/neovim/releases <br />
 
-I currently use `bob` (https://github.com/MordechaiHadad/bob/releases) to keep the nvim updated
+---
 
 ## Startup
 
@@ -23,32 +37,44 @@ If you want to setup latex with tree-sitter:
 
 setup guide [here](https://tree-sitter.github.io/tree-sitter/creating-parsers#installation)
 
-### NerdFonts
+---
+
+### Dependencies
+
+#### NerdFonts
 
 Download Nerdfont from
 https://www.nerdfonts.com/font-downloads
 unzip it delete all unneccessery files (If you are on linux delete everything containing ```Windows```).
 Move the remaining files to ```/usr/share/fonts``` so everyone can use them or to ```~/.fonts``` for your own usage.
 
-### Dependencies
+#### Other
 
-Install ```python3```, ```python2.7```, ```nodejs```, ```build-essential```, ```python3.10-venv```, ```pip```
+If you have any other unmet dependencies you can see them after invoking command ```:checkhealth```
+
+---
 
 ### Lsp
 
-Supported languages in this config are located in ```lua/usr/lsp/lsp-installer.lua```
+The custom lsp configurations are located in ```lua/usr/lsp/settings/```
+If you do no want to / need to change the confugration you can just install the servers using ```Mason``` command
+the default configuration from mason-lspconfig will be used.
 
-To use the LSP's type :LspInstall and install given servers
+To use the LSP's type ```:Mason``` and install given servers
 
-### C++
+#### C++
 
 To use lsp for c/cpp/objc download clangd, clangd-format, and clang-tidy using your package manager
 The formating standard is based on WebKit (tabsize - 4, strictly using tabs)
+
+---
 
 ### DAP
 
 DAP is currently supported for `C/C++`, `bash`, `python3`, `lua`
 Use `Mason` to install the debuggers. The configuration files are located in `lua/usr/DAP/`
+
+---
 
 ### Spelling
 
