@@ -86,7 +86,7 @@ local function lsp_keymaps(bufnr)
 	-- vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>fl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>qf", "<cmd>lua vim.lsp.buf.code_action({only=\"quickfix\"})<CR>", opts)
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
-	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ih", '<cmd>lua vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))<CR>', opts)
+	vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>ih", '<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>', opts)
 	vim.api.nvim_buf_set_keymap(
 		bufnr,
 		"n",
