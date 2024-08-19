@@ -1,6 +1,6 @@
 local M = {}
 
-M.setup = function()
+function M.setup()
 	local signs = {
 		text = {
 			[vim.diagnostic.severity.ERROR] = "",
@@ -100,7 +100,7 @@ local function lsp_keymaps(bufnr)
 	--[[ vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>fo", "<cmd>Format<CR>", opts) ]]
 end
 
-M.on_attach = function(client, bufnr)
+function M.on_attach(client, bufnr)
 	if client.name == "tsserver" then -- or client.name == "jdt.ls" then
 		client.server_capabilities.document_formatting = false
 	end

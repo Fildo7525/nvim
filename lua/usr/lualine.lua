@@ -1,7 +1,7 @@
 local lualine = require("lualine")
 local icons = require("usr.core.icons")
 
-local hide_in_width = function()
+local function hide_in_width()
 	return vim.fn.winwidth(0) > 80
 end
 
@@ -81,7 +81,7 @@ local fileformat = {
 }
 
 -- cool function for progress
-local progress = function()
+local function progress()
 	local current_line = vim.fn.line(".")
 	local total_lines = vim.fn.line("$")
 	local chars = {
@@ -100,7 +100,7 @@ local progress = function()
 	return chars[index]
 end
 
-local spaces = function()
+local function spaces()
 	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 

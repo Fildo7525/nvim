@@ -8,7 +8,7 @@ local function getPipenvPath()
 	return env .. '/bin/python'
 end
 
-dap.adapters.python = function(cb, config)
+function dap.adapters.python(cb, config)
 	if config.request == 'attach' then
 		---@diagnostic disable-next-line: undefined-field
 		local port = (config.connect or config).port
