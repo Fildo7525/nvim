@@ -58,23 +58,23 @@ keymap("n", "<leader>ht", require("usr.toggleterm").htop, opts)
 keymap("n", "<leader>nd", require("usr.toggleterm").ncdu, opts)
 
 -- TELESCOPE --
-keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
-keymap("n", "<leader>fc", "<cmd>Telescope current_buffer_fuzzy_find<CR>", opts)
-keymap("n", "<leader>re", "<cmd>Telescope resume<CR>", opts)
-keymap("n", "<leader>of", "<cmd>Telescope oldfiles<CR>", opts)
-keymap("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", opts)
-keymap("n", "<leader>fb", "<cmd>Telescope buffers<CR>", opts)
-keymap("n", "<leader>fh", "<cmd>Telescope help_tags<CR>", opts)
-keymap("n", "<leader>pr", "<cmd>Telescope projects<CR>", opts)
-keymap("n", "<leader>fr", "<cmd>Telescope lsp_references<CR>", opts)
-keymap("n", "<leader>fs", "<cmd>Telescope grep_string<CR>", opts)
-keymap("n", "<leader>fd", "<cmd>Telescope diagnostics<CR>", opts)
-keymap('n', "<leader>cc", "<cmd>Telescope clang_reloader<CR>", opts)
+keymap("n", "<leader>fb", require("telescope.builtin").buffers, opts)
+keymap("n", "<leader>fc", require("telescope.builtin").current_buffer_fuzzy_find, opts)
+keymap("n", "<leader>fd", require("telescope.builtin").diagnostics, opts)
+keymap("n", "<leader>ff", require("telescope.builtin").find_files, opts)
+keymap("n", "<leader>fg", require("telescope.builtin").live_grep, opts)
+keymap("n", "<leader>fh", require("telescope.builtin").help_tags, opts)
+keymap("n", "<leader>fr", require("telescope.builtin").lsp_references, opts)
+keymap("n", "<leader>fs", require("telescope.builtin").grep_string, opts)
+keymap("n", "<leader>of", require("telescope.builtin").oldfiles, opts)
+keymap("n", "<leader>re", require("telescope.builtin").resume, opts)
+keymap("n", "<leader>pr", require("telescope").extensions.projects.projects, opts)
+keymap('n', "<leader>cc", require("telescope").extensions.clang_reloader.clang_reloader, opts)
 
 -- telescope git commands
-keymap("n", "<leader>gc", "<cmd>Telescope git_commits<CR>", opts)
-keymap("n", "<leader>gb", "<cmd>Telescope git_branches<CR>", opts)
-keymap("n", "<leader>gs", "<cmd>Telescope git_status<CR>", opts)
+keymap("n", "<leader>gb", require("telescope.builtin").git_branches, opts)
+keymap("n", "<leader>gc", require("telescope.builtin").git_commits, opts)
+keymap("n", "<leader>gs", require("telescope.builtin").git_status, opts)
 
 -- SAVING --
 keymap("n", "<leader>w", ":w<CR>", opts)
@@ -83,7 +83,7 @@ keymap("n", "<leader>qq", ":q<CR>", opts)
 keymap("n", "<leader>bw", ":w <bar> :Bdelete! %d <CR>", opts) -- buffer writing
 keymap("n", "<leader>bd", ":bd<CR>", opts) -- buffer delete force
 keymap("n", "<leader>bD", ":Bdelete!<CR>", opts) -- buffer delete force
-keymap("n", "<leader>lf", ":lua require('revolver').OpenSavedFiles()<CR>", opts)
+keymap("n", "<leader>lf", require('revolver').OpenSavedFiles, opts)
 
 -- Resize with arrows
 keymap("n", "<M-UP>", ":resize -2<CR>", opts)
@@ -113,10 +113,10 @@ keymap("n", "<C-S-j>", ":move '<-2<CR>", opts)
 keymap("n", "<C-S-k>", ":move '>+1<CR>", opts)
 
 -- NEOGEN
-keymap("n", "<leader>nc", ":lua require('neogen').generate({ type = 'class'})<CR>", opts)
-keymap("n", "<leader>nf", ":lua require('neogen').generate({ type = 'func'})<CR>", opts)
-keymap("n", "<leader>nt", ":lua require('neogen').generate({ type = 'type'})<CR>", opts)
-keymap("n", "<leader>ni", ":lua require('neogen').generate({ type = 'file'})<CR>", opts)
+keymap("n", "<leader>nc", function () require('neogen').generate({ type = 'class'}) end, opts)
+keymap("n", "<leader>nf", function () require('neogen').generate({ type = 'func'}) end, opts)
+keymap("n", "<leader>nt", function () require('neogen').generate({ type = 'type'}) end, opts)
+keymap("n", "<leader>ni", function () require('neogen').generate({ type = 'file'}) end, opts)
 
 keymap("n", "<leader>tr", "<cmd>Trouble<cr>", opts)
 keymap("n", "<leader>twd", "<cmd>Trouble workspace_diagnostics<cr>", opts)
