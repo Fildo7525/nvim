@@ -136,9 +136,6 @@ keymap("i", "kk", "<ESC>", opts)
 local visual_opts = {noremap = true, silent = true, expr = false}
 keymap("v", "<leader>y", '"+y', visual_opts)
 
--- REFACTORING --
-keymap("v", "<leader>rr", "<Esc><cmd>lua require('telescope').extensions.refactoring.refactors()<CR>", visual_opts)
-
 -- Stay in indent mode
 keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
