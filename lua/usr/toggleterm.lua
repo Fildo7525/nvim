@@ -65,3 +65,11 @@ local python = Terminal:new({ cmd = "python", hidden = true })
 function _PYTHON_TOGGLE()
 	python:toggle()
 end
+
+return {
+	lazygit = _LAZYGIT_TOGGLE,
+	node = _NODE_TOGGLE,
+	ncdu = _NCDU_TOGGLE,
+	htop = _HTOP_TOGGLE,
+	python = _PYTHON_TOGGLE,
+}

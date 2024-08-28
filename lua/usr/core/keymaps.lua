@@ -52,10 +52,10 @@ keymap("n", "gf", ":e <cfile><CR>", opts)
 keymap("n", "<leader>4s", ":%s/    /<TAB>/g<CR>:set shiftwidth=4<CR>:set tabstop=4<CR>:set noexpandtab<CR>/asdfsaf<CR>/<CR>", opts)
 keymap("n", "<leader>2s", ":%s/  /<TAB>/g<CR>:set shiftwidth=4<CR>:set tabstop=4<CR>:set noexpandtab<CR>/asdfsaf<CR>/<CR>", opts)
 
-keymap("n", "<leader>lg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
-keymap("n", "<leader>py", "<cmd>lua _PYTHON_TOGGLE()<CR>", opts)
-keymap("n", "<leader>ht", "<cmd>lua _HTOP_TOGGLE()<CR>", opts)
-keymap("n", "<leader>nd", "<cmd>lua _NCDU_TOGGLE()<CR>", opts)
+keymap("n", "<leader>lg", require("usr.toggleterm").lazygit, opts)
+keymap("n", "<leader>py", require("usr.toggleterm").python, opts)
+keymap("n", "<leader>ht", require("usr.toggleterm").htop, opts)
+keymap("n", "<leader>nd", require("usr.toggleterm").ncdu, opts)
 
 -- TELESCOPE --
 keymap("n", "<leader>ff", "<cmd>Telescope find_files<CR>", opts)
