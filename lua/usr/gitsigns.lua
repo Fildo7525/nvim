@@ -66,7 +66,7 @@ gitsigns.setup {
 		end)
 
 		-- Actions
-		map('n', '<leader>tb', gitsigns.toggle_current_line_blame)
+		map('n', '<leader>lb', gitsigns.toggle_current_line_blame)
 		map('n', 'gfb', function() gitsigns.blame_line{full=true} end)
 		map("n", "<leader>gd", function ()
 				local commit = vim.fn.input("Enter commit: ", "HEAD~")
