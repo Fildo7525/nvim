@@ -23,7 +23,6 @@ local M = {
 		jsonls = require("usr.lsp.settings.jsonls"),
 		lemminx = require("usr.lsp.settings.lemminx"),
 		lua_ls = require("usr.lsp.settings.lua_ls"),
-		pyright = require("usr.lsp.settings.pyright"),
 		texlab = require("usr.lsp.settings.texlab"),
 		yamlls = require("lspconfig.server_configurations.yamlls"),
 	},
