@@ -4,7 +4,8 @@ local settings = require("usr.lsp.settings")
 local M = {}
 
 local function setup_lua_settings()
-	for _, name in pairs(settings.installed) do
+	local servers = require("mason-lspconfig").get_installed_servers()
+	for _, name in pairs(servers) do
 		local opts = {
 			on_attach = require("usr.lsp.handlers").on_attach,
 			capabilities = require("usr.lsp.handlers").capabilities,

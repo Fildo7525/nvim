@@ -12,7 +12,6 @@ local function find_file_in_dir(dir, file)
 end
 
 local M = {
-	installed = require("mason-lspconfig").get_installed_servers(),
 	lua = {
 		-- WARN: The conde in current for requires that the name in the table must be the name of the lsp.
 		-- At the same time the setting file does not need to have the same name as the lsp.
