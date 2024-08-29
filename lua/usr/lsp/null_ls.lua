@@ -47,6 +47,9 @@ null_ls.setup({
 		-- SPELL
 		completion.spell,
 
+		-- Python
+		diagnostics.mypy,
+
 		-- MARKDOWN
 
 		-- SNIPPETS
