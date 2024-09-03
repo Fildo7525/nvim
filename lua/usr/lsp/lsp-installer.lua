@@ -11,8 +11,8 @@ local function setup_lua_settings()
 			capabilities = require("usr.lsp.handlers").capabilities,
 		}
 
-		local setting = settings.lua[name]
-		if not setting then
+		local ok, setting = pcall(require, "usr.lsp.settings." .. name)
+		if not ok then
 			setting = require("lspconfig.server_configurations." .. name)
 		end
 
