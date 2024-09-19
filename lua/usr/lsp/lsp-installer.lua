@@ -13,7 +13,14 @@ local function setup_lua_settings()
 
 		local ok, setting = pcall(require, "usr.lsp.settings." .. name)
 		if not ok then
-			setting = require("lspconfig.server_configurations." .. name)
+			local conf_ok, tmp_setting = pcall(require, "lspconfig.server_configurations." .. name)
+			if conf_ok then
+				setting = tmp_setting
+			else
+				vim.notify("No settings found for " .. name, vim.log.levels.WARN)
+				setting = {}
+			end
+
 		end
 
 		opts = vim.tbl_deep_extend("force", opts, setting)
