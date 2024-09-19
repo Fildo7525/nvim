@@ -56,6 +56,7 @@ keymap("n", "<leader>lg", require("usr.toggleterm").lazygit, opts)
 keymap("n", "<leader>py", require("usr.toggleterm").python, opts)
 keymap("n", "<leader>ht", require("usr.toggleterm").htop, opts)
 keymap("n", "<leader>nd", require("usr.toggleterm").ncdu, opts)
+keymap("n", "<leader>rs", require("usr.toggleterm").r, opts)
 
 -- TELESCOPE --
 keymap("n", "<leader>fb", require("telescope.builtin").buffers, opts)
