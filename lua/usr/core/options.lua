@@ -7,6 +7,7 @@ local options = {
 	hlsearch = true,
 	linebreak = true,
 	list = true,
+	listchars = "tab:-->,trail:~,space:·",
 	mouse = "a",
 	mousemodel = "extend",
 	number = true,
@@ -17,19 +18,21 @@ local options = {
 	splitright = true,
 	tabstop = 4,
 	termguicolors = true,
+	textwidth = 125,
 }
 
 for k, v in pairs(options) do
 	vim.opt[k] = v
 end
 
-vim.opt.shortmess:append "c"
+-- APPEND OPTIONS
+vim.opt.clipboard:append("unnamedplus")
+vim.opt.iskeyword:append("-")
+vim.opt.shortmess:append("c")
+vim.opt.statusline:append("%-{get(b:,'gitsigns_status','')}")
+vim.opt.whichwrap:append("<,>,[,],h,l")
 
-vim.cmd "set whichwrap+=<,>,[,],h,l"
-vim.cmd "set listchars=tab:-->,trail:~,space:·"
-vim.cmd [[set iskeyword+=-]]
-vim.cmd [[set formatoptions-=cro]]
-vim.cmd [[set statusline+=%-{get(b:,'gitsigns_status','')}]]
-vim.cmd [[set clipboard+=unnamedplus]]
--- vim.cmd [[set spell spelllang=en_us]]
+-- REMOVE OPTIONS
+vim.opt.formatoptions:append("cn")
+vim.opt.formatoptions:remove("ro")
 
