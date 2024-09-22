@@ -1,3 +1,7 @@
+local append = "a"
+local remove = "r"
+local prepend = "p"
+
 local options = {
 	autoread = true,
 	conceallevel = 0, -- can create error on lazy installing plugins
@@ -19,20 +23,37 @@ local options = {
 	tabstop = 4,
 	termguicolors = true,
 	textwidth = 125,
+	clipboard = {append, "unnamedplus"},
+	iskeyword = {append, "-"},
+	shortmess = {append, "c"},
+	statusline = {append, "%-{get(b:,'gitsigns_status','')}"},
+	whichwrap = {append, "<,>,[,],h,l"},
+	formatoptions = {append, "cn", remove, "ro"},
 }
 
 for k, v in pairs(options) do
-	vim.opt[k] = v
+	if type(v) ~= "table" then
+		vim.opt[k] = v
+		goto continue
+	end
+
+	if #v % 2 == 1 then
+		vim.notify("Table must have an even number of elements. Option " .. k, vim.log.levels.ERROR)
+		goto continue
+	end
+
+	for i=1, #v/2 do
+		if v[i*2-1] == append then
+			vim.opt[k]:append(v[i*2])
+		elseif v[i*2-1] == remove then
+			vim.opt[k]:remove(v[i*2])
+		elseif v[i*2-1] == prepend then
+			vim.opt[k]:prepend(v[i*2])
+		else
+			error("Invalid option")
+		end
+	end
+
+	::continue::
 end
-
--- APPEND OPTIONS
-vim.opt.clipboard:append("unnamedplus")
-vim.opt.iskeyword:append("-")
-vim.opt.shortmess:append("c")
-vim.opt.statusline:append("%-{get(b:,'gitsigns_status','')}")
-vim.opt.whichwrap:append("<,>,[,],h,l")
-
--- REMOVE OPTIONS
-vim.opt.formatoptions:append("cn")
-vim.opt.formatoptions:remove("ro")
 
