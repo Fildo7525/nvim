@@ -4,6 +4,7 @@ require("usr.core")
 
 require("usr.alpha")
 require("usr.annotations")
+require("usr.autocomands")
 require("usr.autopairs")
 require("usr.bufferline")
 require("usr.cmp")
