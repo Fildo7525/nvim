@@ -1,5 +1,7 @@
+local opts = { noremap = true, silent = true }
+local keymap = vim.keymap.set
 
-vim.keymap.set("n", "<leader>mp", function ()
+local function mdToPdf()
 	vim.print("Converting " .. vim.fn.bufname() .. " to pdf")
 	local data = io.popen("pandoc -f markdown -t pdf -o " .. vim.fn.expand("%:r") .. ".pdf " .. vim.fn.bufname())
 	if data == nil then
@@ -15,4 +17,23 @@ vim.keymap.set("n", "<leader>mp", function ()
 	vim.notify(output, vim.log.levels.WARN, {
 		title = "Markdown to PDF",
 	})
-end)
+end
+
+local function addDictionaryLine()
+	local line = vim.fn.input("Enter words in format: 'danish english': ")
+	local input = {danish = "", english = ""}
+	-- This is the way how to capture utf-8 characters. This is needed for æ,ø,å
+	for d, e in string.gmatch(line, "([^\\u0000-\\u007F]+) ([^\\u0000-\\u007F]+)") do
+		print(d .. " => " .. e)
+		input.danish = d
+		input.english = e
+	end
+
+	local data = "| [" .. input.danish .. "](https://ordnet.dk/ddo_en/dict?query=" .. input.danish .. ") |  | " .. input.english .. " |  |"
+	print(data)
+	local lineNo = vim.fn.line('.')
+	vim.fn.appendbufline(vim.fn.bufnr(), lineNo, data)
+end
+
+keymap("n", "<leader>mp", mdToPdf, opts)
+keymap("n", "<C-a>", addDictionaryLine, opts)
