@@ -4,6 +4,7 @@ local prepend = "p"
 
 local options = {
 	autoread = true,
+	clipboard = "unnamedplus",
 	conceallevel = 0, -- can create error on lazy installing plugins
 	cursorline = true,
 	expandtab = false,
@@ -23,7 +24,6 @@ local options = {
 	tabstop = 4,
 	termguicolors = true,
 	textwidth = 125,
-	clipboard = {append, "unnamedplus"},
 	iskeyword = {append, "-"},
 	shortmess = {append, "c"},
 	statusline = {append, "%-{get(b:,'gitsigns_status','')}"},
