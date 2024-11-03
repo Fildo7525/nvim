@@ -11,6 +11,16 @@ Table of Contents:
 - [Lsp](#lsp)
 - [DAP](#dap)
 - [Spelling](#spelling)
+- [Markdown](#markdown)
+
+| Language      | Files | Blank | Comment | Code  |
+|---------------|-------|-------|---------|-------|
+| Lua           | 72    | 384   | 474     | 2758  |
+| JSON          | 2     | 0     | 0       | 130   |
+| YAML          | 1     | 0     | 1       | 114   |
+| Markdown      | 1     | 33    | 0       | 60    |
+| Vim Script    | 1     | 8     | 21      | 33    |
+| **SUM:**      | 77    | 425   | 496     | 3095  |
 
 ## Compatibility
 
@@ -18,8 +28,6 @@ nvim version >= 0.7 <br />
 There is a specific branch for every branch from version 0.7.2. From version 0.11 (prerelease) I started using bob, (https://github.com/MordechaiHadad/bob)
 command for nvim version management. The version is included in the tags of the releases if they changed. Otherwise you can find the neovim releases on
 https://github.com/neovim/neovim/releases <br />
-
----
 
 ## Startup
 
@@ -81,3 +89,12 @@ Use `Mason` to install the debuggers. The configuration files are located in `lu
 If the spell file you are looking for in not downloaded by neovim automaticly head to the server ```https://ftp.nluug.nl/vim/runtime/spell/```
 and download it manually to ```~/.config/nvim/spell/```. This will fix the issue.
 
+### Markdown
+
+For the markdown ftplugins to work there are requirements
+
+```bash
+sudo apt install luarocks
+sudo luarocks install luasocket htmlparser luasec html-entities
+luarocks path >> ~/.zshrc
+```
