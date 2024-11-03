@@ -1,5 +1,7 @@
-local opts = { noremap = true, silent = true }
 local keymap = vim.keymap.set
+
+local http = require("socket.http")
+local html = require("htmlEntities")
 
 local function mdToPdf()
 	vim.print("Converting " .. vim.fn.bufname() .. " to pdf")
@@ -19,21 +21,41 @@ local function mdToPdf()
 	})
 end
 
+local function scrape_and_find(url)
+	-- Make the HTTP request.
+	local body, code = http.request(url)
+
+	if code ~= 200 then
+		print("Failed to fetch URL: " .. tostring(code))
+		return nil
+	end
+
+	-- Define a pattern to match UTF-8 characters in braces.
+	local utf8_pattern = "</span>([^\\u0000-\\u007F]+)<span class=\"diskret\">"
+
+	-- This is not efficient but otherwise we cannot detect the pronauntiation (udtale).
+	body = html.decode(body)
+
+	-- Search for the pattern.
+	return body:match(utf8_pattern)
+end
+
 local function addDictionaryLine()
-	local line = vim.fn.input("Enter words in format: 'danish english': ")
+	local line = vim.fn.input("Enter words in format: 'danish,english': ")
 	local input = {danish = "", english = ""}
 	-- This is the way how to capture utf-8 characters. This is needed for æ,ø,å
-	for d, e in string.gmatch(line, "([^\\u0000-\\u007F]+) ([^\\u0000-\\u007F]+)") do
-		print(d .. " => " .. e)
+	for d, e in string.gmatch(line, "([^\r\n]+),([^\r\n]+)") do
 		input.danish = d
 		input.english = e
 	end
 
-	local data = "| [" .. input.danish .. "](https://ordnet.dk/ddo_en/dict?query=" .. input.danish .. ") |  | " .. input.english .. " |  |"
-	print(data)
+	local url = "https://ordnet.dk/ddo_en/dict?query=" .. input.danish
+	local pronauntiation = scrape_and_find(url) or ""
+
+	local data = "| [" .. input.danish .. "](" .. url .. ") | [" .. pronauntiation .. "] | " .. input.english .. " |  |"
 	local lineNo = vim.fn.line('.')
 	vim.fn.appendbufline(vim.fn.bufnr(), lineNo, data)
 end
 
-keymap("n", "<leader>mp", mdToPdf, opts)
-keymap("n", "<C-a>", addDictionaryLine, opts)
+keymap("n", "<leader>mp", mdToPdf)
+keymap("n", "<C-a>", addDictionaryLine)
