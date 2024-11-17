@@ -50,7 +50,10 @@ return {
 	"hrsh7th/cmp-cmdline", -- cmdline completions
 	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/cmp-nvim-lua", -- lua nvim scripting
-	"saadparwaiz1/cmp_luasnip", -- snippet completions
+	{
+		"saadparwaiz1/cmp_luasnip", -- snippet completions
+		lazy = true,
+	},
 	"windwp/nvim-autopairs",
 
 	--	LSP
@@ -102,6 +105,7 @@ return {
 	{
 		'nvim-treesitter/nvim-treesitter',
 		build = ':TSUpdate',
+		lazy = true,
 	},
 
 	"HiPhish/rainbow-delimiters.nvim",
@@ -113,14 +117,18 @@ return {
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 		},
-		version = "*"
+		version = "*",
+		lazy = true,
 	},
 	"folke/todo-comments.nvim", -- highlight comments like TODO:
 	"RRethy/vim-illuminate", -- highlight all occurances of a word under cursor
 
 	-- COMMENTING
 	"numToStr/Comment.nvim",
-	"JoosepAlviste/nvim-ts-context-commentstring",
+	{
+		"JoosepAlviste/nvim-ts-context-commentstring",
+		lazy = true,
+	},
 
 	-- GIT
 	"lewis6991/gitsigns.nvim",

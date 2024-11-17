@@ -104,5 +104,6 @@ return {
 		return opts
 	end,
 	ft = { "markdown" },
+	lazy = true,
 }
 
