@@ -58,4 +58,4 @@ local function addDictionaryLine()
 end
 
 keymap("n", "<leader>mp", mdToPdf)
-keymap("n", "<C-a>", addDictionaryLine)
+keymap("n", "<C-z>", addDictionaryLine)
