@@ -157,6 +157,27 @@ return {
 		opts = {},
 	},
 
+	-- INDENT BLANKLINE
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		---@module "ibl"
+		---@type ibl.config
+		opts = {
+			indent = {
+				char = "▏",
+				tab_char = "▏"
+			},
+			scope = {
+				show_start = false,
+				show_end = false,
+				include = { node_type = {
+					python = { "if_statement", "elif_statement", "else_clause", "while_statement", "for_statement", "with_statement" },
+				}},
+			},
+		},
+	},
+
 	-- GRAY OUT UNUSED CODE
 	"theHamsta/nvim-semantic-tokens",
 }
