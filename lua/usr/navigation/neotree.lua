@@ -96,14 +96,16 @@ neotree.setup({
 		group_empty_dirs = true,
 		window = {
 			mappings = {
-				["l"] = "open",
-				["h"] = "close_node",
 				["."] = "set_root",
-				["s"] = "system_open",
-				["z"] = "set_to_middle",
-				["E"] = "execute",
 				["/"] = "",
+				["E"] = "execute",
 				["Y"] = "copy_name",
+				["h"] = "close_node",
+				["l"] = "open",
+				["m"] = "move",
+				["s"] = "system_open",
+				["x"] = "cut_to_clipboard",
+				["z"] = "set_to_middle",
 			},
 			-- define keymaps for filter popup window in fuzzy_finder_mode
 			fuzzy_finder_mappings = {
