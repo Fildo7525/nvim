@@ -1,7 +1,7 @@
-local keymap = vim.keymap.set
-
 local http = require("socket.http")
 local html = require("htmlEntities")
+
+local keymap = vim.keymap.set
 
 local function mdToPdf()
 	vim.print("Converting " .. vim.fn.bufname() .. " to pdf")
