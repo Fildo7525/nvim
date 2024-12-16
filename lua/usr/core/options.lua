@@ -45,12 +45,16 @@ for k, v in pairs(options) do
 	for i=1, #v/2 do
 		if v[i*2-1] == append then
 			vim.opt[k]:append(v[i*2])
+
 		elseif v[i*2-1] == remove then
 			vim.opt[k]:remove(v[i*2])
+
 		elseif v[i*2-1] == prepend then
 			vim.opt[k]:prepend(v[i*2])
+
 		else
 			error("Invalid option")
+
 		end
 	end
 
