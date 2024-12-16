@@ -126,7 +126,7 @@ keymap("n", "<leader>fm", "v%zf", opts)
 
 -- Press jk fast to enter
 keymap("i", "jj", "<ESC>:w<CR>", opts)
-keymap("i", "kk", "<ESC>", opts)
+keymap("i", "jk", "<ESC>", opts)
 
 -- Visual --
 local visual_opts = {noremap = true, silent = true, expr = false}
