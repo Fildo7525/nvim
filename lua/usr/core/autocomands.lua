@@ -21,11 +21,16 @@ local at_save = vim.api.nvim_create_augroup("Save", {
 vim.api.nvim_create_autocmd({ "BufWrite" }, {
 	pattern = { "*" },
 	callback = function()
+		local cursor_pos = vim.api.nvim_win_get_cursor(0)
+
 		-- Trim trailing whitespace
-		if vim.bo.modifiable then
-			vim.cmd("%s/\\s\\+$//e")
-			vim.cmd.write()
+		if not vim.bo.modifiable then
+			return
 		end
+
+		vim.cmd("%s/\\s\\+$//e")
+		vim.cmd.write()
+		vim.api.nvim_win_set_cursor(0, cursor_pos)
 	end,
 	group = at_save,
 })
