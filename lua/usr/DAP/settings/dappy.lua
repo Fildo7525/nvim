@@ -8,6 +8,17 @@ local function getPipenvPath()
 	return env .. '/bin/python'
 end
 
+local enrich_config = function(config, on_config)
+	if not config.pythonPath and not config.python then
+		config.pythonPath = getPipenvPath()
+	end
+	if config.subProcess == nil then
+		config.subProcess = false
+	end
+	on_config(config)
+end
+
+
 function dap.adapters.python(cb, config)
 	if config.request == 'attach' then
 		---@diagnostic disable-next-line: undefined-field
@@ -18,6 +29,7 @@ function dap.adapters.python(cb, config)
 			type = 'server',
 			port = assert(port, '`connect.port` is required for a python `attach` configuration'),
 			host = host,
+			enrich_config = enrich_config,
 			options = {
 				source_filetype = 'python',
 			},
@@ -25,8 +37,9 @@ function dap.adapters.python(cb, config)
 	else
 		cb({
 			type = 'executable',
-			command = '/usr/bin/python',
+			command = getPipenvPath(),
 			args = { '-m', 'debugpy.adapter' },
+			enrich_config = enrich_config,
 			options = {
 				source_filetype = 'python',
 			},
