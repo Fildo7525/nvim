@@ -177,7 +177,4 @@ return {
 			},
 		},
 	},
-
-	-- GRAY OUT UNUSED CODE
-	"theHamsta/nvim-semantic-tokens",
 }
