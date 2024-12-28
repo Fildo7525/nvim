@@ -6,7 +6,7 @@ require("ts_context_commentstring").setup {}
 treesitter.setup({
 	-- One of "all", "maintained" (parsers with maintainers), or a list of languages
 	-- ensure_installed = "maintained",
-	ensure_installed = "all",
+	ensure_installed = {"cpp", "python", "c", "lua", "javascript", "typescript" },
 
 	-- Install languages synchronously (only applied to `ensure_installed`)
 	sync_install = false,
@@ -16,7 +16,7 @@ treesitter.setup({
 	auto_install = true,
 
 	-- List of parsers to ignore installing
-	ignore_install = { "" },
+	ignore_install = { "julia" },
 
 	highlight = {
 		-- `false` will disable the whole extension
