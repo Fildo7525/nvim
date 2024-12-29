@@ -160,9 +160,9 @@ return {
 	"nvim-neotest/nvim-nio",
 
 	-- WINBAR
-	"Bekaboo/dropbar.nvim",
+	--[[ "Bekaboo/dropbar.nvim", ]]
 
-	"github/copilot.vim",
+	--[[ "github/copilot.vim", ]]
 	"Fildo7525/Revolver",
 	{
 		"Fildo7525/pretty_hover",
