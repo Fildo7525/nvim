@@ -6,7 +6,7 @@ require("ts_context_commentstring").setup {}
 treesitter.setup({
 	-- One of "all", "maintained" (parsers with maintainers), or a list of languages
 	-- ensure_installed = "maintained",
-	ensure_installed = "all",
+	ensure_installed = { "markdown", "markdown_inline", "lua", "c", "cpp", "python", "json", "toml", "vim", "vimdoc" },
 
 	-- Install languages synchronously (only applied to `ensure_installed`)
 	sync_install = false,
