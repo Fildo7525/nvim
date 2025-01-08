@@ -50,7 +50,6 @@ return {
 
 	-- SCROLLING --
 	"lewis6991/satellite.nvim",
-	"karb94/neoscroll.nvim",
 
 	-- snippets
 	{
