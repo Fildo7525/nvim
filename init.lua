@@ -2,7 +2,6 @@
 require("usr.lazyManager")
 require("usr.core")
 
-require("usr.alpha")
 require("usr.annotations")
 require("usr.autopairs")
 require("usr.bufferline")
