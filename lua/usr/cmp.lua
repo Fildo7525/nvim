@@ -66,6 +66,7 @@ cmp.setup {
 				nvim_lsp = "[LSP]",
 				buffer = "[Buffer]",
 				path = "[Path]",
+				lazydev = "[LazyDev]",
 			})[entry.source.name]
 			return vim_item
 		end,
@@ -75,6 +76,7 @@ cmp.setup {
 		{ name = "nvim_lsp" },
 		{ name = "buffer" },
 		{ name = "path" },
+		{ name = "lazydev", group_index = 0, },
 	},
 	confirm_opts = {
 		behavior = cmp.ConfirmBehavior.Replace,
