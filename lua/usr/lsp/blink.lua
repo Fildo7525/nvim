@@ -1,5 +1,3 @@
---- @module 'blink.cmp'
---- @type blink.cmp.Config
 return {
 	completion = {
 		documentation = {
@@ -20,6 +18,13 @@ return {
 			draw = {
 				treesitter = { 'lsp' },
 			},
+		},
+	},
+
+	signature = {
+		enabled = true,
+		window = {
+			border = "rounded",
 		},
 	},
 
