@@ -1,5 +1,13 @@
-local http = require("socket.http")
-local html = require("htmlEntities")
+function os.name()
+	local BinaryFormat = package.cpath:match("%p[\\|/]?%p(%a+)")
+	if BinaryFormat == "dll" then
+		return "Windows"
+	elseif BinaryFormat == "so" then
+		return "Linux"
+	end
+
+	return "MacOS"
+end
 
 local keymap = vim.keymap.set
 
@@ -21,41 +29,48 @@ local function mdToPdf()
 	})
 end
 
-local function scrape_and_find(url)
-	-- Make the HTTP request.
-	local body, code = http.request(url)
+if os.name() == "Linux" then
+	local http = require("socket.http")
+	local html = require("htmlEntities")
 
-	if code ~= 200 then
-		print("Failed to fetch URL: " .. tostring(code))
-		return nil
+	local function scrape_and_find(url)
+		-- Make the HTTP request.
+		local body, code = http.request(url)
+
+		if code ~= 200 then
+			print("Failed to fetch URL: " .. tostring(code))
+			return nil
+		end
+
+		-- Define a pattern to match UTF-8 characters in braces.
+		local utf8_pattern = "</span>([^\\u0000-\\u007F]+)<span class=\"diskret\">"
+
+		-- This is not efficient but otherwise we cannot detect the pronauntiation (udtale).
+		body = html.decode(body)
+
+		-- Search for the pattern.
+		return body:match(utf8_pattern)
 	end
 
-	-- Define a pattern to match UTF-8 characters in braces.
-	local utf8_pattern = "</span>([^\\u0000-\\u007F]+)<span class=\"diskret\">"
+	local function addDictionaryLine()
+		local line = vim.fn.input("Enter words in format: 'danish,english': ")
+		local input = {danish = "", english = ""}
+		-- This is the way how to capture utf-8 characters. This is needed for æ,ø,å
+		for d, e in string.gmatch(line, "([^\r\n]+),([^\r\n]+)") do
+			input.danish = d
+			input.english = e
+		end
 
-	-- This is not efficient but otherwise we cannot detect the pronauntiation (udtale).
-	body = html.decode(body)
+		local url = "https://ordnet.dk/ddo_en/dict?query=" .. input.danish
+		local pronauntiation = scrape_and_find(url) or ""
 
-	-- Search for the pattern.
-	return body:match(utf8_pattern)
-end
-
-local function addDictionaryLine()
-	local line = vim.fn.input("Enter words in format: 'danish,english': ")
-	local input = {danish = "", english = ""}
-	-- This is the way how to capture utf-8 characters. This is needed for æ,ø,å
-	for d, e in string.gmatch(line, "([^\r\n]+),([^\r\n]+)") do
-		input.danish = d
-		input.english = e
+		local data = "| [" .. input.danish .. "](" .. url .. ") | [" .. pronauntiation .. "] | " .. input.english .. " |  |"
+		local lineNo = vim.fn.line('.')
+		vim.fn.appendbufline(vim.fn.bufnr(), lineNo, data)
 	end
 
-	local url = "https://ordnet.dk/ddo_en/dict?query=" .. input.danish
-	local pronauntiation = scrape_and_find(url) or ""
-
-	local data = "| [" .. input.danish .. "](" .. url .. ") | [" .. pronauntiation .. "] | " .. input.english .. " |  |"
-	local lineNo = vim.fn.line('.')
-	vim.fn.appendbufline(vim.fn.bufnr(), lineNo, data)
+	keymap("n", "<C-z>", addDictionaryLine)
 end
 
 keymap("n", "<leader>mp", mdToPdf)
-keymap("n", "<C-z>", addDictionaryLine)
+
