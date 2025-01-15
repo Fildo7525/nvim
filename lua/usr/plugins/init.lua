@@ -27,12 +27,9 @@ return {
 			},
 			-- always enable unless `vim.g.lazydev_enabled = false`
 			-- This is the default
+			---@type boolean|(fun(root:string):boolean?)
 			enabled = function(root_dir)
 				return vim.g.lazydev_enabled == nil and true or vim.g.lazydev_enabled
-			end,
-			-- disable when a .luarc.json file is found
-			enabled = function(root_dir)
-				return not vim.uv.fs_stat(root_dir .. "/.luarc.json")
 			end,
 		}
 	},
@@ -97,11 +94,24 @@ return {
 
 	-- cmp plugins
 	"hrsh7th/nvim-cmp", -- The completion plugin
-	"hrsh7th/cmp-buffer", -- buffer completions
-	"hrsh7th/cmp-path", -- path completions
-	"hrsh7th/cmp-cmdline", -- cmdline completions
 	"hrsh7th/cmp-nvim-lsp",
-	"hrsh7th/cmp-nvim-lua", -- lua nvim scripting
+	{
+		'saghen/blink.cmp',
+		-- optional: provides snippets for the snippet source
+		dependencies = 'rafamadriz/friendly-snippets',
+		after = '~/Documents/sourcing/pretty_hover',
+
+		-- use a release tag to download pre-built binaries
+		version = '*',
+		-- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+		-- build = 'cargo build --release',
+		-- If you use nix, you can build from source using latest nightly rust with:
+		-- build = 'nix run .#build-plugin',
+
+		opts = require("usr.lsp.blink"),
+		opts_extend = { "sources.default" },
+		event = "LspAttach",
+	},
 	{
 		"saadparwaiz1/cmp_luasnip", -- snippet completions
 		lazy = true,
@@ -198,7 +208,7 @@ return {
 	"github/copilot.vim",
 	"Fildo7525/Revolver",
 	{
-		"Fildo7525/pretty_hover",
+		dir = "~/Documents/sourcing/pretty_hover",
 		event = "LspAttach",
 		opts = {},
 	},
