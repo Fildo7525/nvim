@@ -89,6 +89,7 @@ return {
 		version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
 		-- install jsregexp (optional!).
 		build = "make install_jsregexp",
+		lazy = true,
 	},
 	"rafamadriz/friendly-snippets", -- a bunch of snippets to use
 
@@ -114,7 +115,7 @@ return {
 	},
 	{
 		"saadparwaiz1/cmp_luasnip", -- snippet completions
-		lazy = true,
+		event = "LspAttach",
 	},
 	"windwp/nvim-autopairs",
 
@@ -160,6 +161,7 @@ return {
 	{
 		"ckipp01/stylua-nvim",
 		build = "cargo install stylua",
+		lazy = true,
 	},
 
 	-- TREESITTER
@@ -169,7 +171,10 @@ return {
 		lazy = true,
 	},
 
-	"HiPhish/rainbow-delimiters.nvim",
+	{
+		"HiPhish/rainbow-delimiters.nvim",
+		lazy = true,
+	},
 
 	-- DOXYGEN
 	{
@@ -181,7 +186,11 @@ return {
 		version = "*",
 		lazy = true,
 	},
-	"folke/todo-comments.nvim", -- highlight comments like TODO:
+	{
+		"folke/todo-comments.nvim", -- highlight comments like TODO:
+		lazy = true,
+	},
+
 	"RRethy/vim-illuminate", -- highlight all occurances of a word under cursor
 
 	-- COMMENTING
@@ -192,20 +201,41 @@ return {
 	},
 
 	-- GIT
-	"lewis6991/gitsigns.nvim",
 	"kdheepak/lazygit.nvim",
+	{
+		"lewis6991/gitsigns.nvim",
+		lazy = true,
+	},
 
 	-- DAP
-	"mfussenegger/nvim-dap",
-	"rcarriga/nvim-dap-ui",
-	"theHamsta/nvim-dap-virtual-text",
-	"nvim-neotest/nvim-nio",
+	{
+		"mfussenegger/nvim-dap",
+		lazy = true,
+	},
+	{
+		"rcarriga/nvim-dap-ui",
+		lazy = true,
+	},
+	{
+		"theHamsta/nvim-dap-virtual-text",
+		lazy = true,
+	},
+	{
+		"nvim-neotest/nvim-nio",
+		lazy = true,
+	},
 
 	-- WINBAR
 	"Bekaboo/dropbar.nvim",
 
-	"github/copilot.vim",
-	"Fildo7525/Revolver",
+	{
+		"github/copilot.vim",
+		event = "LspAttach",
+	},
+	{
+		"Fildo7525/Revolver",
+		event = "LspAttach",
+	},
 	{
 		"Fildo7525/pretty_hover",
 		event = "LspAttach",
@@ -237,5 +267,6 @@ return {
 				}},
 			},
 		},
+		lazy = true,
 	},
 }
