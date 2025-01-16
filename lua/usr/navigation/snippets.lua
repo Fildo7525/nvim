@@ -4,13 +4,6 @@ if not status then
 	return
 end
 
-local status, types = pcall(require, "luasnip.util.types")
-if not status then
-	vim.notify("Lusnip.util.types cannot be required", vim.log.levels.ERROR)
-	return
-end
-
-
 require("luasnip/loaders/from_vscode").lazy_load()
 
 luasnip.config.set_config({
