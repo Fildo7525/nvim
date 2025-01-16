@@ -99,7 +99,7 @@ return {
 		'saghen/blink.cmp',
 		-- optional: provides snippets for the snippet source
 		dependencies = 'rafamadriz/friendly-snippets',
-		after = '~/Documents/sourcing/pretty_hover',
+		after = 'Fildo7525/pretty_hover',
 
 		-- use a release tag to download pre-built binaries
 		version = '*',
@@ -207,7 +207,7 @@ return {
 	"github/copilot.vim",
 	"Fildo7525/Revolver",
 	{
-		dir = "~/Documents/sourcing/pretty_hover",
+		"Fildo7525/pretty_hover",
 		event = "LspAttach",
 		opts = {},
 	},
