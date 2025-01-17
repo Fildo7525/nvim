@@ -123,7 +123,12 @@ return {
 	--	LSP
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
-	"neovim/nvim-lspconfig", -- enable LSP
+	{
+		"neovim/nvim-lspconfig", -- enable LSP
+		config = function()
+			require("usr.lsp")
+		end,
+	},
 	"nvimtools/none-ls.nvim",
 	{
 		"lervag/vimtex",
