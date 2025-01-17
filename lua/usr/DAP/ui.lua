@@ -76,12 +76,11 @@ dapui.setup({
 
 local dap = require("dap")
 
-local opts = { silent = true, }
-local keymap = vim.api.nvim_set_keymap
+local keymap = vim.keymap.set
 
 -- INSPECT the variable
-vim.keymap.set('n', '<leader>k', function() require("dapui").eval() end)
-vim.keymap.set('v', '<leader>k', function() require("dapui").eval() end)
+keymap('n', '<leader>k', function() require("dapui").eval() end)
+keymap('v', '<leader>k', function() require("dapui").eval() end)
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
 	dapui.open()
