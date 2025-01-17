@@ -231,6 +231,9 @@ return {
 
 	{
 		"github/copilot.vim",
+		init = function()
+			require("usr.copilot");
+		end,
 		event = "LspAttach",
 	},
 	{
