@@ -1,6 +1,9 @@
 -- TODO: https://github.com/nosduco/remote-sshfs.nvim
 return {
-	"jbyuki/one-small-step-for-vimkind",
+	{
+		"jbyuki/one-small-step-for-vimkind",
+		lazy = true,
+	},
 	-- NVIM DOCS
 	{
 		"folke/lazydev.nvim",
@@ -38,7 +41,6 @@ return {
 	-- SPEEDUP
 	"lewis6991/impatient.nvim",
 
-	-- ALPHA
 	{
 		"folke/snacks.nvim",
 		priority = 1000,
@@ -100,7 +102,6 @@ return {
 		'saghen/blink.cmp',
 		-- optional: provides snippets for the snippet source
 		dependencies = 'rafamadriz/friendly-snippets',
-		after = 'Fildo7525/pretty_hover',
 
 		-- use a release tag to download pre-built binaries
 		version = '*',
@@ -124,8 +125,10 @@ return {
 	"williamboman/mason-lspconfig.nvim",
 	"neovim/nvim-lspconfig", -- enable LSP
 	"nvimtools/none-ls.nvim",
-	"antoinemadec/FixCursorHold.nvim", -- This is needed to fix lsp doc highlight
-	"lervag/vimtex",
+	{
+		"lervag/vimtex",
+		ft = { "tex", "latex" },
+	},
 
 	-- LUALINE & BUFFLINE
 	"nvim-lualine/lualine.nvim",
@@ -154,7 +157,6 @@ return {
 		dependencies = { 'nvim-lua/plenary.nvim', 'Fildo7525/reloader.nvim' },
 		tag = '0.1.8',
 	},
-	"BurntSushi/ripgrep",
 
 	-- TERMINAL POPUP WINDOW
 	"akinsho/toggleterm.nvim",
