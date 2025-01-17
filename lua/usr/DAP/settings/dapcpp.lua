@@ -1,7 +1,5 @@
 local dap = require('dap')
 
-local homePath = vim.fn.expand('$HOME')
-
 dap.adapters.cppdbg = {
 	id = 'cppdbg',
 	type = 'executable',
