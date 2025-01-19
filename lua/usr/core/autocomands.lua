@@ -3,7 +3,7 @@ local opts = { clear = true }
 --           GROUPS            --
 ---------------------------------
 
-local matlab_ft_id = vim.api.nvim_create_augroup("FileTypeSetting", opts)
+local filetype_id = vim.api.nvim_create_augroup("FileTypeSetting", opts)
 
 local at_save = vim.api.nvim_create_augroup("Save", opts)
 
@@ -20,7 +20,16 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost", "BufNewFile" }, {
 	callback = function()
 		vim.bo.filetype = "matlab"
 	end,
-	group = matlab_ft_id,
+	group = filetype_id,
+})
+
+-- Detect Office scripts as a typescript filetype. Which it actually is but trimmed down version.
+vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost", "BufNewFile" }, {
+	pattern = { "*.osts" },
+	callback = function()
+		vim.bo.filetype = "typescript"
+	end,
+	group = filetype_id,
 })
 
 -- Trim trailing whitespace on save
