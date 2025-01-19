@@ -1,5 +1,4 @@
 local lspconfig = require("lspconfig")
-local settings = require("usr.lsp.settings")
 
 local M = {}
 
@@ -28,15 +27,8 @@ local function setup_lua_settings()
 	end
 end
 
-local function setup_vim_settings()
-	for name, _ in pairs(settings.vim) do
-		vim.cmd("source " .. os.getenv("HOME") .. "/.config/nvim/lua/usr/lsp/settings/" .. name .. ".vim")
-	end
-end
-
 function M.setup()
 	setup_lua_settings()
-	setup_vim_settings()
 end
 
 return M
