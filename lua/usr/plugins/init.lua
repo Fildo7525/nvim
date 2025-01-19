@@ -133,6 +133,8 @@ return {
 	{
 		"lervag/vimtex",
 		ft = { "tex", "latex" },
+		config = function() require("usr.lsp.settins.vimtex") end,
+		lazy = true,
 	},
 
 	-- LUALINE & BUFFLINE
