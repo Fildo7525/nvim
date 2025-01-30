@@ -1,4 +1,5 @@
 local opts = { clear = true }
+local util = require("usr.core.util")
 ---------------------------------
 --           GROUPS            --
 ---------------------------------
@@ -35,28 +36,14 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost", "BufNewFile" }, {
 -- Trim trailing whitespace on save
 vim.api.nvim_create_autocmd({ "BufWrite" }, {
 	pattern = { "*" },
-	callback = function()
-		local cursor_pos = vim.api.nvim_win_get_cursor(0)
-
-		-- Trim trailing whitespace
-		if not vim.bo.modifiable then
-			return
-		end
-
-		vim.cmd("%s/\\s\\+$//e")
-		vim.cmd.write()
-		vim.api.nvim_win_set_cursor(0, cursor_pos)
-	end,
+	callback = util.remove_trailing_whitespaces,
 	group = at_save,
 })
 
 -- Save opened files
 vim.api.nvim_create_autocmd({ "ExitPre" }, {
 	pattern = { "*" },
-	callback = function()
-		-- Trim trailing whitespace
-		require('revolver').SaveOpenedFiles()
-	end,
+	callback = require('revolver').SaveOpenedFiles,
 	group = at_exit,
 })
 
