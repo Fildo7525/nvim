@@ -163,6 +163,7 @@ return {
 		'nvim-telescope/telescope.nvim',
 		dependencies = { 'nvim-lua/plenary.nvim', 'Fildo7525/reloader.nvim' },
 		tag = '0.1.8',
+		lazy = true,
 	},
 
 	-- TERMINAL POPUP WINDOW
