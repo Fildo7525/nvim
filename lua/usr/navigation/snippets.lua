@@ -4,13 +4,6 @@ if not status then
 	return
 end
 
-local status, types = pcall(require, "luasnip.util.types")
-if not status then
-	vim.notify("Lusnip.util.types cannot be required", vim.log.levels.ERROR)
-	return
-end
-
-
 require("luasnip/loaders/from_vscode").lazy_load()
 
 luasnip.config.set_config({
@@ -32,24 +25,4 @@ luasnip.config.set_config({
 	--[[ 	}, ]]
 	--[[ }, ]]
 })
-
-vim.keymap.set({ "i", "s" }, "<C-n>", function()
-	vim.notify("C-. was pressed")
-	if luasnip.expand_or_jumpable() then
-		luasnip.expand_or_jump()
-	end
-end)
-
-vim.keymap.set({ "i", "s" }, "<C-p>", function()
-	vim.notify("C-, was pressed")
-	if luasnip.jumpable(-1) then
-		luasnip.jump(-1)
-	end
-end)
-
-vim.keymap.set({ "i", "s" }, "<C-s>", function()
-	if luasnip.choice_active() then
-		luasnip.change_choice(1)
-	end
-end)
 
