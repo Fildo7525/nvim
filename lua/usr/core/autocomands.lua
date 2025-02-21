@@ -33,6 +33,16 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost", "BufNewFile" }, {
 	group = filetype_id,
 })
 
+-- Detect Office scripts as a typescript filetype. Which it actually is but trimmed down version.
+vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost", "BufNewFile" }, {
+	pattern = { "*.py" },
+	callback = function()
+		vim.opt.expandtab = false
+		vim.opt.shiftwidth = 4
+	end,
+	group = filetype_id,
+})
+
 -- Trim trailing whitespace on save
 vim.api.nvim_create_autocmd({ "BufWrite" }, {
 	pattern = { "*" },
