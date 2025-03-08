@@ -148,6 +148,9 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("n", "<leader>e", ":Neotree position=left filesystem reveal toggle<cr>", opts)
 -- keymap("n", "<leader>e", ":Lex 15<CR>", opts)
 
+keymap({"n", "v"}, "<leader>co", ":CopilotChat<CR>", opts)
+keymap("n", "<leader>cp", ":CccPick<CR>", opts)
+
 vim.cmd[[
 	augroup twig_ft
 		au!
