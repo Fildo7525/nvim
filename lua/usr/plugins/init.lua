@@ -285,6 +285,8 @@ return {
 	{
 		"uga-rosa/ccc.nvim",
 		opts = function(ccc, opts)
+			local M_ccc = require("usr.ccc")
+			opts = vim.tbl_deep_extend("force", opts, M_ccc.config())
 			return opts
 		end,
 	},
