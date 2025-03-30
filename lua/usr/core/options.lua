@@ -7,7 +7,6 @@ local options = {
 	cursorline = true,
 	expandtab = false,
 	fileencoding = "utf-8",
-	fillchars  = { util.opt.append, {fold = " "} },
 	foldenable = true,
 	foldlevel = 99,
 	foldexpr = 'v:lua.vim.lsp.foldexpr()',
@@ -28,11 +27,12 @@ local options = {
 	tabstop = 4,
 	termguicolors = true,
 	textwidth = 125,
+	fillchars  = { util.opt.append, {fold = " "} },
+	formatoptions = {util.opt.append, "cn", util.opt.remove, "ro"},
 	iskeyword = {util.opt.append, "-"},
 	shortmess = {util.opt.append, "c"},
 	statusline = {util.opt.append, "%-{get(b:,'gitsigns_status','')}"},
 	whichwrap = {util.opt.append, "<,>,[,],h,l"},
-	formatoptions = {util.opt.append, "cn", util.opt.remove, "ro"},
 }
 
 util.register_options(options)
