@@ -10,6 +10,8 @@ local at_save = vim.api.nvim_create_augroup("Save", opts)
 
 local at_exit = vim.api.nvim_create_augroup("Exit", opts)
 
+local lsp_id = vim.api.nvim_create_augroup("LSP_Local", opts)
+
 ---------------------------------
 --        AUTOCOMMANDS         --
 ---------------------------------
@@ -57,3 +59,14 @@ vim.api.nvim_create_autocmd({ "ExitPre" }, {
 	group = at_exit,
 })
 
+vim.api.nvim_create_autocmd({ "CursorMovedI" }, {
+	pattern = { "*" },
+	callback = function()
+		vim.lsp.buf.signature_help({
+			border = "rounded",
+			focusable = false,
+			anchor_bias = "auto",
+		})
+	end,
+	group = lsp_id,
+})
