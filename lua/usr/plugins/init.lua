@@ -34,7 +34,8 @@ return {
 			enabled = function(root_dir)
 				return vim.g.lazydev_enabled == nil and true or vim.g.lazydev_enabled
 			end,
-		}
+		},
+		lazy = true,
 	},
 	"loichyan/nerdfix",
 
@@ -71,7 +72,10 @@ return {
 	-- dependencies
 	"nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
 	"nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
-	"Fildo7525/reloader.nvim",
+	{
+		"Fildo7525/reloader.nvim",
+		event = "LspAttach",
+	},
 
 	-- colour scheme
 	"sheerun/vim-polyglot",
@@ -96,8 +100,14 @@ return {
 	"rafamadriz/friendly-snippets", -- a bunch of snippets to use
 
 	-- cmp plugins
-	"hrsh7th/nvim-cmp", -- The completion plugin
-	"hrsh7th/cmp-nvim-lsp",
+	{
+		"hrsh7th/nvim-cmp", -- The completion plugin
+		lazy = true,
+	},
+	{
+		"hrsh7th/cmp-nvim-lsp",
+		lazy = true,
+	},
 	{
 		'saghen/blink.cmp',
 		-- optional: provides snippets for the snippet source
@@ -236,7 +246,10 @@ return {
 	},
 
 	-- WINBAR
-	"Bekaboo/dropbar.nvim",
+	{
+		"Bekaboo/dropbar.nvim",
+		lazy = true,
+	},
 
 	{
 		"github/copilot.vim",
@@ -301,5 +314,20 @@ return {
 			-- See Configuration section for options
 		},
 		-- See Commands section for default commands if you want to lazy load on them
+	},
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+		---@module 'render-markdown'
+		---@type render.md.UserConfig
+		ft = { "markdown", "mdx" },
+		opts = {
+			completions = {
+				blink = {
+					enabled = true,
+				},
+			},
+			render_modes = true,
+		},
 	},
 }
