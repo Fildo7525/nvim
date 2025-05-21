@@ -143,7 +143,7 @@ return {
 	{
 		"lervag/vimtex",
 		ft = { "tex", "latex" },
-		config = function() require("usr.lsp.settins.vimtex") end,
+		config = function() require("usr.lsp.settings.vimlatex") end,
 		lazy = true,
 	},
 
@@ -263,9 +263,11 @@ return {
 		event = "LspAttach",
 	},
 	{
-		"Fildo7525/pretty_hover",
+		dir = "~/Documents/sourcing/pretty_hover",
 		event = "LspAttach",
-		opts = {},
+		opts = {
+			multi_server = false,
+		},
 	},
 
 	-- HLS
@@ -329,5 +331,12 @@ return {
 			},
 			render_modes = true,
 		},
+	},
+	{
+		"GCBallesteros/jupytext.nvim",
+		config = true,
+	},
+	{
+		"alec-gibson/nvim-tetris",
 	},
 }
