@@ -33,6 +33,7 @@ local options = {
 	shortmess = {util.opt.append, "c"},
 	statusline = {util.opt.append, "%-{get(b:,'gitsigns_status','')}"},
 	whichwrap = {util.opt.append, "<,>,[,],h,l"},
+	winborder = "rounded",
 }
 
 util.register_options(options)
