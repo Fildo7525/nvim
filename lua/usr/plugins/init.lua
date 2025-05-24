@@ -122,7 +122,6 @@ return {
 
 		opts = require("usr.lsp.blink"),
 		opts_extend = { "sources.default" },
-		event = "LspAttach",
 	},
 	{
 		"saadparwaiz1/cmp_luasnip", -- snippet completions
@@ -131,14 +130,9 @@ return {
 	"windwp/nvim-autopairs",
 
 	--	LSP
-	"williamboman/mason.nvim",
-	"williamboman/mason-lspconfig.nvim",
-	{
-		"neovim/nvim-lspconfig", -- enable LSP
-		config = function()
-			require("usr.lsp")
-		end,
-	},
+	"mason-org/mason.nvim",
+	"mason-org/mason-lspconfig.nvim",
+	"neovim/nvim-lspconfig", -- enable LSP
 	"nvimtools/none-ls.nvim",
 	{
 		"lervag/vimtex",
@@ -265,9 +259,7 @@ return {
 	{
 		dir = "~/Documents/sourcing/pretty_hover",
 		event = "LspAttach",
-		opts = {
-			multi_server = false,
-		},
+		opts = { multi_server = false, },
 	},
 
 	-- HLS
