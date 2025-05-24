@@ -108,7 +108,7 @@ local DEFAULT_SETTINGS = {
 			toggle_package_install_log = "<CR>",
 			---@since 1.8.0
 			-- Keymap to toggle the help view
-			toggle_help = "g?",
+			toggle_help = "?",
 		},
 	},
 }
