@@ -209,10 +209,6 @@ return {
 
 	-- COMMENTING
 	"numToStr/Comment.nvim",
-	{
-		"JoosepAlviste/nvim-ts-context-commentstring",
-		lazy = true,
-	},
 
 	-- GIT
 	{

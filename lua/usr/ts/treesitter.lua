@@ -1,8 +1,5 @@
 local treesitter = require("nvim-treesitter.configs")
 
-require("ts_context_commentstring").setup {}
---[[ vim.g.skip_ts_context_commentstring_module = true ]]
-
 treesitter.setup({
 	-- One of "all", "maintained" (parsers with maintainers), or a list of languages
 	-- ensure_installed = "maintained",
