@@ -8,7 +8,9 @@ comment.setup {
 	sticky = true,
 
 	---Lines to be ignored while (un)comment
-	ignore = nil,
+	ignore = function()
+		return '^$'
+	end,
 
 	---LHS of toggle mappings in NORMAL mode
 	toggler = {
