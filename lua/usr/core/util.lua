@@ -19,7 +19,8 @@ function M.remove_trailing_whitespaces()
 	end
 
 	vim.cmd("%s/\\s\\+$//e")
-	vim.cmd.write()
+	local filename = vim.api.nvim_buf_get_name(0)
+	vim.cmd.save(filename)
 	vim.api.nvim_win_set_cursor(0, cursor_pos)
 end
 
