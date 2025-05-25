@@ -43,7 +43,7 @@ function M.setup()
 				if vim.tbl_contains(config.filetypes or {}, ft) then
 					local bufnr = args.buf
 					-- Avoid double attaching
-					local clients = vim.lsp.get_active_clients({ bufnr = bufnr })
+					local clients = vim.lsp.get_clients({ bufnr = bufnr })
 					local already_attached, id = vim.iter(clients):any(function(c) return c.name == name, c.id end)
 
 					if not already_attached then
