@@ -91,7 +91,7 @@ function M.on_attach(client, bufnr)
 	--	require("jdtls").setup_dap { hotcoderpalce = "auto" }
 	--	require("jdtls.dap").setup_dap_main_class_configs();
 	-- end
-	vim.print("LSP client attached: " .. client.name)
+	-- vim.print("LSP client attached: " .. client.name)
 	lsp_keymaps(bufnr)
 	lsp_highlight_document(client)
 end

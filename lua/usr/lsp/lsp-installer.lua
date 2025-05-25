@@ -22,7 +22,7 @@ local function setup_lua_settings()
 
 		end
 
-		vim.print("Setting up LSP for " .. name)
+		-- vim.print("Setting up LSP for " .. name)
 		opts = vim.tbl_deep_extend("force", opts, setting)
 		vim.lsp.config(name, opts)
 		M.configs[name] = opts
@@ -47,13 +47,13 @@ function M.setup()
 					local already_attached, id = vim.iter(clients):any(function(c) return c.name == name, c.id end)
 
 					if not already_attached then
-						vim.print("Starting LSP for " .. name .. " on buffer " .. bufnr)
+						--[[ vim.print("Starting LSP for " .. name .. " on buffer " .. bufnr) ]]
 						config.name = name
 						config.buffers = { bufnr }
 						vim.lsp.start(config)
 
 					else
-						vim.print("LSP for " .. name .. " already attached to buffer " .. bufnr)
+						--[[ vim.print("LSP for " .. name .. " already attached to buffer " .. bufnr) ]]
 						vim.lsp.buf_attach_client(bufnr, id)
 					end
 				end
