@@ -159,7 +159,7 @@ local opts = { noremap = true, silent = true }
 
 local keymap = vim.api.nvim_set_keymap
 
-keymap("n", "<leader>sh", ":ClangdSwitchSourceHeader<CR>", opts)
+keymap("n", "<leader>sh", "<cmd>LspClangdSwitchSourceHeader<CR>", opts)
 keymap("n", "<F2>", ":lua QtQuerryFinder()<CR>", opts)
 keymap("n", "<leader>md", ":lua CreateClassMethodDefinition()<CR>", opts)
 keymap("n", "<leader>cl", ":lua vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())<CR>", opts)
