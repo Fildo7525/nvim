@@ -1,4 +1,4 @@
-# nvimLua
+# nvim
 
  > The links are pasted here as full links. Some browsers might not be able to open them.
  > If you are using a browser that does not support the links, you can copy the link
