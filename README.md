@@ -15,12 +15,12 @@ Table of Contents:
 
 | Language      | Files | Blank | Comment | Code  |
 |---------------|-------|-------|---------|-------|
-| Lua           | 72    | 384   | 474     | 2758  |
-| JSON          | 2     | 0     | 0       | 130   |
+| Lua           | 73    | 448   | 567     | 3220  |
+| JSON          | 4     | 0     | 0       | 173   |
 | YAML          | 1     | 0     | 1       | 114   |
-| Markdown      | 1     | 33    | 0       | 60    |
-| Vim Script    | 1     | 8     | 21      | 33    |
-| **SUM:**      | 77    | 425   | 496     | 3095  |
+| Markdown      | 1     | 33    | 0       | 67    |
+| **SUM:**      | 79    | 481   | 566     | 3574  |
+
 
 ## Compatibility
 
