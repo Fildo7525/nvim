@@ -40,23 +40,23 @@ function M.setup()
 			local ft = args.match
 
 			for name, config in pairs(M.configs) do
-				if vim.tbl_contains(config.filetypes or {}, ft) then
-					local bufnr = args.buf
-					-- Avoid double attaching
-					local clients = vim.lsp.get_clients({ bufnr = bufnr })
-					local already_attached, id = vim.iter(clients):any(function(c) return c.name == name, c.id end)
-
-					if not already_attached then
-						--[[ vim.print("Starting LSP for " .. name .. " on buffer " .. bufnr) ]]
-						config.name = name
-						config.buffers = { bufnr }
-						vim.lsp.start(config)
-
-					else
-						--[[ vim.print("LSP for " .. name .. " already attached to buffer " .. bufnr) ]]
-						vim.lsp.buf_attach_client(bufnr, id)
-					end
+				if not vim.tbl_contains(config.filetypes or {}, ft) then
+					goto continue
 				end
+
+				local bufnr = args.buf
+				-- Avoid double attaching
+				local clients = vim.lsp.get_clients({ bufnr = bufnr })
+				local already_attached, id = vim.iter(clients):any(function(c) return c.name == name, c.id end)
+
+				if not already_attached then
+					--[[ vim.print("Starting LSP for " .. name .. " on buffer " .. bufnr) ]]
+					config.name = name
+					config.buffers = { bufnr }
+					vim.lsp.start(config)
+				end
+
+				::continue::
 			end
 		end
 	})
