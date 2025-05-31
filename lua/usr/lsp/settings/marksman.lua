@@ -15,8 +15,8 @@ return {
 	default_config = {
 		cmd = cmd,
 		filetypes = { 'markdown', 'markdown.mdx' },
-		root_dir = function(fname)
-			return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
+		root_dir = function(bufnr)
+			return vim.fs.root(bufnr, root_files)
 		end,
 		single_file_support = true,
 	},
