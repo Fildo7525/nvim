@@ -35,9 +35,9 @@ function M.setup()
 	setup_lua_settings()
 
 	-- Autocmd to start LSPs manually per buffer
-	vim.api.nvim_create_autocmd("FileType", {
+	vim.api.nvim_create_autocmd("BufEnter", {
 		callback = function(args)
-			local ft = args.match
+			local ft = vim.o.filetype
 
 			for name, config in pairs(M.configs) do
 				if not vim.tbl_contains(config.filetypes or {}, ft) then
