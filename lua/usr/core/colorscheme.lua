@@ -12,7 +12,6 @@ scheme.setup({
 	dim_inactive = {
 		enabled = false,
 		shade = "dark",
-		percentage = 0.15,
 	},
 	no_italic = false, -- Force no italic
 	no_bold = false, -- Force no bold
