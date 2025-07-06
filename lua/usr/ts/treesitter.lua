@@ -3,7 +3,7 @@ local treesitter = require("nvim-treesitter.configs")
 treesitter.setup({
 	-- One of "all", "maintained" (parsers with maintainers), or a list of languages
 	-- ensure_installed = "maintained",
-	ensure_installed = "all",
+	ensure_installed = { "bash", "bibtex", "c", "c_sharp", "cmake", "comment", "cpp", "desktop", "diff", "dockerfile", "doxygen", "git_config", "git_rebase", "gitattributes", "gitcommit", "gitignore", "javascript", "json", "lua", "luadoc", "markdown", "markdown_inline", "python", "ssh_config", "vim", "vimdoc", "yaml", "thrift", "toml", "yaml"},
 
 	-- Install languages synchronously (only applied to `ensure_installed`)
 	sync_install = false,
