@@ -20,7 +20,7 @@ return {
 	cmd_env = {
 		GLOB_PATTERN = "*@(.sh|.inc|.bash|.command)"
 	},
-	filetype = {
+	filetypes = {
 		"sh",
 		"zsh",
 		"bash",
