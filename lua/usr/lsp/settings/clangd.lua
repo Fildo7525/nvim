@@ -46,8 +46,8 @@ return {
 	},
 	filetypes = { "c", "cpp", "objc", "objcpp" },
 	root_dir = function(bufnr)
-			return vim.fs.root(bufnr, root_files)
-		end,
+		return vim.fs.root(bufnr, root_files)
+	end,
 	single_file_support = true,
 	init_options = {
 		compilationDatabasePath = vim.fn.getcwd() .. "/build",

@@ -25,7 +25,9 @@ return {
 		"zsh",
 		"bash",
 	},
-	root_dir = util.find_git_ancestor,
+	root_dir = function(bufnr)
+		return vim.fs.root(bufnr, root_files)
+	end,
 	single_file_support = true,
 }
 

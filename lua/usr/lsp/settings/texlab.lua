@@ -11,16 +11,14 @@ local root_files = {
 	'.gitignore',
 }
 
-local function rDir(fname)
-	return util.root_pattern(unpack(root_files))(fname) or util.find_git_ancestor(fname)
-end
-
 return {
 	cmd = {
 		"texlab",
 	},
 	filetypes = { "tex", "plaintex", "bib" },
-	root_dir = rDir(fname),
+	root_dir = function(bufnr)
+		return vim.fs.root(bufnr, root_files)
+	end,
 	single_file_support = true,
 	flags = {
 		allow_incremental_sync = false,
