@@ -185,11 +185,6 @@ return {
 		lazy = true,
 	},
 
-	{
-		"HiPhish/rainbow-delimiters.nvim",
-		lazy = true,
-	},
-
 	-- DOXYGEN
 	{
 		"danymat/neogen",
