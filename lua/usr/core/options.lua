@@ -36,4 +36,6 @@ local options = {
 	winborder = "rounded",
 }
 
+vim.g.clipboard = "osc52"
+
 util.register_options(options)
