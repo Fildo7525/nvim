@@ -320,10 +320,6 @@ return {
 		},
 	},
 	{
-		"GCBallesteros/jupytext.nvim",
-		config = true,
-	},
-	{
 		"alec-gibson/nvim-tetris",
 	},
 }
