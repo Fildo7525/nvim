@@ -133,7 +133,10 @@ return {
 	"mason-org/mason.nvim",
 	"mason-org/mason-lspconfig.nvim",
 	"neovim/nvim-lspconfig", -- enable LSP
-	"nvimtools/none-ls.nvim",
+	{
+		"nvimtools/none-ls.nvim",
+		lazy = true,
+	},
 	{
 		"lervag/vimtex",
 		ft = { "tex", "latex" },
@@ -282,6 +285,7 @@ return {
 	},
 	{
 		"uga-rosa/ccc.nvim",
+		lazy = true,
 		opts = function(ccc, opts)
 			local M_ccc = require("usr.ccc")
 			opts = vim.tbl_deep_extend("force", opts, M_ccc.config())
