@@ -37,6 +37,15 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost", "BufNewFile" }, {
 vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost", "BufNewFile" }, {
 	pattern = { "*.py" },
 	callback = function()
+		vim.opt.expandtab = true
+		vim.opt.shiftwidth = 4
+	end,
+	group = filetype_id,
+})
+
+vim.api.nvim_create_autocmd({ "BufLeave" }, {
+	pattern = { "*.py" },
+	callback = function()
 		vim.opt.expandtab = false
 		vim.opt.shiftwidth = 4
 	end,
