@@ -65,8 +65,14 @@ return {
 
 	-- PROJECTS
 	{
-		"LennyPhoenix/project.nvim", -- switch between projects on the system
-		branch = "fix-get_clients",
+		"DrKJeff16/project.nvim", -- switch between projects on the system
+		dependencies = { -- OPTIONAL
+			'nvim-lua/plenary.nvim',
+			'nvim-telescope/telescope.nvim',
+		},
+
+		opts = { },
+		cond = vim.fn.has('nvim-0.11') == 1, -- RECOMMENDED
 	},
 
 	-- dependencies
