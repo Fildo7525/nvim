@@ -159,3 +159,4 @@ vim.cmd[[
 	augroup END
 ]]
 
+keymap("n", "<ESC>", "", opts)
