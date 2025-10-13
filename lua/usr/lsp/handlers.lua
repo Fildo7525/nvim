@@ -98,6 +98,29 @@ local function lsp_keymaps(bufnr)
 	--[[ vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>fo", "<cmd>Format<CR>", opts) ]]
 end
 
+function M.reload_buf_lsp_servers()
+	local bufnr = vim.api.nvim_get_current_buf()
+	local clients = vim.lsp.get_clients({ bufnr = bufnr })
+	local client_names = {}
+
+	for _, client in pairs(clients) do
+		table.insert(client_names, client.config.name)
+		vim.lsp.stop_client(client, true)
+	end
+
+	vim.defer_fn(function()
+		for _, name in pairs(client_names) do
+			local config = vim.lsp.config[name]
+			if not config then
+				goto continue
+			end
+
+			vim.lsp.start(config)
+			::continue::
+		end
+	end, 100)
+end
+
 function M.on_attach(client, bufnr)
 	if client.name == "tsserver" then -- or client.name == "jdt.ls" then
 		client.server_capabilities.document_formatting = false
@@ -109,6 +132,8 @@ function M.on_attach(client, bufnr)
 			switch_source_header(0)
 		end, { desc = 'Switch between source/header' })
 	end
+
+	vim.api.nvim_create_user_command("LspBufReload", M.reload_buf_lsp_servers, { desc = "Reload LSP servers for current buffer" })
 
 	-- if client.name == "jdt.ls" then
 	--	require("jdtls").setup_dap { hotcoderpalce = "auto" }
