@@ -328,4 +328,10 @@ return {
 	{
 		"alec-gibson/nvim-tetris",
 	},
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+		opts = { },
+		lazy=false,
+	},
 }
