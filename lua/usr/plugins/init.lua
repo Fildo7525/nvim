@@ -127,6 +127,24 @@ return {
 		-- build = 'nix run .#build-plugin',
 
 		opts = require("usr.lsp.blink"),
+		config = function(_, opts)
+			local original = require("blink.cmp.completion.list").show
+
+			---@diagnostic disable-next-line: duplicate-set-field
+			require("blink.cmp.completion.list").show = function(ctx, items_by_source)
+				local seen = {}
+				local function filter(item)
+					if seen[item.label] then return false end
+					seen[item.label] = true
+					return true
+				end
+				for id in vim.iter(opts.sources.priority) do
+					items_by_source[id] = items_by_source[id] and vim.iter(items_by_source[id]):filter(filter):totable()
+				end
+				return original(ctx, items_by_source)
+			end
+			require("blink.cmp").setup(opts)
+		end,
 		opts_extend = { "sources.default" },
 	},
 	{
@@ -194,6 +212,37 @@ return {
 		lazy = true,
 	},
 
+	{
+		"HiPhish/rainbow-delimiters.nvim",
+		config = function()
+			---@type rainbow_delimiters.config
+			vim.g.rainbow_delimiters = {
+				strategy = {
+					[''] = 'rainbow-delimiters.strategy.global',
+					vim = 'rainbow-delimiters.strategy.local',
+				},
+				query = {
+					[''] = 'rainbow-delimiters',
+					lua = 'rainbow-blocks',
+				},
+				priority = {
+					[''] = 110,
+					lua = 210,
+				},
+				highlight = {
+					'NeogitGraphGray',
+					'RainbowDelimiterYellow',
+					'RainbowDelimiterBlue',
+					'RainbowDelimiterViolet',
+					'RainbowDelimiterCyan',
+					'RainbowDelimiterOrange',
+					'RainbowDelimiterGreen',
+					'RainbowDelimiterRed',
+				},
+			}
+		end,
+	},
+
 	-- DOXYGEN
 	{
 		"danymat/neogen",
@@ -257,9 +306,9 @@ return {
 		event = "LspAttach",
 	},
 	{
-		"Fildo7525/pretty_hover",
+		dir = "~/Documents/nvim_plugins/pretty_hover",
 		event = "LspAttach",
-		opts = {  },
+		opts = {	},
 	},
 
 	-- HLS
@@ -268,27 +317,6 @@ return {
 		opts = {},
 	},
 
-	-- INDENT BLANKLINE
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		main = "ibl",
-		---@module "ibl"
-		---@type ibl.config
-		opts = {
-			indent = {
-				char = "▏",
-				tab_char = "▏"
-			},
-			scope = {
-				show_start = false,
-				show_end = false,
-				include = { node_type = {
-					python = { "if_statement", "elif_statement", "else_clause", "while_statement", "for_statement", "with_statement" },
-				}},
-			},
-		},
-		lazy = true,
-	},
 	{
 		"uga-rosa/ccc.nvim",
 		lazy = true,
@@ -322,6 +350,26 @@ return {
 					enabled = true,
 				},
 			},
+			latex = {
+				-- Turn on / off latex rendering.
+				enabled = true,
+				-- Additional modes to render latex.
+				render_modes = false,
+				-- Executable used to convert latex formula to rendered unicode.
+				-- If a list is provided the first command available on the system is used.
+				converter = { 'utftex', 'latex2text' },
+				-- Highlight for latex blocks.
+				highlight = 'RenderMarkdownMath',
+				-- Determines where latex formula is rendered relative to block.
+				-- | above	| above latex block															 |
+				-- | below	| below latex block															 |
+				-- | center | centered with latex block (must be single line) |
+				position = 'center',
+				-- Number of empty lines above latex blocks.
+				top_pad = 0,
+				-- Number of empty lines below latex blocks.
+				bottom_pad = 0,
+			},
 			render_modes = true,
 		},
 	},
@@ -331,7 +379,18 @@ return {
 	{
 		"lukas-reineke/indent-blankline.nvim",
 		main = "ibl",
-		opts = { },
+		opts = {
+			scope = {
+				show_start = false,
+				show_end = false
+			},
+			exclude = {
+				filetypes = {
+					"lua",
+					"cpp",
+				},
+			},
+		},
 		lazy=false,
 	},
 }

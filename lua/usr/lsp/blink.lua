@@ -47,5 +47,13 @@ return {
 		["<C-p>"] = { "snippet_forward", "fallback"},
 		["<C-n>"] = { "snippet_backward", "fallback"},
 		["<CR>"] = { "accept", "fallback" },
-	}
+	},
+	sources = {
+		priority = {
+			'lsp',
+			'snippets',
+			'path',
+			'buffer',
+		},
+	},
 }
