@@ -52,6 +52,14 @@ vim.api.nvim_create_autocmd({ "BufLeave" }, {
 	group = filetype_id,
 })
 
+vim.api.nvim_create_autocmd({ "BufRead", "BufEnter", "BufWritePost", "BufNewFile" }, {
+	pattern = { "*.sdf" },
+	callback = function()
+		vim.opt.filetype = "xml"
+	end,
+	group = filetype_id,
+})
+
 -- Trim trailing whitespace on save
 vim.api.nvim_create_autocmd({ "BufWrite" }, {
 	pattern = { "*" },
