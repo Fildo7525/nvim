@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost", "BufNewFile" }, {
 })
 
 -- Detect Office scripts as a typescript filetype. Which it actually is but trimmed down version.
-vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost", "BufNewFile" }, {
+vim.api.nvim_create_autocmd({ "BufRead", "BufEnter", "BufWritePost", "BufNewFile" }, {
 	pattern = { "*.py" },
 	callback = function()
 		vim.opt.expandtab = true
