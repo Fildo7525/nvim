@@ -306,7 +306,7 @@ return {
 		event = "LspAttach",
 	},
 	{
-		dir = "~/Documents/nvim_plugins/pretty_hover",
+		"Fildo7525/pretty_hover",
 		event = "LspAttach",
 		opts = {	},
 	},
