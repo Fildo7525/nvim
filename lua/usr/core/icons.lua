@@ -68,6 +68,7 @@ return {
 	git = {
 		Add = " ",
 		BoldBar = "▎",
+		ChagneDeleted = "~",
 		Deleted = "󰗩 ",
 		Diff = " ",
 		Ignore = " ",
@@ -78,6 +79,7 @@ return {
 		Renamed = "➜",
 		Repo = " ",
 		Staged = " ",
+		TopDeleted = '‾',
 		Unmerged = " ",
 		Unstaged = " ",
 		Untracked = "┆ ",
