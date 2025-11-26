@@ -43,27 +43,27 @@ local htop = Terminal:new({ cmd = "htop", hidden = true })
 local python = Terminal:new({ cmd = "python", hidden = true })
 local r = Terminal:new({ cmd = "R", hidden = true })
 
-function _LAZYGIT_TOGGLE()
+local function _LAZYGIT_TOGGLE()
 	lazygit:toggle()
 end
 
-function _NODE_TOGGLE()
+local function _NODE_TOGGLE()
 	node:toggle()
 end
 
-function _NCDU_TOGGLE()
+local function _NCDU_TOGGLE()
 	ncdu:toggle()
 end
 
-function _HTOP_TOGGLE()
+local function _HTOP_TOGGLE()
 	htop:toggle()
 end
 
-function _PYTHON_TOGGLE()
+local function _PYTHON_TOGGLE()
 	python:toggle()
 end
 
-function _R_TOGGLE()
+local function _R_TOGGLE()
 	r:toggle()
 end
 
