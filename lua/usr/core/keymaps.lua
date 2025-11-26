@@ -26,9 +26,20 @@ vim.keymap.set("n", "<leader><cr>", function ()
 	vim.notify("Nvim configuration reloaded!", vim.log.levels.INFO)
 end)
 
+local function run_searchable_command()
+	vim.ui.input({prompt = "Command: "}, function(input)
+		if input then
+			local cmd = "enew|pu=execute('" .. input .. "')"
+			vim.print(cmd)
+			vim.cmd(cmd)
+		end
+	end)
+end
+
 -- init.lua edditink
 keymap("n", "<leader>sc", ":e ~/.config/nvim/init.lua<CR>", opts)
 keymap("n", "<leader>m", ":new<CR>:put =execute('messages')<CR>", opts)
+keymap("n", "<leader>mc", run_searchable_command, opts)
 
 -- buildProject CUSTOMS --
 keymap("n", "<F2>", ":term cmake -S . -B ./build && mv ./build/compile_commands.json .<CR>", opts)
