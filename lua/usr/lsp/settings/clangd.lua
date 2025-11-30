@@ -45,9 +45,7 @@ return {
 		--[[ "--query-driver=/usr/bin/g++", ]]
 	},
 	filetypes = { "c", "cpp", "objc", "objcpp" },
-	root_dir = function(bufnr)
-		return vim.fs.root(bufnr, root_files)
-	end,
+	root_dir = vim.fs.root(0, root_files),
 	single_file_support = true,
 	init_options = {
 		compilationDatabasePath = vim.fn.getcwd() .. "/build",

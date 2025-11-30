@@ -16,9 +16,7 @@ return {
 		"texlab",
 	},
 	filetypes = { "tex", "plaintex", "bib" },
-	root_dir = function(bufnr)
-		return vim.fs.root(bufnr, root_files)
-	end,
+	root_dir = vim.fs.root(0, root_files),
 	single_file_support = true,
 	flags = {
 		allow_incremental_sync = false,
