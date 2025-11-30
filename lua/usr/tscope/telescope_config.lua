@@ -49,11 +49,6 @@ telescope.setup {
 			}
 		}
 	},
-	extensions = {
-		clang_reloader = {
-		},
-	},
 }
 
 -- telescope.load_extension('ros')
-telescope.load_extension('clang_reloader')
