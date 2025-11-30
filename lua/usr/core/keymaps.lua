@@ -58,7 +58,7 @@ keymap("n", "gf", ":e <cfile><CR>", opts)
 keymap("n", "<leader>4s", ":%s/    /<TAB>/g<CR>:set shiftwidth=4<CR>:set tabstop=4<CR>:set noexpandtab<CR>/asdfsaf<CR>/<CR>", opts)
 keymap("n", "<leader>2s", ":%s/  /<TAB>/g<CR>:set shiftwidth=4<CR>:set tabstop=4<CR>:set noexpandtab<CR>/asdfsaf<CR>/<CR>", opts)
 
-keymap({"n", "t"}, "<leader>lg", require("usr.toggleterm").lazygit, opts)
+keymap("n", "<leader>lg", require("usr.toggleterm").lazygit, opts)
 keymap({"n", "t"}, "<leader>py", require("usr.toggleterm").python, opts)
 keymap({"n", "t"}, "<leader>ht", require("usr.toggleterm").htop, opts)
 keymap({"n", "t"}, "<leader>nd", require("usr.toggleterm").ncdu, opts)
