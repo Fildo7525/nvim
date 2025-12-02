@@ -81,6 +81,13 @@ return {
 	{
 		"Fildo7525/reloader.nvim",
 		event = "LspAttach",
+		ft = { "cpp", "c", },
+		opts = {
+			autocomand = {
+				enabled = false,
+			},
+			shorten_paths = true,
+		},
 	},
 
 	-- colour scheme
