@@ -75,25 +75,43 @@ local function lsp_highlight_document(client)
 	illuminate.on_attach(client)
 end
 
+--- @param options vim.lsp.LocationOpts
+local function filter_duplicates(options)
+	local seen = {}
+	local filtered = {}
+
+	for _, item in ipairs(options.items) do
+		local key = item.filename .. ":" .. item.user_data.range.start.line .. ":" .. item.user_data.range.start.character
+		if not seen[key] then
+			table.insert(filtered, item)
+			seen[key] = true
+		end
+	end
+
+	options.items = filtered
+	vim.fn.setqflist({}, ' ', options)
+	vim.cmd.cfirst()
+end
+
 local function lsp_keymaps(bufnr)
-	local opts = { noremap = true, silent = true }
-	local keymap = vim.api.nvim_buf_set_keymap
-	keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-	keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
+	local opts = { noremap = true, silent = true, buffer = bufnr }
+	local keymap = vim.keymap.set
+	keymap("n", "gD", vim.lsp.buf.declaration, opts)
+	keymap("n", "gd", function(_) vim.lsp.buf.definition({on_list=filter_duplicates}) end, opts)
 
-	keymap(bufnr, "n", "K", "<cmd>lua require('pretty_hover').hover()<CR>", opts)
-
-	keymap(bufnr, "n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-	keymap(bufnr, "n", "<C-M-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-	keymap(bufnr, "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
-	keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-	keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", opts)
-	keymap(bufnr, "n", "<leader>qf", "<cmd>lua vim.lsp.buf.code_action({only=\"quickfix\"})<CR>", opts)
-	keymap(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
-	keymap(bufnr, "n", "<leader>ih", '<cmd>lua vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())<CR>', opts)
-	keymap(bufnr, "n", "gl", '<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<CR>', opts)
-	keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
-	keymap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
+	opts = { noremap = true, silent = true, }
+	keymap("n", "K", require('pretty_hover').hover, opts)
+	keymap("n", "gi", vim.lsp.buf.implementation, opts)
+	keymap("n", "<M-k>",vim.lsp.buf.signature_help, opts)
+	keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
+	keymap("n", "gr", vim.lsp.buf.references, opts)
+	keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
+	keymap("n", "<leader>qf", function(_) vim.lsp.buf.code_action({only="quickfix"}) end, opts)
+	keymap("n", "[d", function(_) vim.diagnostic.jump({ count=-1, float = true }) end, opts)
+	keymap("n", "<leader>ih", function(_) vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, opts)
+	keymap("n", "gl", function(_) vim.diagnostic.open_float(nil, {focus=false}) end, opts)
+	keymap("n", "]d", function(_) vim.diagnostic.jump({ count=1, float = true }) end, opts)
+	keymap("n", "<M-d>", vim.diagnostic.setloclist, opts)
 	-- vim.cmd [[ command! Format execute 'lua vim.lsp.buf.format({ async = true })' ]]
 	--[[ vim.api.nvim_buf_set_keymap(bufnr, "n", "<leader>fo", "<cmd>Format<CR>", opts) ]]
 end
