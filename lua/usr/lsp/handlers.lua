@@ -123,7 +123,7 @@ function M.reload_buf_lsp_servers()
 
 	for _, client in pairs(clients) do
 		table.insert(client_names, client.config.name)
-		vim.lsp.stop_client(client, true)
+		client:stop()
 	end
 
 	vim.defer_fn(function()
@@ -136,7 +136,7 @@ function M.reload_buf_lsp_servers()
 			vim.lsp.start(config)
 			::continue::
 		end
-	end, 100)
+	end, 200)
 end
 
 function M.on_attach(client, bufnr)
