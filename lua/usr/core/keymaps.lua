@@ -76,7 +76,6 @@ keymap("n", "<leader>fs", require("telescope.builtin").grep_string, opts)
 keymap("n", "<leader>of", require("telescope.builtin").oldfiles, opts)
 keymap("n", "<leader>re", require("telescope.builtin").resume, opts)
 keymap("n", "<leader>pr", require("telescope").extensions.projects.projects, opts)
-keymap('n', "<leader>cc", require("clang_reloader").reload, opts)
 
 -- telescope git commands
 keymap("n", "<leader>gb", require("telescope.builtin").git_branches, opts)
