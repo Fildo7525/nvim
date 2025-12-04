@@ -59,7 +59,7 @@ keymap("n", "<leader>4s", ":%s/    /<TAB>/g<CR>:set shiftwidth=4<CR>:set tabstop
 keymap("n", "<leader>2s", ":%s/  /<TAB>/g<CR>:set shiftwidth=4<CR>:set tabstop=4<CR>:set noexpandtab<CR>/asdfsaf<CR>/<CR>", opts)
 
 keymap("n", "<leader>lg", require("usr.toggleterm").lazygit, opts)
-keymap({"n", "t"}, "<C-p>", require("usr.toggleterm").python, opts)
+keymap({"n", "t"}, "<C-p>y", require("usr.toggleterm").python, opts)
 keymap({"n", "t"}, "<C-M-h>", require("usr.toggleterm").htop, opts)
 
 -- TELESCOPE --
