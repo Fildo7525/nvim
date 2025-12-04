@@ -36,4 +36,29 @@ dap.configurations.cpp = {
 -- If you want to use this for rust and c, add something like this:
 
 dap.configurations.c = dap.configurations.cpp
-dap.configurations.rust = dap.configurations.cpp
+dap.configurations.rust = {
+	{
+		name = "Launch file",
+		type = "cppdbg",
+		request = "launch",
+		program = function()
+			local cwd = vim.fn['getcwd']()
+			local bin = vim.api.nvim_call_function('fnamemodify', {cwd, ":t"})
+
+			vim.notify(vim.fn.getcwd() .. '/target/debug/' .. bin)
+			return vim.fn.getcwd() .. '/target/debug/' .. bin
+
+			--[[ return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/build/', 'file') ]]
+		end,
+		cwd = '${workspaceFolder}/target/debug',
+		stopOnEntry = true,
+		setupCommands = {
+			{
+				text = '-enable-pretty-printing',
+				description =  'enable pretty printing',
+				ignoreFailures = false,
+			},
+		},
+	},
+}
+-- dap.configurations.rust = dap.configurations.cpp
