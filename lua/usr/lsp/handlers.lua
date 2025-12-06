@@ -99,7 +99,6 @@ local function lsp_keymaps(bufnr)
 	keymap("n", "gD", vim.lsp.buf.declaration, opts)
 	keymap("n", "gd", function(_) vim.lsp.buf.definition({on_list=filter_duplicates}) end, opts)
 
-	opts = { noremap = true, silent = true, }
 	keymap("n", "K", require('pretty_hover').hover, opts)
 	keymap("n", "gi", vim.lsp.buf.implementation, opts)
 	keymap("n", "<M-k>",vim.lsp.buf.signature_help, opts)
