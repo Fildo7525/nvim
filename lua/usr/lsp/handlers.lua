@@ -41,17 +41,29 @@ end
 local function lsp_highlight_document(client)
 	-- Set autocommands conditional on server_capabilities
 	if client.server_capabilities.document_highlight then
-		vim.api.nvim_exec(
-			[[
-			augroup lsp_document_highlight
-				autocmd! * <buffer>
-				autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-				autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-			augroup END
-		]],
-			false
-		)
+
+		vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+		vim.api.nvim_clear_autocmds({ group = "lsp_document_highlight", buffer = 0 })
+
+		vim.api.nvim_create_autocmd("CursorHold", {
+			group = "lsp_document_highlight",
+			buffer = 0,
+			callback = function()
+				print("Highlighting document")
+				vim.lsp.buf.document_highlight()
+			end,
+		})
+
+		vim.api.nvim_create_autocmd("CursorMoved", {
+			group = "lsp_document_highlight",
+			buffer = 0,
+			callback = function()
+				print("Clearing highlights")
+				vim.lsp.buf.clear_references()
+			end,
+		})
  	end
+
 	local illuminate = require("illuminate")
 	illuminate.on_attach(client)
 end
