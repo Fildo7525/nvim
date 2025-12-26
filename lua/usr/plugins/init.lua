@@ -1,9 +1,5 @@
 -- TODO: https://github.com/nosduco/remote-sshfs.nvim
 return {
-	{
-		"jbyuki/one-small-step-for-vimkind",
-		lazy = true,
-	},
 	-- NVIM DOCS
 	{
 		"folke/lazydev.nvim",
