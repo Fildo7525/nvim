@@ -41,6 +41,11 @@ keymap("n", "<leader>sc", ":e ~/.config/nvim/init.lua<CR>", opts)
 keymap("n", "<leader>m", ":new<CR>:put =execute('messages')<CR>", opts)
 keymap("n", "<leader>mc", run_searchable_command, opts)
 
+vim.keymap.set("n", "s(", "ciw(<C-r>-)<ESC>", opts)
+vim.keymap.set("n", "s[", "ciw[<C-r>-]<ESC>", opts)
+vim.keymap.set("n", "s{", "ciw{<C-r>-}<ESC>", opts)
+vim.keymap.set("n", "s\"", "ciw\"<C-r>-\"<ESC>", opts)
+
 -- buildProject CUSTOMS --
 keymap("n", "<F2>", ":term cmake -S . -B ./build && mv ./build/compile_commands.json .<CR>", opts)
 keymap("n", "<leader>s", ":set spell!<CR>", term_opts)
