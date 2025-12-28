@@ -5,13 +5,11 @@ return {
 			auto_show_delay_ms = 500,
 			treesitter_highlighting = true,
 			draw = function(opts)
-				if not opts.item or not opts.item.documentation or not opts.item.documentation.value then
-					vim.print("Leaving blink docs emtpy")
-					return
+				if opts.item and opts.item.documentation and opts.item.documentation.value then
+					local out = require("pretty_hover.parser").parse(opts.item.documentation.value)
+					opts.item.documentation.value = out:string()
 				end
 
-				local out = require("pretty_hover.parser").parse(opts.item.documentation.value)
-				opts.item.documentation.value = out:string()
 				opts.default_implementation(opts)
 			end,
 			window = {
