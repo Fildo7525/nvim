@@ -48,7 +48,7 @@ null_ls.setup({
 		completion.spell,
 
 		-- Python
-		diagnostics.mypy,
+		-- diagnostics.mypy,
 
 		-- MARKDOWN
 
