@@ -384,7 +384,10 @@ return {
 		opts = {
 			scope = {
 				show_start = false,
-				show_end = false
+				show_end = false,
+			},
+			indent = {
+				tab_char = "▎",
 			},
 			exclude = {
 				filetypes = {
