@@ -49,7 +49,6 @@ local function lsp_highlight_document(client)
 			group = "lsp_document_highlight",
 			buffer = 0,
 			callback = function()
-				print("Highlighting document")
 				vim.lsp.buf.document_highlight()
 			end,
 		})
@@ -58,7 +57,6 @@ local function lsp_highlight_document(client)
 			group = "lsp_document_highlight",
 			buffer = 0,
 			callback = function()
-				print("Clearing highlights")
 				vim.lsp.buf.clear_references()
 			end,
 		})
@@ -68,13 +66,14 @@ local function lsp_highlight_document(client)
 	illuminate.on_attach(client)
 end
 
---- @param options vim.lsp.LocationOpts
 local function filter_duplicates(options)
 	local seen = {}
 	local filtered = {}
 
 	for _, item in ipairs(options.items) do
-		local key = item.filename .. ":" .. item.user_data.range.start.line .. ":" .. item.user_data.range.start.character
+		local range = item.user_data["range"] or item.user_data["originSelectionRange"]
+		local key = item.filename .. ":" .. range.start.line .. ":" .. range.start.character
+
 		if not seen[key] then
 			table.insert(filtered, item)
 			seen[key] = true
