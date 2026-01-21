@@ -1,3 +1,8 @@
+
+local M = {}
+
+M.allow_external_libraries = false
+
 function os.name()
 	local BinaryFormat = package.cpath:match("%p[\\|/]?%p(%a+)")
 	if BinaryFormat == "dll" then
@@ -11,7 +16,7 @@ end
 
 local keymap = vim.keymap.set
 
-local function mdToPdf()
+function M.mdToPdf()
 	vim.print("Converting " .. vim.fn.bufname() .. " to pdf")
 	local data = io.popen("pandoc -f markdown -t pdf -o " .. vim.fn.expand("%:r") .. ".pdf " .. vim.fn.bufname())
 	if data == nil then
@@ -29,7 +34,7 @@ local function mdToPdf()
 	})
 end
 
-if os.name() == "Linux" then
+if os.name() == "Linux" and M.allow_external_libraries then
 	local http = require("socket.http")
 	local html = require("htmlEntities")
 
@@ -52,7 +57,7 @@ if os.name() == "Linux" then
 		return body:match(utf8_pattern)
 	end
 
-	local function addDictionaryLine()
+	function M.addDictionaryLine()
 		local line = vim.fn.input("Enter words in format: 'danish,english': ")
 		local input = {danish = "", english = ""}
 		-- This is the way how to capture utf-8 characters. This is needed for æ,ø,å
@@ -69,8 +74,9 @@ if os.name() == "Linux" then
 		vim.fn.appendbufline(vim.fn.bufnr(), lineNo, data)
 	end
 
-	keymap("n", "<C-z>", addDictionaryLine)
+	keymap("n", "<C-z>", M.addDictionaryLine)
 end
 
-keymap("n", "<leader>mp", mdToPdf)
+keymap("n", "<leader>mp", M.mdToPdf)
 
+return M
