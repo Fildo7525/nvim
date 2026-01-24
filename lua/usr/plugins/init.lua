@@ -194,9 +194,12 @@ return {
 	-- TELESCOPE
 	{
 		'nvim-telescope/telescope.nvim',
-		dependencies = { 'nvim-lua/plenary.nvim' },
-		tag = '0.1.8',
-		lazy = true,
+		version = '*',
+		dependencies = {
+			'nvim-lua/plenary.nvim',
+			-- optional but recommended
+			{ 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+		}
 	},
 
 	-- TERMINAL POPUP WINDOW
@@ -209,10 +212,10 @@ return {
 
 	-- TREESITTER
 	{
-		'nvim-treesitter/nvim-treesitter',
+		"nvim-treesitter/nvim-treesitter",
 		tag = "v0.10.0",
-		build = ':TSUpdate',
 		lazy = false,
+		build = ":TSUpdate"
 	},
 
 	{
