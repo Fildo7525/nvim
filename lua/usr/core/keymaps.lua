@@ -36,7 +36,7 @@ local function run_searchable_command()
 	end)
 end
 
--- init.lua edditink
+-- init.lua editing
 keymap("n", "<leader>sc", ":e ~/.config/nvim/init.lua<CR>", opts)
 keymap("n", "<leader>m", ":new<CR>:put =execute('messages')<CR>", opts)
 keymap("n", "<leader>mc", run_searchable_command, opts)
