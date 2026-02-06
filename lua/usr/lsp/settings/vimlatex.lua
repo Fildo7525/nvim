@@ -23,7 +23,7 @@ vim.cmd[[
 	let g:vimtex_view_method = "zathura"
 
 	" Or with a generic interface:
-	let g:vimtex_view_general_viewer = 'okular'
+	let g:vimtex_view_general_viewer = 'zathura'
 	let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
 
 	" VimTeX uses latexmk as the default compiler backend. If you use it, which is
@@ -33,13 +33,14 @@ vim.cmd[[
 	" see ":help vimtex-compiler".
 	let g:vimtex_compiler_method = 'latexmk'
 	let g:vimtex_compiler_latexmk = {
-		\ 'aux_dir' : '',
+		\ 'aux_dir' : 'aux',
 		\ 'out_dir' : '',
 		\ 'callback' : 1,
 		\ 'continuous' : 1,
 		\ 'executable' : 'latexmk',
 		\ 'hooks' : [],
 		\ 'options' : [
+		\   '-f',
 		\   '-verbose',
 		\   '-file-line-error',
 		\   '-synctex=1',
