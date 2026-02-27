@@ -9,8 +9,21 @@ end
 
 local handlers = require("usr.lsp.handlers")
 
+local function additional_servers()
+	local servers = {}
+
+	-- Dart supports its own LSP server. It cannot be instaled via mason.
+	if vim.fn.executable("dart") == 1 then
+		table.insert(servers, "dartls")
+	end
+
+	return servers
+end
+
 function M.setup()
 	local servers = mason.get_installed_servers()
+	servers = vim.list_extend(servers, additional_servers())
+
 	for _, name in pairs(servers) do
 		local opts = {
 			on_attach = handlers.on_attach,
