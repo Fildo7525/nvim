@@ -10,16 +10,62 @@ end
 ---@param name string File name.
 ---@return boolean Wether the file exists.
 local function fileExists(name)
-	local f=io.open(name,"r")
-	if f~=nil then io.close(f) return true else return false end
+	local f = io.open(name,"r")
+
+	if f ~= nil then
+		io.close(f)
+		return true
+	end
+
+	return false
+end
+
+local function findCandidates(headerDir, baseName, extensions)
+	local candidates = {}
+	local rootMarkers = { ".git", "CMakeLists.txt", "Makefile", ".build", "build" }
+	local rootDir = vim.fs.root(0, rootMarkers)
+	local searchRoot = (rootDir and rootDir ~= "") and rootDir or "/"
+
+	for _, ext in ipairs(extensions) do
+		local target = baseName .. ext
+		-- Use 'fd' if available, otherwise find
+		local cmd
+		if vim.fn.executable("fd") == 1 then
+			cmd = string.format("fd --type=f -g '%s' '%s' 2>/dev/null", target, searchRoot)
+		else
+			cmd = string.format("find '%s' -type f -name '%s' 2>/dev/null", searchRoot, target)
+		end
+
+		local results = vim.fn.systemlist(cmd)
+		for _, path in ipairs(results) do
+			if path ~= "" then
+				table.insert(candidates, path)
+			end
+		end
+	end
+
+	vim.list.unique(candidates)
+	return candidates
 end
 
 
+local function getSourceFile(headerFile)
+	local baseName = vim.fn.fnamemodify(headerFile, ":t:r") -- filename without extension
+	local headerDir = vim.fn.fnamemodify(headerFile, ":h")	-- directory of header
+	local extensions = { ".cpp", ".c" }
+	local candidates = findCandidates(headerDir, baseName, extensions)
 
+	for i = #candidates, 1, -1 do
+		if not fileExists(candidates[i]) then
+			vim.fn.remove(candidates, i)
+		end
+	end
 
-
-
-
+	if #candidates == 0 then
+		return nil
+	end
+	return candidates[1]
+end
 
 -----------------------------------
 -- CORE FUNCTION FOR DEFINITIONS --
@@ -31,43 +77,41 @@ end
 ---@param promptForSourceFile	boolean Wether to prompt the user for source file.
 local function createDefinition(promptForSourceFile)
 	local headerFile = vim.api.nvim_buf_get_name(0)
-	local sourceFile = ""
-
-	if string.sub(headerFile, -1) == "h" then
-		sourceFile = string.gsub(headerFile, "[.]%w$","")
-	else
-		sourceFile = string.gsub(headerFile, "[.]%w%w%w$", "")
-	end
-	sourceFile = sourceFile .. ".cpp"
+	local sourceFile
 
 	if promptForSourceFile then
 		sourceFile = vim.fn.input("Source file", headerFile)
+	else
+		sourceFile = getSourceFile(headerFile)
+		if not sourceFile then
+			return vim.notify("Could not find source file for header " .. headerFile, vim.log.levels.ERROR)
+		end
 	end
 
-	local current_node = ts_utils.get_node_at_cursor()
+	local currentNode = ts_utils.get_node_at_cursor()
 
-	local function_info = nil
+	local functionInfo = nil
 	local parts = {}
 
-	while current_node ~= nil do
-		local type = current_node:type()
-		if (type == 'field_declaration' or type == 'function_definition' or type == 'declaration') and not function_info then
-			function_info = { return_type = '', declaration = nil }
-			for node, name in current_node:iter_children() do
+	while currentNode ~= nil do
+		local type = currentNode:type()
+		if (type == 'field_declaration' or type == 'function_definition' or type == 'declaration') and not functionInfo then
+			functionInfo = { return_type = '', declaration = nil }
+			for node, name in currentNode:iter_children() do
 				if node:named() then
 					if name == 'type' then
-						function_info.return_type = vim.treesitter.get_node_text(node, 0)
+						functionInfo.return_type = vim.treesitter.get_node_text(node, 0)
 					elseif name == 'declarator' then
-						function_info.declaration = vim.treesitter.get_node_text(node, 0)
+						functionInfo.declaration = vim.treesitter.get_node_text(node, 0)
 					end
 				end
 			end
 		elseif type == 'struct_specifier' or type == 'class_specifier' or type == 'namespace_definition' then
-			if not function_info then
+			if not functionInfo then
 				-- no function found
 				return ''
 			end
-			for node, name in current_node:iter_children() do
+			for node, name in currentNode:iter_children() do
 				if node:named() then
 					if name == 'name' then
 						table.insert(parts, 1, vim.treesitter.get_node_text(node, 0))
@@ -75,32 +119,32 @@ local function createDefinition(promptForSourceFile)
 				end
 			end
 		end
-		current_node = current_node:parent()
+		currentNode = currentNode:parent()
 	end
 
-	if not function_info then
+	if not functionInfo then
 		return ''
 	end
 	-- is not the destructor and the return type is a pointer of a reference
-	local found, _, prefix, name = function_info.declaration:find('^(%W+)%s*(%w.*)')
+	local found, _, prefix, name = functionInfo.declaration:find('^(%W+)%s*(%w.*)')
 	if found and prefix ~= '~' then
-		function_info.return_type = function_info.return_type .. prefix
-		function_info.declaration = name
+		functionInfo.return_type = functionInfo.return_type .. prefix
+		functionInfo.declaration = name
 	end
 
 	local specifier = table.concat(parts, '::')
 
 	if specifier:len() > 0 then
-		specifier = specifier .. '::' .. function_info.declaration
+		specifier = specifier .. '::' .. functionInfo.declaration
 	else
-		specifier = function_info.declaration
+		specifier = functionInfo.declaration
 	end
 
-	if function_info.return_type:len() > 0 then
-		function_info.return_type = function_info.return_type .. ' '
+	if functionInfo.return_type:len() > 0 then
+		functionInfo.return_type = functionInfo.return_type .. ' '
 	end
 
-	local def = string.format("%s%s", function_info.return_type, specifier)
+	local def = string.format("%s%s", functionInfo.return_type, specifier)
 
 	if def:find(" = (.+),") then
 		def = def:gsub(" = (.+),", ",")
@@ -114,14 +158,21 @@ local function createDefinition(promptForSourceFile)
 	def = def:gsub("^(.+)%)(.*)override(.*)", "%1)%2 %3"):gsub("%s+", " ")
 
 	local definition = { "", def, "{", "", "}" }
-	local source_buf_nr = vim.fn.bufnr(sourceFile)
-	if source_buf_nr == -1 then
+	local sourceBufNr = vim.fn.bufnr(sourceFile)
+	if sourceBufNr == -1 then
 		vim.cmd("edit " .. sourceFile)
-		source_buf_nr = vim.fn.bufnr(sourceFile)
+		sourceBufNr = vim.fn.bufnr(sourceFile)
 	end
 
-	vim.fn.bufload(source_buf_nr)
-	vim.fn.appendbufline(source_buf_nr, "$", definition)
+	vim.fn.bufload(sourceBufNr)
+	vim.fn.appendbufline(sourceBufNr, "$", definition)
+
+	local source_lines = vim.api.nvim_buf_get_lines(sourceBufNr, 0, -1, true)
+	local line = #source_lines - 1
+	local character = string.len(source_lines[line])
+
+	vim.api.nvim_win_set_buf(0, sourceBufNr)
+	vim.api.nvim_win_set_cursor(0, {line, character})
 end
 
 
@@ -138,15 +189,6 @@ end
 function QtQuerryFinder()
 	local address = "https://doc.qt.io/qt-5/" .. vim.fn.expand("<cword>"):lower() .. ".html"
 	vim.cmd(":!open " .. address .. " 2> /dev/null &")
-end
-
---- Create Method declaration in source file. Class name is deduced from treesitter.
--- The method or function can be declared on multiple lines.
--- Default parameters are removed.
---
----@param sourceFilePrompt boolean Wether to ask for a source file name.
-function CreateClassMethodDefinition(sourceFilePrompt)
-	createDefinition(sourceFilePrompt)
 end
 
 local function switch_source_header(bufnr)
@@ -183,7 +225,7 @@ local keymap = vim.keymap.set
 
 keymap("n", "<leader>sh", "<cmd>LspClangdSwitchSourceHeader<CR>", opts)
 keymap("n", "<F2>", QtQuerryFinder, opts)
-keymap("n", "<leader>md", ":lua CreateClassMethodDefinition()<CR>", opts)
+keymap("n", "<leader>md", createDefinition, opts)
 keymap("n", "<leader>fo", ":! clang-format -i --style=file:.clang-format %<CR>", opts)
 keymap('n', "<leader>cc", require("clang_reloader").reload, opts)
 
