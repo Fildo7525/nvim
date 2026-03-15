@@ -88,8 +88,8 @@ end
 local function lsp_keymaps(bufnr)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 	local keymap = vim.keymap.set
-	keymap("n", "gD", vim.lsp.buf.declaration, opts)
-	keymap("n", "gd", function(_) vim.lsp.buf.definition({on_list=filter_duplicates}) end, opts)
+	keymap("n", "gD", function(_) vim.lsp.buf.definition({on_list=filter_duplicates}) end, opts)
+	keymap("n", "gd", vim.lsp.buf.declaration, opts)
 
 	keymap("n", "K", require('pretty_hover').hover, opts)
 	keymap("n", "gi", vim.lsp.buf.implementation, opts)
