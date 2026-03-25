@@ -57,7 +57,7 @@ gitsigns.setup {
 		end
 
 		-- Navigation
-		map('n', 'gnh', function()
+		map('n', ']g', function()
 			if vim.wo.diff then
 				vim.cmd.normal({']c', bang = true})
 			else
@@ -65,7 +65,7 @@ gitsigns.setup {
 			end
 		end)
 
-		map('n', 'gph', function()
+		map('n', '[g', function()
 			if vim.wo.diff then
 				vim.cmd.normal({'[c', bang = true})
 			else
