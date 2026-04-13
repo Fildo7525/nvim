@@ -1,3 +1,5 @@
+vim.cmd.packadd("nvim.undotree")
+
 -- TODO: https://github.com/nosduco/remote-sshfs.nvim
 return {
 	-- NVIM DOCS
