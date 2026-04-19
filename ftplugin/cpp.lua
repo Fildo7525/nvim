@@ -1,7 +1,3 @@
-local status_ok, ts_utils = pcall(require, "nvim-treesitter.ts_utils")
-if not status_ok then
-	return
-end
 ----------------------
 -- HELPER FUNCTIONS --
 ----------------------
@@ -88,7 +84,12 @@ local function createDefinition(promptForSourceFile)
 		end
 	end
 
-	local currentNode = ts_utils.get_node_at_cursor()
+	local currentNode = vim.treesitter.get_node()
+	if currentNode == nil then
+		vim.treesitter.get_parser(0):parse()
+		currentNode = vim.treesitter.get_node()
+		vim.notify("Current node is NIL", vim.log.levels.ERROR)
+	end
 
 	local functionInfo = nil
 	local parts = {}
