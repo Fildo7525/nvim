@@ -161,7 +161,6 @@ keymap("n", "<leader>e", ":Neotree position=left filesystem reveal toggle<cr>", 
 keymap("n", "<leader>ce", ":Neotree position=current filesystem reveal toggle <cr>", opts)
 -- keymap("n", "<leader>e", ":Lex 15<CR>", opts)
 
-keymap({"n", "v"}, "<leader>co", ":CopilotChat<CR>", opts)
 keymap("n", "<leader>cp", ":CccPick<CR>", opts)
 
 vim.cmd[[
