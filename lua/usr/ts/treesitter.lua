@@ -6,6 +6,6 @@ local ensure_installed = {
 	"gitignore", "html", "javascript", "json", "lua", "luadoc", "markdown",
 	"markdown_inline", "python", "rust", "ssh_config", "thrift", "toml", "vim",
 	"vimdoc", "xml", "yaml", "yaml",
-},
+}
 
 treesitter.install(ensure_installed):wait(30000)
