@@ -149,8 +149,8 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Visual Block --
-keymap("v", "p", '"_dP', opts)
-keymap("v", "P", '"_dp', opts)
+keymap("v", "p", '"_dp', opts)
+keymap("v", "P", '"_dP', opts)
 
 -- Move text up and down
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
