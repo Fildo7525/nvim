@@ -30,7 +30,11 @@ scheme.setup({
 		operators = {},
 	},
 	color_overrides = {},
-	custom_highlights = {},
+	custom_highlights = function(colours)
+		return {
+			["@lsp.type.enumMember"] = { fg = colours.peach },
+		}
+	end,
 	highlight_overrides = {
 		mocha = {
 			Comment = { fg = "#ADADAD" },
