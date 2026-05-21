@@ -88,8 +88,15 @@ end
 local function lsp_keymaps(bufnr)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 	local keymap = vim.keymap.set
-	keymap("n", "gD", function(_) vim.lsp.buf.definition({on_list=filter_duplicates}) end, opts)
-	keymap("n", "gd", function(_) vim.lsp.buf.declaration({on_list=filter_duplicates}) end, opts)
+
+	if vim.bo.filetype == "python" then
+		-- In python we want to switch these two around as the declaration points us to the import not to the original file
+		keymap("n", "gD", function(_) vim.lsp.buf.declaration({on_list=filter_duplicates}) end, opts)
+		keymap("n", "gd", function(_) vim.lsp.buf.definition({on_list=filter_duplicates}) end, opts)
+	else
+		keymap("n", "gD", function(_) vim.lsp.buf.definition({on_list=filter_duplicates}) end, opts)
+		keymap("n", "gd", function(_) vim.lsp.buf.declaration({on_list=filter_duplicates}) end, opts)
+	end
 
 	keymap("n", "K", require('pretty_hover').hover, opts)
 	keymap("n", "gi", vim.lsp.buf.implementation, opts)
