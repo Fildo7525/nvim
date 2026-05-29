@@ -18,14 +18,18 @@ return {
 		},
 		list = {
 			selection = {
-				preselect = true,
+				preselect = false,
 				auto_insert = true,
 			},
 		},
 		menu = {
+			auto_show = true,
 			draw = {
 				treesitter = { 'lsp' },
 			},
+		},
+		ghost_text = {
+			enabled = true,
 		},
 	},
 
