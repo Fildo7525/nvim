@@ -1,6 +1,7 @@
 local util = require("usr.core.util")
 
 local options = {
+	autocomplete = false,
 	autoread = true,
 	clipboard = "unnamedplus",
 	conceallevel = 0, -- can create error on lazy installing plugins
@@ -37,5 +38,6 @@ local options = {
 }
 
 vim.g.clipboard = "osc52"
+vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
 util.register_options(options)
