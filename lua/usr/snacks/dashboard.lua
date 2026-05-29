@@ -1,9 +1,28 @@
+local icons = require("usr.core.icons")
+
 ---@class snacks.dashboard.Config
 ---@field enabled? boolean
 ---@field sections snacks.dashboard.Section
 ---@field formats table<string, snacks.dashboard.Text|fun(item:snacks.dashboard.Item, ctx:snacks.dashboard.Format.ctx):snacks.dashboard.Text>
 return {
-	enabled = true,
+	preset = {
+		-- Used by the `keys` section to show keymaps.
+		-- Set your custom keymaps here.
+		-- When using a function, the `items` argument are the default keymaps.
+		---@type snacks.dashboard.Item[]
+		keys = {
+			{ icon = icons.ui.Search, key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+			{ icon = icons.documents.File, key = "n", desc = "New File", action = ":ene | startinsert" },
+			{ icon = icons.telescope.Prompt, key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
+			{ icon = icons.documents.RecentFile, key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
+			{ icon = icons.kind.Settings, key = "c", desc = "Config", action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})" },
+			{ icon = icons.git.Restore, key = "s", desc = "Restore Session", section = "session" },
+			{ icon = icons.kind.Sleep, key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+			{ icon = icons.diagnostics.Lsp, key = "M", desc = "Mason", action = ":Mason", enabled = package.loaded.lazy ~= nil },
+			{ icon = icons.kind.Quit, key = "q", desc = "Quit", action = ":qa" },
+		},
+	},
+	-- item field formatters
 	sections = {
 		{ section = "header" },
 		{
@@ -15,7 +34,7 @@ return {
 		{ pane = 2, icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
 		{
 			pane = 2,
-			icon = " ",
+			icon = icons.git.Branch,
 			title = "Git Status",
 			section = "terminal",
 			enabled = function()
