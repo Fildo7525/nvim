@@ -102,5 +102,14 @@ dropbar.setup{
 			end,
 		},
 	},
+	bar = {
+		update_events = {
+			buf = {
+				'OptionSet',
+				'FileChangedShellPost',
+				'TextChanged',
+				'ModeChanged',
+			}
+		}
+	}
 }
-
