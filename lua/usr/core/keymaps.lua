@@ -163,6 +163,12 @@ keymap("n", "<leader>ce", ":Neotree position=current filesystem reveal toggle <c
 
 keymap("n", "<leader>cp", ":CccPick<CR>", opts)
 
+keymap("n", "mpr", function()
+	if vim.bo.filetype == "markdown" and vim.bo.modifiable then
+		vim.cmd("RenderMarkdown preview")
+	end
+end)
+
 vim.cmd[[
 	augroup twig_ft
 		au!
