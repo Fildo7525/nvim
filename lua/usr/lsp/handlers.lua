@@ -89,7 +89,7 @@ local function lsp_keymaps(bufnr)
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 	local keymap = vim.keymap.set
 
-	if vim.bo.filetype == "python" then
+	if vim.bo.filetype == "python" or vim.bo.filetype == "lua" then
 		-- In python we want to switch these two around as the declaration points us to the import not to the original file
 		keymap("n", "gD", function(_) vim.lsp.buf.declaration({on_list=filter_duplicates}) end, opts)
 		keymap("n", "gd", function(_) vim.lsp.buf.definition({on_list=filter_duplicates}) end, opts)
