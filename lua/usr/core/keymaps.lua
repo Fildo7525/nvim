@@ -149,8 +149,19 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Visual Block --
-keymap("v", "p", '"_dp', opts)
-keymap("v", "P", '"_dP', opts)
+keymap("v", "p", function()
+	local _, _, start_col = unpack(vim.fn.getpos('v'))
+	local _, _, end_col = unpack(vim.fn.getpos('.'))
+	local eol = vim.fn.col('$')
+
+	local actual_end_col = math.max(start_col, end_col)
+
+	if actual_end_col >= eol - 1 then
+		return '"_dp'  -- at/near end of line, paste after
+	else
+		return '"_dP'  -- mid line, paste before
+	end
+end, { expr = true, noremap = true })
 
 -- Move text up and down
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
