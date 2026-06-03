@@ -4,7 +4,6 @@ if not ok then
 	return
 end
 
-local utils = require('dropbar.utils')
 local icons = require("usr.core.icons")
 
 dropbar.setup{
