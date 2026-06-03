@@ -44,7 +44,7 @@ return {
 		"--log=error",
 		--[[ "--query-driver=/usr/bin/g++", ]]
 	},
-	filetypes = { "c", "cpp", "objc", "objcpp" },
+	filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
 	root_dir = vim.fs.root(0, root_files),
 	single_file_support = true,
 	init_options = {
