@@ -1,14 +1,17 @@
 local opts = { clear = true }
 local util = require("usr.core.util")
+local api = vim.api
 ---------------------------------
 --           GROUPS            --
 ---------------------------------
 
-local filetype_id = vim.api.nvim_create_augroup("FileTypeSetting", opts)
+local filetype_id = api.nvim_create_augroup("FileTypeSetting", opts)
 
-local at_save = vim.api.nvim_create_augroup("Save", opts)
+local at_save = api.nvim_create_augroup("Save", opts)
 
-local at_exit = vim.api.nvim_create_augroup("Exit", opts)
+local at_exit = api.nvim_create_augroup("Exit", opts)
+
+local at_enter = api.nvim_create_augroup("Enter", opts)
 
 ---------------------------------
 --        AUTOCOMMANDS         --
@@ -16,7 +19,7 @@ local at_exit = vim.api.nvim_create_augroup("Exit", opts)
 
 -- Matlab file was always categorized as octave file.
 -- This autocommand will force neovim to recognize it as a matlab file.
-vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost", "BufNewFile" }, {
+api.nvim_create_autocmd({ "BufRead", "BufWritePost", "BufNewFile" }, {
 	pattern = { "*.m" },
 	callback = function()
 		vim.bo.filetype = "matlab"
@@ -25,7 +28,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost", "BufNewFile" }, {
 })
 
 -- Detect Office scripts as a typescript filetype. Which it actually is but trimmed down version.
-vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost", "BufNewFile" }, {
+api.nvim_create_autocmd({ "BufRead", "BufWritePost", "BufNewFile" }, {
 	pattern = { "*.osts" },
 	callback = function()
 		vim.bo.filetype = "typescript"
@@ -34,7 +37,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufWritePost", "BufNewFile" }, {
 })
 
 -- Detect Office scripts as a typescript filetype. Which it actually is but trimmed down version.
-vim.api.nvim_create_autocmd({ "BufRead", "BufEnter", "BufWritePost", "BufNewFile" }, {
+api.nvim_create_autocmd({ "BufRead", "BufEnter", "BufWritePost", "BufNewFile" }, {
 	pattern = { "*.py" },
 	callback = function()
 		vim.opt.expandtab = true
@@ -43,7 +46,7 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufEnter", "BufWritePost", "BufNewFile
 	group = filetype_id,
 })
 
-vim.api.nvim_create_autocmd({ "BufLeave" }, {
+api.nvim_create_autocmd({ "BufLeave" }, {
 	pattern = { "*.py" },
 	callback = function()
 		vim.opt.expandtab = false
@@ -52,7 +55,7 @@ vim.api.nvim_create_autocmd({ "BufLeave" }, {
 	group = filetype_id,
 })
 
-vim.api.nvim_create_autocmd({ "BufRead", "BufEnter", "BufWritePost", "BufNewFile" }, {
+api.nvim_create_autocmd({ "BufRead", "BufEnter", "BufWritePost", "BufNewFile" }, {
 	pattern = { "*.sdf" },
 	callback = function()
 		vim.opt.filetype = "xml"
@@ -61,14 +64,14 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufEnter", "BufWritePost", "BufNewFile
 })
 
 -- Trim trailing whitespace on save
-vim.api.nvim_create_autocmd({ "BufWrite" }, {
+api.nvim_create_autocmd({ "BufWrite" }, {
 	pattern = { "*" },
 	callback = util.remove_trailing_whitespaces,
 	group = at_save,
 })
 
 -- Save opened files
-vim.api.nvim_create_autocmd({ "ExitPre" }, {
+api.nvim_create_autocmd({ "ExitPre" }, {
 	pattern = { "*" },
 	callback = require('revolver').SaveOpenedFiles,
 	group = at_exit,
