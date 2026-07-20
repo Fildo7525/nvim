@@ -296,7 +296,11 @@ return {
 	{
 		"Fildo7525/pretty_hover",
 		event = "LspAttach",
-		opts = { },
+		opts = {
+			references = {
+				detect = { "\\\\p"},
+			},
+		},
 	},
 
 	-- HLS
