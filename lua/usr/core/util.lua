@@ -37,15 +37,15 @@ function M.register_options(options)
 			goto continue
 		end
 
-		for i=1, #v/2 do
-			if v[i*2-1] == M.opt.append then
-				vim.opt[k]:append(v[i*2])
+		for i=1, #v, 2 do
+			if v[i] == M.opt.append then
+				vim.opt[k]:append(v[i+1])
 
-			elseif v[i*2-1] == M.opt.remove then
-				vim.opt[k]:remove(v[i*2])
+			elseif v[i] == M.opt.remove then
+				vim.opt[k]:remove(v[i+1])
 
-			elseif v[i*2-1] == M.opt.prepend then
-				vim.opt[k]:prepend(v[i*2])
+			elseif v[i] == M.opt.prepend then
+				vim.opt[k]:prepend(v[i+1])
 
 			else
 				error("Invalid option")
