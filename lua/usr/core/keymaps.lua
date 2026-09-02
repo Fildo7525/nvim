@@ -36,6 +36,19 @@ local function run_searchable_command()
 	end)
 end
 
+local function clear_multcursor()
+	local api = vim.api
+	local ns = api.nvim_get_namespaces()
+	local mc_ns = ns["nvim.multicursor"]
+
+	local cursors = api.nvim_buf_get_extmarks(0, mc_ns, 0, -1)
+	-- vim.print(cursors[1])
+
+	for _, cursor in ipairs(cursors) do
+		api.nvim_buf_del_extmark(0, mc_ns, cursor[1])
+	end
+end
+
 -- init.lua editing
 keymap("n", "<leader>sc", ":e ~/.config/nvim/init.lua<CR>", opts)
 keymap("n", "<leader>m", ":new<CR>:put =execute('messages')<CR>", opts)
@@ -179,6 +192,8 @@ keymap("n", "mpr", function()
 		vim.cmd("RenderMarkdown preview")
 	end
 end)
+
+keymap("n", "dmc", clear_multcursor, opts);
 
 vim.cmd[[
 	augroup twig_ft
