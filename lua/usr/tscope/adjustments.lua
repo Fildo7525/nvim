@@ -13,13 +13,12 @@ function M.source_search ()
 end
 
 function M.extend_live_grep(search_opened)
+	local cwd = vim.fn.getcwd();
+	local dirs = {cwd, cwd .. "/src"}
+
 	telescope.live_grep {
 		grep_open_files = search_opened or false,
-		type_filter = "cpp",
-		additional_args = {
-			"--pretty",
-			"--sort path",
-		},
+		search_dirs = dirs,
 		disable_coordinates = false,
 	}
 end
