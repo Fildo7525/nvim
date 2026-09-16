@@ -161,7 +161,10 @@ return {
 	},
 
 	-- LUALINE & BUFFLINE
-	"nvim-lualine/lualine.nvim",
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { 'nvim-tree/nvim-web-devicons'},
+	},
 	'akinsho/bufferline.nvim',
 	"famiu/bufdelete.nvim",
 
@@ -344,7 +347,7 @@ return {
 				-- Number of empty lines below latex blocks.
 				bottom_pad = 0,
 			},
-			render_modes = true,
+			render_modes = { 'n', 't', 'c' },
 		},
 	},
 	{
