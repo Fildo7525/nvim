@@ -62,3 +62,8 @@ vim.cmd.colorscheme(colorscheme)
 local mocha = require("catppuccin.palettes").get_palette "mocha"
 
 vim.api.nvim_set_hl(0, 'Normal', { bg = mocha.base })
+
+local ts = require("usr.core.theme_switcher")
+ts.apply(ts.read_state())
+
+-- nvim --server "~/.cache/nvim/nvim-*" --remote-send  "<Esc>:lua require('usr.core.theme_switcher').apply('dark')<CR>" > /dev/null
