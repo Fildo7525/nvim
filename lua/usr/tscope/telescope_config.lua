@@ -32,7 +32,7 @@ telescope.setup {
 			n = {
 				["<M-p>"] = action_layout.toggle_preview,
 			}
-		}
+		},
 	},
 }
 
