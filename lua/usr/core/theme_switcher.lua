@@ -28,17 +28,17 @@ function M.read_state()
 	return vim.cmd.colorscheme()
 end
 
--- Auto-start an RPC server for THIS instance so it can be addressed
-local server_file = vim.fn.stdpath('cache') .. '/nvim-' .. vim.fn.getpid()
+--- Auto-start an RPC server for THIS instance so it can be addressed
+local sockdir = vim.fn.stdpath('cache') .. '/servers'
+vim.fn.mkdir(sockdir, 'p')
+local server_file = sockdir .. '/nvim-' .. vim.fn.getpid() .. '.sock'
 vim.fn.serverstart(server_file)
 
-local opts = { clear = true }
-local filetype_id = vim.api.nvim_create_augroup("colorscheme-server-setting", opts)
-vim.api.nvim_create_autocmd({ "ExitPre" }, {
+vim.api.nvim_create_autocmd('VimLeavePre', {
 	callback = function()
-		vim.fn.serverstop(server_file)
+		pcall(vim.fn.serverstop, server_file)
+		vim.fn.delete(server_file)
 	end,
-	group = filetype_id,
 })
 
 return M
