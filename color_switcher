@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -u
+
+scheme="${1:?usage: nvim-colorscheme <scheme>}"
+sockdir="${XDG_CACHE_HOME:-$HOME/.cache}/nvim/servers"
+
+if [[ "$scheme" == "light" ]]; then
+	scheme="catppuccin-latte"
+elif [[ "$scheme" == "dark" ]]; then
+	scheme="catppuccin-mocha"
+fi
+
+shopt -s nullglob
+sent=0
+
+for sock in "$sockdir"/nvim-*.sock; do
+	[ -S "$sock" ] || continue
+
+	# Probe: stale sockets from crashed instances look identical on disk.
+	if ! nvim --server "$sock" --remote-expr "1" >/dev/null 2>&1; then
+		rm -f "$sock"
+		continue
+	fi
+
+	if nvim --server "$sock" \
+			--remote-expr "execute('colorscheme $scheme')" >/dev/null 2>&1; then
+		sent=$((sent + 1))
+	else
+		printf 'failed: %s\n' "$sock" >&2
+	fi
+done
+
+printf 'colorscheme %s -> %d instance(s)\n' "$scheme" "$sent"
