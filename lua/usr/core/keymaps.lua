@@ -173,8 +173,22 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 -- NeoTree
-keymap("n", "<leader>e", ":Neotree position=left filesystem reveal toggle<cr>", opts)
-keymap("n", "<leader>ce", ":Neotree position=current filesystem reveal toggle <cr>", opts)
+local function custom_nvimtree(position)
+	local reveal_file = vim.fn.getcwd()
+	reveal_file = reveal_file .. "/init.lua"
+
+	require('neo-tree.command').execute({
+		action = "focus",					-- OPTIONAL, this is the default value
+		source = "filesystem",		 -- OPTIONAL, this is the default value
+		position = position or "left",				 -- OPTIONAL, this is the default value
+		toggle = true,
+		reveal_file = reveal_file, -- path to file or folder to reveal
+		reveal_force_cwd = true,	 -- change cwd without asking if needed
+	})
+end
+
+keymap('n', "<leader>e", function() custom_nvimtree("left") end, opts)
+keymap('n', "<leader>ce", function() custom_nvimtree("current") end, opts)
 -- keymap("n", "<leader>e", ":Lex 15<CR>", opts)
 
 keymap("n", "<leader>cp", ":CccPick<CR>", opts)

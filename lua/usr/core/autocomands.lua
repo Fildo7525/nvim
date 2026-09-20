@@ -77,3 +77,12 @@ api.nvim_create_autocmd({ "ExitPre" }, {
 	group = at_exit,
 })
 
+vim.api.nvim_create_autocmd('BufEnter', {
+	callback = function(ev)
+		local root = vim.fs.root(ev.buf, { '.git', 'Makefile', "Dockerfile", "README.md" })
+		if root then
+			vim.cmd.bcd(root)
+		end
+	end,
+})
+
