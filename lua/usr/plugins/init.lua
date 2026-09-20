@@ -130,7 +130,7 @@ return {
 					seen[item.label] = true
 					return true
 				end
-				for id in vim.iter(opts.sources.priority) do
+				for id in vim.iter(opts.sources.default) do
 					items_by_source[id] = items_by_source[id] and vim.iter(items_by_source[id]):filter(filter):totable()
 				end
 				return original(ctx, items_by_source)

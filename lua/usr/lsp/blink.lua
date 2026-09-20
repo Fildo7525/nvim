@@ -51,11 +51,21 @@ return {
 		["<CR>"] = { "accept", "fallback" },
 	},
 	sources = {
-		priority = {
-			'lsp',
-			'snippets',
-			'path',
-			'buffer',
+		default = { "snippets", "lsp", "path", "buffer" },
+
+		providers = {
+			snippets = {
+				score_offset = 100,
+			},
+			lsp = {
+				score_offset = 50,
+			},
+			path = {
+				score_offset = 0,
+			},
+			buffer = {
+				score_offset = -50,
+			}
 		},
 	},
 }
