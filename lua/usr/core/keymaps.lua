@@ -36,11 +36,6 @@ local function run_searchable_command()
 	end)
 end
 
-local function clear_multicursor()
-	local ns = vim.api.nvim_create_namespace("nvim.multicursor")
-	vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
-end
-
 -- init.lua editing
 keymap("n", "<leader>sc", ":e ~/.config/nvim/init.lua<CR>", opts)
 keymap("n", "<leader>m", ":new<CR>:put =execute('messages')<CR>", opts)
@@ -198,6 +193,11 @@ keymap("n", "mpr", function()
 		vim.cmd("RenderMarkdown preview")
 	end
 end)
+
+local function clear_multicursor()
+	local ns = vim.api.nvim_create_namespace("nvim.multicursor")
+	vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
+end
 
 keymap("n", "dmc", clear_multicursor, opts)
 
