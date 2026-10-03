@@ -107,8 +107,8 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<leader>db", require('dropbar.api').pick, opts)
 
 -- MARKDOWN PREVIEW
-keymap("n", "mpn", ":MarkdownPreview<CR>", opts)
-keymap("n", "mpf", ":MarkdownPreviewStop<CR>", opts)
+keymap("n", "mpn", ":MdKite start<CR>", opts)
+keymap("n", "mpf", ":MdKite stop<CR>", opts)
 
 -- NAVIGATE BUFFERS --
 keymap("n", "<S-h>", ":BufferLineCyclePrev<CR>", opts)
