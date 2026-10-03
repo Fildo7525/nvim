@@ -28,6 +28,18 @@ function M.read_state()
 	return vim.cmd.colorscheme()
 end
 
+function M.read_from_cache()
+	local theme_file_name = vim.fn.stdpath("cache") .. "/theme"
+
+	local ok, theme = pcall(vim.fn.readfile, theme_file_name)
+	if not ok then
+		vim.notify("Popen error", vim.log.levels.ERROR)
+		return
+	end
+
+	return theme
+end
+
 --- Auto-start an RPC server for THIS instance so it can be addressed
 local sockdir = vim.fn.stdpath('cache') .. '/servers'
 vim.fn.mkdir(sockdir, 'p')

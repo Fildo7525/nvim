@@ -65,3 +65,5 @@ vim.api.nvim_set_hl(0, 'Normal', { bg = mocha.base })
 
 local ts = require("usr.core.theme_switcher")
 
+ts.apply(ts.read_from_cache()[1])
+
