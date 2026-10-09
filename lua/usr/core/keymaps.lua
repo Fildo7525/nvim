@@ -169,16 +169,21 @@ keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 
 -- NeoTree
 local function custom_nvimtree(position)
-	local reveal_file = vim.fn.getcwd()
-	reveal_file = reveal_file .. "/init.lua"
+	-- Root the tree at the buffer-local cwd (set by the BufEnter bcd autocmd),
+	-- but reveal the file we are currently in.
+	local root = vim.fn.getcwd()
+	local reveal_file = vim.api.nvim_buf_get_name(0)
+	if reveal_file == "" then
+		reveal_file = nil
+	end
 
 	require('neo-tree.command').execute({
 		action = "focus",					-- OPTIONAL, this is the default value
 		source = "filesystem",		 -- OPTIONAL, this is the default value
 		position = position or "left",				 -- OPTIONAL, this is the default value
 		toggle = true,
+		dir = root,				 -- root the tree here (the buffer-local cwd)
 		reveal_file = reveal_file, -- path to file or folder to reveal
-		reveal_force_cwd = true,	 -- change cwd without asking if needed
 	})
 end
 
