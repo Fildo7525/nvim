@@ -72,7 +72,7 @@ return {
 			autocomand = {
 				enabled = false,
 			},
-			shorten_paths = true,
+			shorten_paths = false,
 		},
 	},
 
