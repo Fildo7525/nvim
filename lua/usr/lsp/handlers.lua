@@ -38,34 +38,37 @@ function M.setup()
 	vim.diagnostic.config(config)
 end
 
+---@param client vim.lsp.Client
 local function lsp_highlight_document(client)
-	-- Set autocommands conditional on server_capabilities
-	if client.server_capabilities.document_highlight then
 
-		vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-		vim.api.nvim_clear_autocmds({ group = "lsp_document_highlight", buffer = 0 })
-
-		vim.api.nvim_create_autocmd("CursorHold", {
-			group = "lsp_document_highlight",
-			buffer = 0,
-			callback = function()
-				vim.lsp.buf.document_highlight()
-			end,
-		})
-
-		vim.api.nvim_create_autocmd("CursorMoved", {
-			group = "lsp_document_highlight",
-			buffer = 0,
-			callback = function()
-				vim.lsp.buf.clear_references()
-			end,
-		})
+	if not client:supports_method('textDocument/documentHighlight') then
+		return
  	end
 
 	local illuminate = require("illuminate")
 	illuminate.on_attach(client)
+
+	vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+	vim.api.nvim_clear_autocmds({ group = "lsp_document_highlight", buffer = 0 })
+
+	vim.api.nvim_create_autocmd("CursorHold", {
+		group = "lsp_document_highlight",
+		buffer = 0,
+		callback = function()
+			vim.lsp.buf.document_highlight()
+		end,
+	})
+
+	vim.api.nvim_create_autocmd("CursorMoved", {
+		group = "lsp_document_highlight",
+		buffer = 0,
+		callback = function()
+			vim.lsp.buf.clear_references()
+		end,
+	})
 end
 
+--- @param options vim.lsp.ListOpts
 local function filter_duplicates(options)
 	local seen = {}
 	local filtered = {}
@@ -85,7 +88,9 @@ local function filter_duplicates(options)
 	vim.cmd.cfirst()
 end
 
+---@param bufnr integer
 local function lsp_keymaps(bufnr)
+	--- @type vim.keymap.set.Opts
 	local opts = { noremap = true, silent = true, buffer = bufnr }
 	local keymap = vim.keymap.set
 
@@ -94,7 +99,7 @@ local function lsp_keymaps(bufnr)
 
 	keymap("n", "K", require('pretty_hover').hover, opts)
 	keymap("n", "gi", vim.lsp.buf.implementation, opts)
-	keymap("n", "<M-k>",vim.lsp.buf.signature_help, opts)
+	keymap("n", "<C-k>",vim.lsp.buf.signature_help, opts)
 	keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
 	keymap("n", "gr", vim.lsp.buf.references, opts)
 	keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
@@ -110,6 +115,7 @@ end
 
 function M.reload_buf_lsp_servers()
 	local bufnr = vim.api.nvim_get_current_buf()
+	--- @type vim.lsp.Client[]
 	local clients = vim.lsp.get_clients({ bufnr = bufnr })
 	local client_names = {}
 
@@ -141,11 +147,6 @@ function M.on_attach(client, bufnr)
 
 	vim.api.nvim_create_user_command("LspBufReload", M.reload_buf_lsp_servers, { desc = "Reload LSP servers for current buffer" })
 
-	-- if client.name == "jdt.ls" then
-	--	require("jdtls").setup_dap { hotcoderpalce = "auto" }
-	--	require("jdtls.dap").setup_dap_main_class_configs();
-	-- end
-	-- vim.print("LSP client attached: " .. client.name)
 	lsp_keymaps(bufnr)
 	lsp_highlight_document(client)
 end
