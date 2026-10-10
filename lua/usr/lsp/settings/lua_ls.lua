@@ -1,3 +1,14 @@
+local library = {
+	vim.fn.expand("$VIMRUNTIME/lua"),
+	vim.fn.stdpath("config") .. "/lua",
+}
+
+library = vim.tbl_deep_extend(
+	"force",
+	library,
+	vim.tbl_map(function(p) return p.name end, require("lazy").plugins())
+)
+
 return {
 	cmd = { "lua-language-server" },
 	filetypes = { "lua" },
@@ -9,10 +20,7 @@ return {
 				globals = { "vim" },
 			},
 			workspace = {
-				library = {
-					[vim.fn.expand("$VIMRUNTIME/lua")] = true,
-					[vim.fn.stdpath("config") .. "/lua"] = true,
-				},
+				library = library,
 			},
 			telemetry = {
 				enable = false,
