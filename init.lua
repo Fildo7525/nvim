@@ -1,5 +1,5 @@
 -- This has to be first or else nothing will work
-require("usr.lazyManager")
+require("usr.lazy_manager")
 require("usr.core")
 
 require("usr.annotations")
