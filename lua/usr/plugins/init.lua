@@ -37,9 +37,6 @@ return {
 	},
 	"loichyan/nerdfix",
 
-	-- SPEEDUP
-	"lewis6991/impatient.nvim",
-
 	{
 		"folke/snacks.nvim",
 		priority = 1000,
