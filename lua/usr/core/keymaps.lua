@@ -63,9 +63,9 @@ keymap("n", "gf", ":e <cfile><CR>", opts)
 keymap("n", "<leader>4s", ":%s/    /<TAB>/g<CR>:set shiftwidth=4<CR>:set tabstop=4<CR>:set noexpandtab<CR>/asdfsaf<CR>/<CR>", opts)
 keymap("n", "<leader>2s", ":%s/  /<TAB>/g<CR>:set shiftwidth=4<CR>:set tabstop=4<CR>:set noexpandtab<CR>/asdfsaf<CR>/<CR>", opts)
 
-keymap("n", "<leader>lg", require("usr.toggleterm").lazygit, opts)
-keymap({"n", "t"}, "<C-p>y", require("usr.toggleterm").python, opts)
-keymap({"n", "t"}, "<C-M-h>", require("usr.toggleterm").htop, opts)
+keymap("n", "<leader>lg", require("usr.ui.toggleterm").lazygit, opts)
+keymap({"n", "t"}, "<C-p>y", require("usr.ui.toggleterm").python, opts)
+keymap({"n", "t"}, "<C-M-h>", require("usr.ui.toggleterm").htop, opts)
 
 -- TELESCOPE --
 keymap("n", "<leader>fb", require("telescope.builtin").buffers, opts)
