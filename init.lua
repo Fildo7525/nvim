@@ -2,9 +2,9 @@
 require("usr.lazy_manager")
 require("usr.core")
 
+require("usr.DAP")
 require("usr.annotations")
 require("usr.autopairs")
-require("usr.DAP")
 require("usr.gitsigns")
 require("usr.lsp")
 require("usr.navigation")
