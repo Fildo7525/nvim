@@ -28,6 +28,7 @@ return {
 		Reference = " ",
 		Sleep = "󰒲 ",
 		Snippet = " ",
+		Server = "",
 		Text = "󰊄 ",
 		Type = "󰉺 ",
 		TextLines = " ",
