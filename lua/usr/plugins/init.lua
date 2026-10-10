@@ -68,6 +68,7 @@ return {
 		"Fildo7525/reloader.nvim",
 		event = "LspAttach",
 		ft = { "cpp", "c", },
+		branch = "feature/bcd-integration",
 		opts = {
 			autocomand = {
 				enabled = false,
