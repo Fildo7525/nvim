@@ -57,4 +57,27 @@ function M.register_options(options)
 	end
 end
 
+function M.get_string_under_cursor()
+	local line = vim.api.nvim_get_current_line()
+	local col = vim.fn.col('.') - 1	-- 0-indexed
+
+	-- Search backwards from cursor for a quote character
+	for i = col, 0, -1 do
+		local c = line:sub(i + 1, i + 1)
+		if c == '"' or c == "'" then
+			-- Found a quote — now find the matching closing quote
+			for j = i + 2, #line + 1 do
+				if line:sub(j, j) == c then
+					return line:sub(i + 2, j - 1)
+				end
+			end
+			-- No closing quote found after this one — might be a closing
+			-- quote, so keep searching backwards for the real opening quote
+		end
+	end
+
+	return nil
+end
+
+
 return M
