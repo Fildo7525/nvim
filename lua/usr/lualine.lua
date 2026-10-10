@@ -36,6 +36,23 @@ local diff = {
 	cond = hide_in_width,
 }
 
+local lsp_status = {
+	'lsp_status',
+	icon = icons.kind.Server,
+	symbols = {
+		-- Standard unicode symbols to cycle through for LSP progress:
+		spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+		-- Standard unicode symbol for when LSP is done:
+		done = '✓',
+		-- Delimiter inserted between LSP names:
+		separator = ' ',
+	},
+	-- List of LSP names to ignore (e.g., `null-ls`):
+	ignore_lsp = { 'null-ls' },
+	-- Display the LSP name
+	show_name = true,
+}
+
 local mode = {
 	"mode",
 	fmt = function(str)
@@ -118,7 +135,7 @@ lualine.setup({
 		lualine_b = { filename, branch, diff, diagnostics },
 		lualine_c = {},
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_x = { spaces, "encoding", fileformat, filetype },
+		lualine_x = { spaces, "encoding", fileformat, filetype, lsp_status,  },
 		lualine_y = { location, progress },
 		lualine_z = {},
 	},
