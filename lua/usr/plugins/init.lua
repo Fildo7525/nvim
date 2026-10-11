@@ -35,7 +35,6 @@ return {
 		},
 		lazy = true,
 	},
-	"loichyan/nerdfix",
 
 	{
 		"folke/snacks.nvim",
@@ -59,8 +58,6 @@ return {
 	},
 
 	-- dependencies
-	"nvim-lua/popup.nvim", -- An implementation of the Popup API from vim in Neovim
-	"nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
 	{
 		"Fildo7525/reloader.nvim",
 		event = "LspAttach",
@@ -75,7 +72,6 @@ return {
 	},
 
 	-- colour scheme
-	"sheerun/vim-polyglot",
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
