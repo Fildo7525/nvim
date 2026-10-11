@@ -3,7 +3,7 @@
 -- Configuration for mason plugin, which is a improved replacement for
 -- Lsp-installer.
 
-local installer = require("usr.lsp.lsp-installer")
+local installer = require("usr.lsp.lsp_installer")
 local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 
