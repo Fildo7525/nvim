@@ -255,7 +255,12 @@ return {
 		lazy = true,
 	},
 
-	"RRethy/vim-illuminate", -- highlight all occurances of a word under cursor
+	{
+		"RRethy/vim-illuminate", -- highlight all occurances of a word under cursor
+		config = function(_, _)
+			vim.g.Illuminate_ftblacklist = { 'alpha', 'NvimTree', 'neo-tree', 'dashboard', 'lazy', 'mason' }
+		end,
+	},
 
 	-- COMMENTING
 	"numToStr/Comment.nvim",

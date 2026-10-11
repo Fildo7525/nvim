@@ -99,12 +99,16 @@ keymap("n", "<M-DOWN>", ":resize +2<CR>", opts)
 keymap("n", "<M-LEFT>", ":vertical resize -2<CR>", opts)
 keymap("n", "<M-RIGHT>", ":vertical resize +2<CR>", opts)
 
---	NAVIGATE WINDOWS	--
+-- NAVIGATE WINDOWS --
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<leader>db", require('dropbar.api').pick, opts)
+
+-- NAVIGATE IN FILE --
+keymap('n', '.', function() require"illuminate".next_reference({wrap=true}) end, {noremap=true})
+keymap('n', ',', function() require"illuminate".next_reference({reverse=true, wrap=true}) end, {noremap=true})
 
 -- MARKDOWN PREVIEW
 keymap("n", "mpn", ":MdKite start<CR>", opts)
