@@ -88,9 +88,9 @@ keymap("n", "<leader>gs", require("telescope.builtin").git_status, opts)
 keymap("n", "<leader>w", ":w<CR>", opts)
 keymap("n", "<leader>wq", ":wq<CR>", opts)
 keymap("n", "<leader>qq", ":q<CR>", opts)
-keymap("n", "<leader>bw", ":w <bar> :Bdelete! %d <CR>", opts) -- buffer writing
+keymap("n", "<leader>bw", ":w <bar> :bdelete! %d <CR>", opts) -- buffer writing
 keymap("n", "<leader>bd", ":bd<CR>", opts) -- buffer delete force
-keymap("n", "<leader>bD", ":Bdelete!<CR>", opts) -- buffer delete force
+keymap("n", "<leader>bD", ":bdelete!<CR>", opts) -- buffer delete force
 keymap("n", "<leader>lf", require('revolver').OpenSavedFiles, opts)
 
 -- Resize with arrows

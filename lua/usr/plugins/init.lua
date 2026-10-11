@@ -148,7 +148,6 @@ return {
 		dependencies = { 'nvim-tree/nvim-web-devicons'},
 	},
 	'akinsho/bufferline.nvim',
-	"famiu/bufdelete.nvim",
 
 	-- DEVICONS and NEO-TREE
 	"ryanoasis/vim-devicons",
@@ -180,11 +179,6 @@ return {
 
 	-- TERMINAL POPUP WINDOW
 	"akinsho/toggleterm.nvim",
-	{
-		"ckipp01/stylua-nvim",
-		build = "cargo install stylua",
-		lazy = true,
-	},
 
 	-- TREESITTER
 	{
