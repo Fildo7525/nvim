@@ -79,5 +79,9 @@ function M.get_string_under_cursor()
 	return nil
 end
 
+function M.if_nil(val, default)
+  if val == nil then return default end
+  return val
+end
 
 return M
