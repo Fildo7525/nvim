@@ -98,7 +98,7 @@ return {
 		BookMark = " ",
 		Bug = " ",
 		Calendar = " ",
-		Check = "󰄬 ",
+		Check = "✓ ",
 		ChevronRight = "> ",
 		Circle = " ",
 		Close = " ",
@@ -183,6 +183,6 @@ return {
 	},
 	access = {
 		ReadOnly = " ",
-
-	}
+	},
+	spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
 }
