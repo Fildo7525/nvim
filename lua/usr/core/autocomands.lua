@@ -80,7 +80,7 @@ nvim_create_autocmd({ "ExitPre" }, {
 
 nvim_create_autocmd('BufEnter', {
 	callback = function(ev)
-		local root = vim.fs.root(ev.buf, { '.git', 'Makefile', "Dockerfile", "README.md" })
+		local root = vim.fs.root(ev.buf, { {".luarc.json", ".luarc.jsonc", "stylua.toml"}, '.git', 'Makefile', "Dockerfile", "README.md", })
 		if root then
 			vim.cmd.bcd(root)
 		else
