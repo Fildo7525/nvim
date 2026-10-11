@@ -26,12 +26,7 @@ null_ls.setup({
 		}),
 		diagnostics.cppcheck.with({
 			extra_args = {
-				"--std=c++17",
-				-- "--enable=all",
 				"--language=c++",
-				-- "--check-config",
-				-- "-rp"
-				-- "--project=compile_commands.json",
 			},
 		}),
 
