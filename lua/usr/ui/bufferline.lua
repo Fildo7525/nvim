@@ -38,9 +38,14 @@ bufferline.setup {
 		diagnostics = "nvim_lsp", -- "nvim_lsp" | "coc" | false ,
 		diagnostics_update_in_insert = false,
 		-- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
-		diagnostics_indicator = function(count, level) --, diagnostics_dict, context)
-			local icon = level:match("error") and icons.diagnostics.Error or icons.diagnostics.Warning
-			return " " .. icon .. count
+		diagnostics_indicator = function(count, level, diagnostics_dict, context)
+			local s = ""
+			for diagnostic_type, cnt in pairs(diagnostics_dict) do
+				local to_match = diagnostic_type:sub(1,1):upper() .. diagnostic_type:sub(2)
+				local icon = icons.diagnostics[to_match]
+				s = s .. icon .. cnt .. " "
+			end
+			return s
 		end,
 		offsets = {
 			{
