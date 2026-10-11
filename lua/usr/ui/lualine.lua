@@ -41,9 +41,9 @@ local lsp_status = {
 	icon = icons.kind.Server,
 	symbols = {
 		-- Standard unicode symbols to cycle through for LSP progress:
-		spinner = { '⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏' },
+		spinner = icons.spinner,
 		-- Standard unicode symbol for when LSP is done:
-		done = '✓',
+		done = icons.ui.Check,
 		-- Delimiter inserted between LSP names:
 		separator = ' ',
 	},
