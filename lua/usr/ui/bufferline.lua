@@ -1,5 +1,6 @@
 local bufferline = require("bufferline")
 local icons = require("usr.core.icons")
+local if_nil = require("usr.core.util").if_nil
 
 bufferline.setup {
 	options = {
@@ -42,7 +43,7 @@ bufferline.setup {
 			local s = ""
 			for diagnostic_type, cnt in pairs(diagnostics_dict) do
 				local to_match = diagnostic_type:sub(1,1):upper() .. diagnostic_type:sub(2)
-				local icon = icons.diagnostics[to_match]
+				local icon = if_nil(icons.diagnostics[to_match], to_match)
 				s = s .. icon .. cnt .. " "
 			end
 			return s
