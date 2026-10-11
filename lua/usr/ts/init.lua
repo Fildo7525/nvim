@@ -1,1 +1,0 @@
-require('usr.ts.treesitter')
