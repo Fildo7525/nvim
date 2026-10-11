@@ -8,7 +8,7 @@ function M.setup()
 			[severity.ERROR] = icons.diagnostics.Error:sub(1,3),
 			[severity.WARN] = icons.diagnostics.Warning:sub(1,3),
 			[severity.HINT] = icons.diagnostics.Hint:sub(1,3),
-			[severity.INFO] = icons.diagnostics.Information:sub(1,3),
+			[severity.INFO] = icons.diagnostics.Info:sub(1,3),
 		},
 		numhl = {
 			[severity.WARN] = 'WarningMsg',

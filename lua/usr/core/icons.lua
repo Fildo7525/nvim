@@ -141,8 +141,8 @@ return {
 		Lsp = ' ',
 		Error = " ",
 		Hint = " ",
-		Information = " ",
-		Question = " ",
+		Info = " ",
+		Question = " ",
 		Warning = " ",
 	},
 	misc = {
