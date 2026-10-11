@@ -93,14 +93,6 @@ return {
 
 	-- cmp plugins
 	{
-		"hrsh7th/nvim-cmp", -- The completion plugin
-		lazy = true,
-	},
-	{
-		"hrsh7th/cmp-nvim-lsp",
-		lazy = true,
-	},
-	{
 		'saghen/blink.cmp',
 		-- optional: provides snippets for the snippet source
 		dependencies = 'rafamadriz/friendly-snippets',
@@ -132,10 +124,6 @@ return {
 			require("blink.cmp").setup(opts)
 		end,
 		opts_extend = { "sources.default" },
-	},
-	{
-		"saadparwaiz1/cmp_luasnip", -- snippet completions
-		event = "LspAttach",
 	},
 	"windwp/nvim-autopairs",
 
