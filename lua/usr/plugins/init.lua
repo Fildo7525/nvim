@@ -283,7 +283,7 @@ return {
 	{
 		"theHamsta/nvim-dap-virtual-text",
 		lazy = true,
-		opts = require("usr.DAP.virtual_text"),
+		opts = require("usr.dap.virtual_text"),
 	},
 	{
 		"nvim-neotest/nvim-nio",
