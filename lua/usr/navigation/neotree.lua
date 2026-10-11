@@ -84,7 +84,7 @@ neotree.setup({
 				'6. Extension of the filename: ' .. results[6],
 			})
 
-			if i > 0 then
+			if i > 0 and i < 7 then
 				local result = results[i]
 				if not result then return print('Invalid choice: ' .. i) end
 				vim.fn.setreg('+', result)
