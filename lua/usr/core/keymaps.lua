@@ -203,12 +203,12 @@ keymap("n", "mpr", function()
 	end
 end)
 
-local function clear_multicursor()
+local function multicursor_clear()
 	local ns = vim.api.nvim_create_namespace("nvim.multicursor")
 	vim.api.nvim_buf_clear_namespace(0, ns, 0, -1)
 end
 
-keymap("n", "dmc", clear_multicursor, opts)
+keymap("n", "dmc", multicursor_clear, opts)
 
 vim.cmd[[
 	augroup twig_ft
