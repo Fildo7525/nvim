@@ -1,4 +1,5 @@
 vim.cmd.packadd("nvim.undotree")
+vim.cmd.packadd("nvim.difftool")
 
 -- TODO: https://github.com/nosduco/remote-sshfs.nvim
 return {
