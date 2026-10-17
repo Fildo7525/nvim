@@ -80,17 +80,23 @@ nvim_create_autocmd({ "ExitPre" }, {
 
 nvim_create_autocmd('BufEnter', {
 	callback = function(ev)
+		if ev.file == "" then
+			return
+		end
+
 		local root = vim.fs.root(ev.buf, { {".luarc.json", ".luarc.jsonc", "stylua.toml"}, '.git', 'Makefile', "Dockerfile", "README.md", })
 		if root then
 			vim.cmd.bcd(root)
-		else
-			for dir in vim.fs.parents(ev.file) do
-				if vim.fn.isdirectory(dir) then
-					vim.cmd.bcd(dir)
-					return
-				end
+			return
+		end
+
+		for dir in vim.fs.parents(ev.file) do
+			if vim.fn.isdirectory(dir) then
+				vim.cmd.bcd(dir)
+				return
 			end
 		end
 	end,
+	group = at_enter,
 })
 
