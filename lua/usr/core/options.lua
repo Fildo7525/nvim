@@ -40,4 +40,7 @@ local options = {
 vim.g.clipboard = "osc52"
 vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 
+-- Move all multicursor yank be in one register for paste.
+vim.cmd("let @+=@\"")
+
 util.register_options(options)
