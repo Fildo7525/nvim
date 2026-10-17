@@ -5,6 +5,7 @@ local M = {}
 M.map = { light = 'catppuccin-latte', dark = 'catppuccin-mocha' }
 
 function M.apply(name)
+	name = name or "dark"
 
 	local flavor = ""
 	if not string.find(name, "catppuccin-") then
@@ -33,8 +34,9 @@ function M.read_from_cache()
 
 	local ok, theme = pcall(vim.fn.readfile, theme_file_name)
 	if not ok then
-		vim.notify("Popen error", vim.log.levels.ERROR)
-		return
+		vim.cmd("!touch " .. theme_file_name)
+		vim.cmd("!echo " .. M.map['dark'] .. " > " .. theme_file_name)
+		return "dark"
 	end
 
 	return theme
