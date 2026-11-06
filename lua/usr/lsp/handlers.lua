@@ -100,7 +100,6 @@ local function lsp_keymaps(bufnr)
 
 	keymap("n", "K", require('pretty_hover').hover, opts)
 	keymap("n", "gi", vim.lsp.buf.implementation, opts)
-	keymap("n", "<C-k>",vim.lsp.buf.signature_help, opts)
 	keymap("n", "<leader>rn", vim.lsp.buf.rename, opts)
 	keymap("n", "gr", vim.lsp.buf.references, opts)
 	keymap("n", "<leader>ca", vim.lsp.buf.code_action, opts)
